@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap");
+
 :root {
   /* Palette principale inspiree de la roadmap */
   --color-bg: #050709;
@@ -45,4 +47,18 @@
   --shadow-cyan-sm: 0 0 18px rgba(0, 212, 255, 0.18);
   --transition-fast: 0.18s ease;
   --transition-medium: 0.32s ease;
+
+  /*
+    Breakpoints de reference.
+
+    Note pedagogique :
+    les variables CSS ne sont pas utilisees directement dans les media queries
+    classiques sur tous les navigateurs de la meme maniere.
+    On les garde ici comme source de verite de design system pour documenter
+    les seuils du projet et eventuellement les reutiliser en JS.
+  */
+  --bp-mobile: 480px;
+  --bp-tablet: 768px;
+  --bp-laptop: 1024px;
+  --bp-desktop: 1440px;
 }

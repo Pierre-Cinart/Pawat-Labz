@@ -153,6 +153,11 @@
   letter-spacing: 0.08em;
 }
 
+.button--primary,
+.button--ghost {
+  display: inline-flex;
+}
+
 .button--primary {
   background: linear-gradient(90deg, rgba(0, 255, 65, 0.18), rgba(0, 212, 255, 0.16));
   border-color: rgba(0, 255, 65, 0.26);
@@ -169,6 +174,31 @@
 .button:hover,
 .footer-link:hover {
   transform: translateY(-1px);
+}
+
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+  background: rgba(10, 18, 25, 0.76);
+}
+
+.ui-badge--default {
+  color: var(--color-green);
+  border-color: rgba(0, 255, 65, 0.18);
+}
+
+.ui-badge--cyan {
+  color: var(--color-cyan);
+  border-color: rgba(0, 212, 255, 0.18);
 }
 
 .hero-actions {

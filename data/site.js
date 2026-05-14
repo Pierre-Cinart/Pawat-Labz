@@ -33,6 +33,27 @@ export const socialLinks = [
 ];
 
 /**
+ * Cartes de structure projet.
+ *
+ * Elles servent a expliquer, des le premier commit, quel est le role de chaque
+ * bloc d'architecture technique.
+ */
+export const foundationBlocks = [
+  {
+    title: "Router",
+    text: "La navigation SPA hash est centralisee et prete pour accueillir des pages plus riches sans recharger tout le site."
+  },
+  {
+    title: "Pages",
+    text: "Chaque univers du site possede deja sa vue dediee, ce qui permet de construire les sections une par une sans casser l'ensemble."
+  },
+  {
+    title: "UI",
+    text: "Les premiers composants reutilisables sont poses pour garder une interface coherente a mesure que le projet grossit."
+  }
+];
+
+/**
  * Les highlights servent surtout a nourrir les pages stubs du premier commit.
  * Plus tard, ils pourront etre remplaces par de vraies donnees venant de fichiers
  * dedies, d'une API ou d'un CMS.

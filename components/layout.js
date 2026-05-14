@@ -67,7 +67,7 @@ export const renderHeader = () => `
 export const renderFooter = () => `
   <div class="footer-panel">
     <p class="footer-signature">
-      PAWAT LABZ · FRONT-END FIRST · HASH ROUTER READY · FIRST COMMIT FOUNDATION
+      PAWAT LABZ ·© Pawat Labz — Tous droits réservés
     </p>
 
     <ul class="footer-links" aria-label="Liens externes">

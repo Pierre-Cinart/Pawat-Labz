@@ -20,6 +20,7 @@ Cette version pose les premieres fondations de la vitrine :
 - une structure generale du site
 - une navigation fluide entre les grands univers
 - une premiere direction visuelle inspiree de l'identite Pawat-Labz
+- une base modulaire prevue pour faire grandir chaque section
 
 Le contenu sera ensuite enrichi progressivement au fil du developpement.
 
@@ -41,6 +42,18 @@ L'univers graphique s'inspire d'une interface de laboratoire creatif :
 - textures numeriques subtiles
 - interface pensee comme un hub d'exploration
 
+## Conventions
+
+Le projet suit une structure simple et evolutive :
+
+- fichiers nommes en kebab-case
+- separation claire entre pages, composants, styles, donnees et routage
+- assets ranges par type pour preparer la suite du developpement
+- chargement progressif prevu pour les medias lourds quand le contenu sera enrichi
+
 ## Suite du projet
 
 Les prochaines iterations serviront a enrichir chaque section avec de vrais contenus, des composants plus pousses, des experiences interactives et une mise en scene plus forte de l'univers Pawat-Labz.
+
+## license
+© Pawat Labz — Tous droits réservés

@@ -1,4 +1,5 @@
 import { setActiveNavigation } from "../components/layout.js";
+import { renderView } from "../scripts/view-manager.js";
 import { siteMeta } from "../data/site.js";
 import { notFoundRoute, routes } from "./routes.js";
 
@@ -40,7 +41,7 @@ const getRouteByPath = (path) => {
  *
  * Cette fonction centralise tout ce qu'une navigation doit faire :
  * - trouver la route
- * - injecter le HTML
+ * - injecter la vue
  * - mettre a jour le titre du document
  * - marquer le lien actif dans le menu
  * - replacer le focus sur la zone principale pour l'accessibilite
@@ -49,8 +50,9 @@ const renderCurrentRoute = () => {
   const app = document.getElementById("app");
   const currentPath = getCurrentPath();
   const currentRoute = getRouteByPath(currentPath);
+  const viewDefinition = currentRoute.render();
 
-  app.innerHTML = currentRoute.render();
+  renderView(app, viewDefinition);
   document.title = `${currentRoute.title} - ${siteMeta.titlePrimary} ${siteMeta.titleAccent}`;
   setActiveNavigation(currentRoute.path === "/404" ? "" : currentRoute.path);
   app.focus();

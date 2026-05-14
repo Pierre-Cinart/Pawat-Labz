@@ -36,6 +36,14 @@ img {
   display: block;
 }
 
+picture {
+  display: block;
+}
+
+iframe {
+  border: 0;
+}
+
 ::selection {
   background: rgba(0, 255, 65, 0.18);
   color: var(--color-text-strong);
