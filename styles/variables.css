@@ -1,0 +1,48 @@
+:root {
+  /* Palette principale inspiree de la roadmap */
+  --color-bg: #050709;
+  --color-surface: rgba(10, 14, 20, 0.92);
+  --color-surface-strong: rgba(15, 22, 32, 0.95);
+  --color-surface-soft: rgba(8, 12, 18, 0.8);
+  --color-border: rgba(0, 255, 65, 0.14);
+  --color-border-strong: rgba(0, 255, 65, 0.32);
+  --color-text: #cfe7d7;
+  --color-text-soft: #71917b;
+  --color-text-strong: #effff2;
+  --color-green: #00ff41;
+  --color-green-dark: #0aa632;
+  --color-cyan: #00d4ff;
+  --color-orange: #ff6b35;
+  --color-red: #ff4f74;
+
+  /* Typographies */
+  --font-title: "Orbitron", "Share Tech Mono", monospace;
+  --font-mono: "Share Tech Mono", "Courier New", monospace;
+  --font-body: "Exo 2", "Segoe UI", sans-serif;
+
+  /* Layout */
+  --content-width: 1160px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Effects */
+  --shadow-green-sm: 0 0 14px rgba(0, 255, 65, 0.22);
+  --shadow-green-md: 0 0 24px rgba(0, 255, 65, 0.18);
+  --shadow-cyan-sm: 0 0 18px rgba(0, 212, 255, 0.18);
+  --transition-fast: 0.18s ease;
+  --transition-medium: 0.32s ease;
+}

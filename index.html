@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pawat-Labz</title>
+  <meta
+    name="description"
+    content="Laboratoire creatif Pawat-Labz : musique, animation, developpement, gaming et experiences interactives."
+  />
+
+  <!--
+    Les polices reprennent l'esprit de la roadmap :
+    - Orbitron pour les titres techno / retro-futuristes
+    - Share Tech Mono pour les labels systeme / navigation / UI
+    - Exo 2 pour garder un texte courant lisible
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!--
+    Toute la feuille de style passe par main.css, qui importe ensuite les
+    fichiers specialises (variables, base, layout, composants, etc.).
+    Cette approche garde le projet lisible des le premier commit.
+  -->
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <!--
+    Les elements d'ambiance sont fixes dans la page complete, car ils doivent
+    rester visibles meme quand le contenu du main change via le routeur.
+  -->
+  <div class="background-grid" aria-hidden="true"></div>
+  <div class="scan-line" aria-hidden="true"></div>
+
+  <!--
+    Le shell global du site est compose de :
+    - un header persistant
+    - une zone main #app pilotee par le routeur
+    - un footer persistant
+
+    Seule la zone #app change au fil de la navigation.
+  -->
+  <div class="site-shell">
+    <header class="site-header" id="site-header"></header>
+    <main class="site-main" id="app" tabindex="-1" aria-live="polite"></main>
+    <footer class="site-footer" id="site-footer"></footer>
+  </div>
+
+  <!--
+    app.js orchestre le demarrage :
+    1. il injecte le header et le footer
+    2. il initialise le routeur hash SPA
+    3. il declenche le premier rendu de page
+  -->
+  <script type="module" src="scripts/app.js"></script>
+</body>
+</html>
