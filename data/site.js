@@ -5,7 +5,7 @@ const translations = {
   fr: {
     siteMeta: {
       version: "v0.1.0",
-      eyebrow: "LABORATOIRE CREATIF VIVANT",
+      eyebrow: "LABORATOIRE CRÉATIF VIVANT",
       titlePrimary: "PAWAT",
       titleAccent: "LABZ",
       tagline: "Musique - Animation - Dev - Gaming - Freestyle - Tutos",
@@ -63,8 +63,8 @@ const translations = {
         index: "02",
         label: "Animation",
         title: "Images en mouvement, séries et univers visuels",
-        text: "Cette section regroupe mes créations animées, mes dessins animés, mes concepts de séries, mes clips animés, mes publicités courtes et mes expérimentations visuelles.",
-        details: ["Séries animées", "Dessins animés", "Clips animés", "Micro pubs", "Concepts visuels", "Thèmes expérimentaux"]
+        text: "Découvrez ici mes créations animées, mes dessins animés, mes concepts de séries, mes clips animés, mes publicités courtes et mes expérimentations visuelles.",
+        details: ["Séries animées", "Clips animés", "Publicités courtes", "Univers visuels", "Expérimentations", "Concepts narratifs"]
       },
       {
         path: "/dev",
@@ -116,9 +116,10 @@ const translations = {
         "Sections clips, projets perso et sorties"
       ],
       animation: [
-        "Showreels, clips animés et publicités",
-        "Galeries immersives et lightbox vidéo",
-        "Sous-sections série, clip, pub et expérimental"
+        "Séries animées",
+        "Clips animés et univers visuels",
+        "Publicités courtes et formats promo",
+        "Expérimentations graphiques et narratives"
       ],
       dev: [
         "Présentation de mes outils, prototypes et systèmes",
@@ -131,7 +132,7 @@ const translations = {
         "Présentation arcade rétro-futuriste"
       ],
       freestyle: [
-        "Impro lab et génération de mots",
+        "Impro Lab et génération de mots",
         "Interaction audio et visuelle en temps réel",
         "Modes de difficulté et ambiance scène / labo"
       ],
@@ -269,8 +270,8 @@ const translations = {
         index: "02",
         label: "Animation",
         title: "Moving images, series and visual worlds",
-        text: "This section brings together my animated creations, cartoons, series concepts, animated clips, short ads and visual experiments.",
-        details: ["Animated series", "Cartoons", "Animated clips", "Micro ads", "Visual concepts", "Experimental themes"]
+        text: "Discover my animated creations, cartoons, series concepts, animated clips, short ads and visual experiments here.",
+        details: ["Animated series", "Animated clips", "Short ads", "Visual worlds", "Experiments", "Narrative concepts"]
       },
       {
         path: "/dev",
@@ -322,9 +323,10 @@ const translations = {
         "Clips, personal projects and releases"
       ],
       animation: [
-        "Showreels, animated clips and ads",
-        "Immersive galleries and video lightbox",
-        "Series, clip, ad and experimental sub-sections"
+        "Animated series",
+        "Animated clips and visual worlds",
+        "Short ads and promo formats",
+        "Graphic and narrative experiments"
       ],
       dev: [
         "Presentation of my tools, prototypes and systems",
@@ -337,7 +339,7 @@ const translations = {
         "Retro-futuristic arcade presentation"
       ],
       freestyle: [
-        "Impro lab and word generation",
+        "Impro Lab and word generation",
         "Real-time audio and visual interaction",
         "Difficulty modes and stage / lab atmosphere"
       ],
