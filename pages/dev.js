@@ -1,29 +1,34 @@
 import { renderPanel } from "../components/ui/panel.js";
-import { pageHighlights } from "../data/site.js";
+import { getPageContent, getPageHighlights } from "../data/site.js";
 
-export const renderDevPage = () => ({
-  html: `
-    <section class="page">
-      ${renderPanel({
-        kicker: "SECTION 03",
-        title: "Dev",
-        text: "Espace dedie au portfolio technique, aux prototypes, aux outils open source et a la partie developpement du laboratoire.",
-        tone: "default",
-        badge: "CODE"
-      })}
+export const renderDevPage = () => {
+  const devContent = getPageContent("dev");
+  const pageHighlights = getPageHighlights();
 
-      <div class="stack-list">
-        ${pageHighlights.dev
-          .map(
-            (item) => `
-              <article class="stack-item">
-                <span class="stack-item__bullet"></span>
-                <p>${item}</p>
-              </article>
-            `
-          )
-          .join("")}
-      </div>
-    </section>
-  `
-});
+  return {
+    html: `
+      <section class="page">
+        ${renderPanel({
+          kicker: devContent.kicker,
+          title: devContent.title,
+          text: devContent.text,
+          tone: "default",
+          badge: devContent.badge
+        })}
+
+        <div class="stack-list">
+          ${pageHighlights.dev
+            .map(
+              (item) => `
+                <article class="stack-item">
+                  <span class="stack-item__bullet"></span>
+                  <p>${item}</p>
+                </article>
+              `
+            )
+            .join("")}
+        </div>
+      </section>
+    `
+  };
+};

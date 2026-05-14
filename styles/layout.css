@@ -37,12 +37,15 @@
 }
 
 .footer-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-8);
   padding: var(--space-5) var(--space-6);
 }
 
 .header-topbar,
-.header-hero,
-.footer-panel {
+.header-hero {
   display: flex;
 }
 
@@ -51,6 +54,12 @@
   gap: var(--space-4);
   align-items: center;
   margin-bottom: var(--space-8);
+}
+
+.header-topbar__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
 }
 
 .header-hero {
@@ -78,8 +87,55 @@
   padding-top: var(--space-5);
 }
 
-.primary-nav__list,
-.footer-links {
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.language-switcher__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
+.language-switcher__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.language-switcher__button {
+  min-width: 44px;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid rgba(0, 255, 65, 0.18);
+  border-radius: 999px;
+  background: rgba(4, 11, 18, 0.72);
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 180ms ease, color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.language-switcher__button:hover {
+  color: var(--color-text-main);
+  border-color: rgba(0, 255, 65, 0.42);
+  box-shadow: var(--shadow-green-sm);
+  transform: translateY(-1px);
+}
+
+.language-switcher__button--active {
+  color: var(--color-bg);
+  background: linear-gradient(135deg, rgba(0, 255, 65, 0.92), rgba(125, 255, 92, 0.92));
+  border-color: rgba(125, 255, 92, 0.78);
+  box-shadow: var(--shadow-green-sm);
+}
+
+.primary-nav__list {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
@@ -88,15 +144,28 @@
   margin: 0;
 }
 
-.footer-panel {
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-4);
+.footer-meta {
+  max-width: 320px;
+}
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.footer-group {
+  min-width: 180px;
 }
 
 @media (max-width: 860px) {
   .header-hero,
   .footer-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-topbar {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -120,5 +189,10 @@
   .header-panel,
   .footer-panel {
     padding: var(--space-4);
+  }
+
+  .header-topbar__meta,
+  .language-switcher {
+    flex-wrap: wrap;
   }
 }

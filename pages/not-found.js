@@ -1,25 +1,23 @@
 import { renderButtonLink } from "../components/ui/button.js";
+import { getPageContent } from "../data/site.js";
 
-/**
- * La vue 404 est volontairement simple mais thematique.
- * Elle permet de rester dans l'univers visuel du site meme en cas de hash inconnu.
- */
-export const renderNotFoundPage = () => ({
-  html: `
-    <section class="page">
-      <div class="hero-card hero-card--danger">
-        <p class="section-kicker">ERROR 404</p>
-        <h2 class="section-title">Route introuvable</h2>
-        <p class="section-text">
-          La route demandee n'existe pas encore dans Pawat-Labz.
-          Reviens a l'accueil ou explore une section deja initialisee.
-        </p>
+export const renderNotFoundPage = () => {
+  const notFoundContent = getPageContent("notFound");
 
-        <div class="hero-actions">
-          ${renderButtonLink({ href: "#/", label: "Retour accueil", variant: "primary" })}
-          ${renderButtonLink({ href: "#/dev", label: "Section dev", variant: "ghost" })}
+  return {
+    html: `
+      <section class="page">
+        <div class="hero-card hero-card--danger">
+          <p class="section-kicker">${notFoundContent.kicker}</p>
+          <h2 class="section-title">${notFoundContent.title}</h2>
+          <p class="section-text">${notFoundContent.text}</p>
+
+          <div class="hero-actions">
+            ${renderButtonLink({ href: "#/", label: notFoundContent.backHomeLabel, variant: "primary" })}
+            ${renderButtonLink({ href: "#/dev", label: notFoundContent.devLabel, variant: "ghost" })}
+          </div>
         </div>
-      </div>
-    </section>
-  `
-});
+      </section>
+    `
+  };
+};

@@ -6,23 +6,18 @@ import { renderGamingPage } from "../pages/gaming.js";
 import { renderHomePage } from "../pages/home.js";
 import { renderMusiquePage } from "../pages/musique.js";
 import { renderNotFoundPage } from "../pages/not-found.js";
+import { renderTutosPage } from "../pages/tutos.js";
+import { renderUniversPage } from "../pages/univers.js";
 
-/**
- * Toutes les routes officielles de l'application sont declarees ici.
- *
- * Ce fichier sert de source de verite :
- * si une route n'existe pas dans ce tableau, elle sera consideree comme inconnue.
- */
 export const routes = [
   new Route("/", "Accueil", renderHomePage),
+  new Route("/univers", "Univers", renderUniversPage),
   new Route("/musique", "Musique", renderMusiquePage),
   new Route("/animation", "Animation", renderAnimationPage),
   new Route("/dev", "Dev", renderDevPage),
   new Route("/gaming", "Gaming", renderGamingPage),
-  new Route("/freestyle", "Freestyle", renderFreestylePage)
+  new Route("/freestyle", "Freestyle", renderFreestylePage),
+  new Route("/tutos", "Tutos", renderTutosPage)
 ];
 
-/**
- * Route 404 de secours.
- */
 export const notFoundRoute = new Route("/404", "404", renderNotFoundPage);
