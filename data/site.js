@@ -142,6 +142,129 @@ const translations = {
         "Passerelle vers des formations plus complètes"
       ]
     },
+    animationHub: {
+      introLabel: "Exploration animation",
+      introTitle: "Choisis une rubrique pour faire apparaître son focus créatif.",
+      introText:
+        "Chaque sous-menu peut devenir une porte d'entrée vers une série, une collection de clips, des pubs ou un mini-univers visuel plus détaillé.",
+      entryKicker: "SÉRIE ANIMÉE",
+      imageLabel: "Image",
+      categories: [
+        {
+          id: "series-animees",
+          label: "Séries animées",
+          title: "Séries animées",
+          description:
+            "Univers épisodiques, personnages récurrents, narration cartoon et détournements maison.",
+          entries: [
+            {
+              path: "/animation/sagaz-zzz",
+              title: "SagaZ zzz",
+              subtitle:
+                "Une parodie hilarante de DBZ qui revisite le fabuleux manga d'Akira Toriyama façon humour Pawat Labz.",
+              image: "assets/images/animation/sagaz-zzz-cover.webp",
+              imageAlt: "Illustration de SagaZ zzz"
+            }
+          ]
+        },
+        {
+          id: "clips-animes",
+          label: "Clips animés",
+          title: "Clips animés",
+          description:
+            "Clips visuels, énergie musicale, montage cartoon et idées hybrides entre son et image.",
+          entries: []
+        },
+        {
+          id: "publicites-courtes",
+          label: "Publicités courtes",
+          title: "Publicités courtes",
+          description:
+            "Formats promo courts, idées visuelles rapides, humour, gimmicks et messages percutants.",
+          entries: []
+        }
+      ],
+      emptyState: "Cette rubrique pourra accueillir plusieurs projets plus tard."
+    },
+    animationSeries: {
+      sagaz: {
+        path: "/animation/sagaz-zzz",
+        kicker: "SÉRIE ANIMÉE",
+        title: "SagaZ zzz",
+        subtitle:
+          "Une parodie hilarante de DBZ qui revisite le fabuleux manga d'Akira Toriyama façon humour Pawat Labz.",
+        description:
+          "SagaZ zzz revisite avec humour le fabuleux manga d'Akira Toriyama dans une version cartoon maison pensée comme un hommage autant qu'un terrain de jeu Pawat Labz. Cette page est construite comme un mini espace de visionnage : on choisit une saison, puis un épisode, comme dans une petite plateforme de streaming.",
+        coverImage: "assets/images/animation/sagaz-zzz-cover.webp",
+        coverAlt: "Illustration de SagaZ zzz",
+        coverHint: "Ajoute ton image ici : assets/images/animation/sagaz-zzz-cover.webp",
+        backLabel: "Retour animation",
+        seasonLabel: "Saison",
+        episodeLabel: "Épisodes",
+        episodeThumbnailLabel: "Vignette épisode",
+        playerLabel: "Lecteur YouTube",
+        watchOnYoutubeLabel: "Voir l'épisode sur YouTube",
+        playlistLabel: "Playlist officielle",
+        playlistUrl: "https://www.youtube.com/@Pawat_TV/playlists",
+        playlistButtonLabel: "Voir la playlist Pawat_TV",
+        placeholderTitle: "Épisode en attente de lecture",
+        placeholderText:
+          "Le lecteur YouTube intégré apparaîtra ici. En attendant, tu peux retrouver la playlist SagaZ zzz sur la chaîne Pawat_TV.",
+        seasons: [
+          {
+            id: "season-1",
+            label: "Saison 1",
+            episodes: [
+              {
+                id: "s1-e1",
+                number: "01",
+                title: "L'Aventure commence !",
+                summary: "SagaZ zzz - Saison 1 - épisode 1. Le départ de la parodie et l'entrée dans l'univers cartoon revisité.",
+                thumbnail: "assets/images/animation/sagaz-zzz/s1-e1.webp",
+                thumbnailAlt: "Vignette de l'épisode 1 de SagaZ zzz",
+                youtubeId: "qGw72pOeaKE"
+              },
+              {
+                id: "s1-e2",
+                number: "02",
+                title: "Kakamou se fait démonter !!!",
+                summary: "SagaZ zzz - Saison 1 - épisode 2. L'humour monte d'un cran et la baston prend une tournure bien plus absurde.",
+                thumbnail: "assets/images/animation/sagaz-zzz/s1-e2.webp",
+                thumbnailAlt: "Vignette de l'épisode 2 de SagaZ zzz",
+                youtubeId: "J9B1E55-wNE"
+              },
+              {
+                id: "s1-e3",
+                number: "03",
+                title: "Une union inattendue",
+                summary: "SagaZ zzz - Saison 1 - épisode 3. Un nouveau tournant dans l'aventure avec une alliance improbable.",
+                thumbnail: "assets/images/animation/sagaz-zzz/s1-e3.webp",
+                thumbnailAlt: "Vignette de l'épisode 3 de SagaZ zzz",
+                youtubeId: "yVYHZy_uVKs"
+              },
+              {
+                id: "s1-e4",
+                number: "04",
+                title: "La baston commence",
+                summary: "SagaZ zzz - Saison 1 - épisode 4. Le face-à-face démarre vraiment et l'énergie cartoon prend toute la place.",
+                thumbnail: "assets/images/animation/sagaz-zzz/s1-e4.webp",
+                thumbnailAlt: "Vignette de l'épisode 4 de SagaZ zzz",
+                youtubeId: "aSoCIprpkHo"
+              },
+              {
+                id: "s1-e5",
+                number: "05",
+                title: "Une fin tragique...",
+                summary: "SagaZ zzz - Saison 1 - épisode 5. Une conclusion plus dramatique qui détourne encore les codes de DBZ.",
+                thumbnail: "assets/images/animation/sagaz-zzz/s1-e5.webp",
+                thumbnailAlt: "Vignette de l'épisode 5 de SagaZ zzz",
+                youtubeId: "VxjibwYvybc"
+              }
+            ]
+          }
+        ]
+      }
+    },
     pageContent: {
       home: {
         kicker: "ACCUEIL / UNIVERS",
@@ -207,6 +330,9 @@ const translations = {
         backHomeLabel: "Retour accueil",
         devLabel: "Section dev"
       }
+    },
+    routeTitles: {
+      "/animation/sagaz-zzz": "SagaZ zzz"
     }
   },
   en: {
@@ -349,6 +475,129 @@ const translations = {
         "Gateway toward more complete training"
       ]
     },
+    animationHub: {
+      introLabel: "Animation focus",
+      introTitle: "Choose a sub-section to reveal its creative focus.",
+      introText:
+        "Each submenu can become a doorway toward a series, a clip collection, short ads or a more detailed visual universe.",
+      entryKicker: "ANIMATED SERIES",
+      imageLabel: "Image",
+      categories: [
+        {
+          id: "animated-series",
+          label: "Animated series",
+          title: "Animated series",
+          description:
+            "Episodic worlds, recurring characters, cartoon storytelling and custom parody energy.",
+          entries: [
+            {
+              path: "/animation/sagaz-zzz",
+              title: "SagaZ zzz",
+              subtitle:
+                "A hilarious DBZ parody that revisits Akira Toriyama's legendary manga through Pawat Labz humor.",
+              image: "assets/images/animation/sagaz-zzz-cover.webp",
+              imageAlt: "SagaZ zzz illustration"
+            }
+          ]
+        },
+        {
+          id: "animated-clips",
+          label: "Animated clips",
+          title: "Animated clips",
+          description:
+            "Visual clips, musical energy, cartoon editing and hybrid ideas between sound and motion.",
+          entries: []
+        },
+        {
+          id: "short-ads",
+          label: "Short ads",
+          title: "Short ads",
+          description:
+            "Short promo formats, quick visual ideas, humor, gimmicks and punchy messages.",
+          entries: []
+        }
+      ],
+      emptyState: "This section can host several projects later on."
+    },
+    animationSeries: {
+      sagaz: {
+        path: "/animation/sagaz-zzz",
+        kicker: "ANIMATED SERIES",
+        title: "SagaZ zzz",
+        subtitle:
+          "A hilarious DBZ parody that revisits Akira Toriyama's legendary manga through Pawat Labz humor.",
+        description:
+          "SagaZ zzz revisits Akira Toriyama's legendary manga with humor in a custom cartoon version designed as both a tribute and a Pawat Labz playground. This page works like a mini streaming space: pick a season, then pick an episode.",
+        coverImage: "assets/images/animation/sagaz-zzz-cover.webp",
+        coverAlt: "SagaZ zzz illustration",
+        coverHint: "Add your image here: assets/images/animation/sagaz-zzz-cover.webp",
+        backLabel: "Back to animation",
+        seasonLabel: "Season",
+        episodeLabel: "Episodes",
+        episodeThumbnailLabel: "Episode thumbnail",
+        playerLabel: "YouTube player",
+        watchOnYoutubeLabel: "Watch this episode on YouTube",
+        playlistLabel: "Official playlist",
+        playlistUrl: "https://www.youtube.com/@Pawat_TV/playlists",
+        playlistButtonLabel: "Open the Pawat_TV playlist",
+        placeholderTitle: "Episode waiting for playback",
+        placeholderText:
+          "The embedded YouTube player will appear here. In the meantime, you can find the SagaZ zzz playlist on the Pawat_TV channel.",
+        seasons: [
+          {
+            id: "season-1",
+            label: "Season 1",
+            episodes: [
+              {
+                id: "s1-e1",
+                number: "01",
+                title: "The adventure begins!",
+                summary: "SagaZ zzz - Season 1 - Episode 1. The parody starts and the cartoon-flavored world begins to take shape.",
+                thumbnail: "assets/images/animation/sagaz-zzz/s1-e1.webp",
+                thumbnailAlt: "Thumbnail for SagaZ zzz episode 1",
+                youtubeId: "qGw72pOeaKE"
+              },
+              {
+                id: "s1-e2",
+                number: "02",
+                title: "Kakamou gets wrecked!!!",
+                summary: "SagaZ zzz - Season 1 - Episode 2. The humor gets louder and the fight becomes way more absurd.",
+                thumbnail: "assets/images/animation/sagaz-zzz/s1-e2.webp",
+                thumbnailAlt: "Thumbnail for SagaZ zzz episode 2",
+                youtubeId: "J9B1E55-wNE"
+              },
+              {
+                id: "s1-e3",
+                number: "03",
+                title: "An unexpected union",
+                summary: "SagaZ zzz - Season 1 - Episode 3. A new turn in the story with an unlikely alliance.",
+                thumbnail: "assets/images/animation/sagaz-zzz/s1-e3.webp",
+                thumbnailAlt: "Thumbnail for SagaZ zzz episode 3",
+                youtubeId: "yVYHZy_uVKs"
+              },
+              {
+                id: "s1-e4",
+                number: "04",
+                title: "The fight begins",
+                summary: "SagaZ zzz - Season 1 - Episode 4. The showdown really starts and the cartoon energy takes over.",
+                thumbnail: "assets/images/animation/sagaz-zzz/s1-e4.webp",
+                thumbnailAlt: "Thumbnail for SagaZ zzz episode 4",
+                youtubeId: "aSoCIprpkHo"
+              },
+              {
+                id: "s1-e5",
+                number: "05",
+                title: "A tragic ending...",
+                summary: "SagaZ zzz - Season 1 - Episode 5. A more dramatic finale that still twists DBZ codes with humor.",
+                thumbnail: "assets/images/animation/sagaz-zzz/s1-e5.webp",
+                thumbnailAlt: "Thumbnail for SagaZ zzz episode 5",
+                youtubeId: "VxjibwYvybc"
+              }
+            ]
+          }
+        ]
+      }
+    },
     pageContent: {
       home: {
         kicker: "HOME / UNIVERSES",
@@ -414,6 +663,9 @@ const translations = {
         backHomeLabel: "Back home",
         devLabel: "Dev section"
       }
+    },
+    routeTitles: {
+      "/animation/sagaz-zzz": "SagaZ zzz"
     }
   }
 };
@@ -464,11 +716,19 @@ export const getCreativeUniverses = () => getLocaleContent().creativeUniverses;
 export const getHomeManifesto = () => getLocaleContent().homeManifesto;
 export const getPageHighlights = () => getLocaleContent().pageHighlights;
 export const getPageContent = (pageKey) => getLocaleContent().pageContent[pageKey];
+export const getAnimationHub = () => getLocaleContent().animationHub;
+export const getAnimationSeries = (seriesKey) => getLocaleContent().animationSeries[seriesKey];
 
 export const getRouteTitle = (path) => {
+  const localeContent = getLocaleContent();
+
   if (path === "/404") {
-    return getPageContent("notFound").title;
+    return localeContent.pageContent.notFound.title;
   }
 
-  return getNavigationItems().find((item) => item.path === path)?.label ?? "Pawat Labz";
+  return (
+    localeContent.routeTitles?.[path] ??
+    localeContent.navigationItems.find((item) => item.path === path)?.label ??
+    "Pawat Labz"
+  );
 };

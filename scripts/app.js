@@ -43,6 +43,36 @@ const renderShell = () => {
 };
 
 /**
+ * Le son d'interface doit accompagner les vrais changements de rubrique,
+ * pas tous les clics de l'application.
+ *
+ * On l'accroche donc au changement de route hash :
+ * - oui quand on passe d'une rubrique a une autre
+ * - non quand on change juste la langue
+ * - non quand on clique dans une interaction locale sans changer d'URL
+ */
+const bindSectionSound = () => {
+  const interfaceSound = new Audio("assets/audio/sfx/bulle.m4a");
+  let previousPath = window.location.hash;
+
+  interfaceSound.preload = "auto";
+
+  window.addEventListener("hashchange", () => {
+    const nextPath = window.location.hash;
+
+    if (nextPath === previousPath) {
+      return;
+    }
+
+    previousPath = nextPath;
+    interfaceSound.currentTime = 0;
+    interfaceSound.play().catch(() => {
+      // Certains navigateurs bloquent ponctuellement un son s'il n'est pas autorise.
+    });
+  });
+};
+
+/**
  * Le switcher de langue vit dans le header global.
  *
  * À chaque clic :
@@ -73,6 +103,7 @@ const bootstrap = () => {
   renderShell();
   bindLanguageSwitcher();
   initializeRouter();
+  bindSectionSound();
 };
 
 bootstrap();
