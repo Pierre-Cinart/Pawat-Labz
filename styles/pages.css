@@ -525,10 +525,201 @@
   color: var(--color-text-soft);
 }
 
+.animation-entry-card__content {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+}
+
+.animation-entry-card__context {
+  margin: 0;
+  color: var(--color-text-dim);
+  line-height: 1.7;
+}
+
+.animation-entry-card__actions,
+.animation-entry-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
 .animation-entry-empty {
   padding: var(--space-4);
   border: 1px dashed rgba(0, 255, 65, 0.14);
   border-radius: var(--radius-md);
+}
+
+.animation-showcase {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.3fr);
+  gap: var(--space-5);
+}
+
+.animation-showcase__list-panel,
+.animation-showcase__list,
+.animation-showcase__player-panel {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.animation-showcase__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.animation-showcase__quick-link {
+  color: var(--color-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.animation-showcase-card {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-4);
+  border: 1px solid rgba(0, 255, 65, 0.1);
+  border-radius: var(--radius-md);
+  background: rgba(9, 14, 20, 0.78);
+  text-align: left;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.animation-showcase-card:hover {
+  transform: translateY(-2px);
+}
+
+.animation-showcase-card--active {
+  border-color: rgba(0, 212, 255, 0.28);
+  box-shadow: var(--shadow-cyan-sm);
+}
+
+.animation-showcase-card__thumb {
+  position: relative;
+  min-height: 74px;
+  border: 1px solid rgba(0, 212, 255, 0.16);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: rgba(8, 14, 20, 0.82);
+}
+
+.animation-showcase-card__thumb-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.animation-showcase-card__thumb-image--ready {
+  opacity: 1;
+}
+
+.animation-showcase-card__thumb-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--color-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background:
+    linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(0, 255, 65, 0.04)),
+    rgba(8, 14, 20, 0.88);
+}
+
+.animation-showcase-card__thumb-placeholder--hidden {
+  display: none;
+}
+
+.animation-showcase-card__body {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.animation-showcase-card__title,
+.animation-showcase__meta-title {
+  margin: 0;
+  color: var(--color-text-strong);
+  font-family: var(--font-title);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.animation-showcase-card__title {
+  font-size: inherit;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.animation-showcase-card__summary,
+.animation-showcase__meta-text,
+.animation-showcase__meta-context {
+  margin: 0;
+  color: var(--color-text-soft);
+}
+
+.animation-showcase-card__summary,
+.animation-showcase__meta-text,
+.animation-showcase__meta-context,
+.animation-showcase__meta-title {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.animation-showcase__player {
+  min-height: 360px;
+  border: 1px solid rgba(0, 212, 255, 0.16);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: rgba(7, 14, 20, 0.78);
+}
+
+.animation-showcase__frame,
+.animation-showcase__frame iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.animation-showcase__frame iframe {
+  min-height: 360px;
+  border: 0;
+}
+
+.animation-showcase__placeholder {
+  display: grid;
+  place-items: center;
+  min-height: 360px;
+  padding: var(--space-6);
+  text-align: center;
+}
+
+.animation-showcase__meta {
+  padding: var(--space-5);
+  border: 1px solid rgba(0, 255, 65, 0.08);
+  border-radius: var(--radius-lg);
+  background: rgba(8, 14, 20, 0.72);
+}
+
+.animation-showcase__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
 }
 
 .sagaz-hero {
@@ -771,7 +962,8 @@
   .univers-overview-grid,
   .sagaz-hero,
   .sagaz-browser__grid,
-  .animation-entry-card {
+  .animation-entry-card,
+  .animation-showcase {
     grid-template-columns: 1fr;
   }
 

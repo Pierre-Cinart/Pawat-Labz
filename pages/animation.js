@@ -49,7 +49,7 @@ export const renderAnimationPage = () => {
                 ? initialCategory.entries
                     .map(
                       (entry) => `
-                        <a class="animation-entry-card" href="#${entry.path}" data-link>
+                        <article class="animation-entry-card">
                           <div class="animation-entry-card__media">
                             <img class="animation-entry-card__image" src="${entry.image}" alt="${entry.imageAlt}" loading="lazy">
                             <div class="animation-entry-card__media-placeholder">
@@ -57,11 +57,33 @@ export const renderAnimationPage = () => {
                             </div>
                           </div>
                           <div class="animation-entry-card__content">
-                            <p class="animation-entry-card__kicker">${animationHub.entryKicker}</p>
+                            <p class="animation-entry-card__kicker">${entry.typeLabel ?? animationHub.entryKicker}</p>
                             <h4 class="animation-entry-card__title">${entry.title}</h4>
                             <p class="animation-entry-card__text">${entry.subtitle}</p>
+                            ${entry.context ? `<p class="animation-entry-card__context">${entry.context}</p>` : ""}
+                            ${entry.relatedLinks?.length ? `
+                              <div class="animation-entry-card__links">
+                                ${entry.relatedLinks
+                                  .map(
+                                    (relatedLink) => `
+                                      <a class="button button--ghost" href="${relatedLink.href}" ${relatedLink.href.startsWith("#") ? "" : 'target="_blank" rel="noreferrer"'}>
+                                        ${relatedLink.label}
+                                      </a>
+                                    `
+                                  )
+                                  .join("")}
+                              </div>
+                            ` : ""}
+                            <div class="animation-entry-card__actions">
+                              ${entry.path
+                                ? `<a class="button button--primary" href="#${entry.path}" data-link>${animationHub.entryButtons.internal}</a>`
+                                : ""}
+                              ${entry.externalUrl
+                                ? `<a class="button button--ghost" href="${entry.externalUrl}" target="_blank" rel="noreferrer">${entry.externalLabel ?? animationHub.entryButtons.external}</a>`
+                                : ""}
+                            </div>
                           </div>
-                        </a>
+                        </article>
                       `
                     )
                     .join("")
@@ -82,6 +104,30 @@ export const renderAnimationPage = () => {
       const descriptionNode = document.querySelector("[data-animation-focus-description]");
       const entriesNode = document.querySelector("[data-animation-focus-entries]");
       let imageCleanup = null;
+      let showcaseCleanup = null;
+
+      const renderShowcasePlayer = (entry) => {
+        if (!entry.youtubeId) {
+          return `
+            <div class="sagaz-player__placeholder animation-showcase__placeholder">
+              <p>Aperçu vidéo bientôt disponible.</p>
+            </div>
+          `;
+        }
+
+        return `
+          <div class="sagaz-player__frame animation-showcase__frame">
+            <iframe
+              src="https://www.youtube.com/embed/${entry.youtubeId}"
+              title="${entry.title}"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+          </div>
+        `;
+      };
 
       const renderEntries = (entries) => {
         if (!entries.length) {
@@ -96,7 +142,7 @@ export const renderAnimationPage = () => {
         entriesNode.innerHTML = entries
           .map(
             (entry) => `
-              <a class="animation-entry-card" href="#${entry.path}" data-link>
+              <article class="animation-entry-card">
                 <div class="animation-entry-card__media">
                   <img class="animation-entry-card__image" src="${entry.image}" alt="${entry.imageAlt}" loading="lazy">
                   <div class="animation-entry-card__media-placeholder">
@@ -104,11 +150,33 @@ export const renderAnimationPage = () => {
                   </div>
                 </div>
                 <div class="animation-entry-card__content">
-                  <p class="animation-entry-card__kicker">${animationHub.entryKicker}</p>
+                  <p class="animation-entry-card__kicker">${entry.typeLabel ?? animationHub.entryKicker}</p>
                   <h4 class="animation-entry-card__title">${entry.title}</h4>
                   <p class="animation-entry-card__text">${entry.subtitle}</p>
+                  ${entry.context ? `<p class="animation-entry-card__context">${entry.context}</p>` : ""}
+                  ${entry.relatedLinks?.length ? `
+                    <div class="animation-entry-card__links">
+                      ${entry.relatedLinks
+                        .map(
+                          (relatedLink) => `
+                            <a class="button button--ghost" href="${relatedLink.href}" ${relatedLink.href.startsWith("#") ? "" : 'target="_blank" rel="noreferrer"'}>
+                              ${relatedLink.label}
+                            </a>
+                          `
+                        )
+                        .join("")}
+                    </div>
+                  ` : ""}
+                  <div class="animation-entry-card__actions">
+                    ${entry.path
+                      ? `<a class="button button--primary" href="#${entry.path}" data-link>${animationHub.entryButtons.internal}</a>`
+                      : ""}
+                    ${entry.externalUrl
+                      ? `<a class="button button--ghost" href="${entry.externalUrl}" target="_blank" rel="noreferrer">${entry.externalLabel ?? animationHub.entryButtons.external}</a>`
+                      : ""}
+                  </div>
                 </div>
-              </a>
+              </article>
             `
           )
           .join("");
@@ -153,6 +221,193 @@ export const renderAnimationPage = () => {
         };
       };
 
+      const renderShowcase = (category) => {
+        const initialEntry = category.entries[0];
+
+        entriesNode.innerHTML = `
+          <section class="animation-showcase">
+            <div class="episode-list-panel animation-showcase__list-panel">
+              <p class="section-kicker">${category.label}</p>
+
+              <div class="episode-list animation-showcase__list" data-animation-showcase-list>
+                ${category.entries
+                  .map(
+                    (entry, index) => `
+                      <button
+                        class="episode-card animation-showcase-card ${index === 0 ? "episode-card--active animation-showcase-card--active" : ""}"
+                        type="button"
+                        data-showcase-entry="${entry.title}"
+                      >
+                        <span class="episode-card__thumb animation-showcase-card__thumb">
+                          <img class="episode-card__thumb-image animation-showcase-card__thumb-image" src="${entry.image}" alt="${entry.imageAlt}" loading="lazy">
+                          <span class="episode-card__thumb-placeholder animation-showcase-card__thumb-placeholder">${animationHub.imageLabel}</span>
+                        </span>
+                        <span class="episode-card__body animation-showcase-card__body">
+                          <span class="episode-card__title animation-showcase-card__title">${entry.title}</span>
+                          <span class="episode-card__summary animation-showcase-card__summary">${entry.subtitle}</span>
+                        </span>
+                      </button>
+                    `
+                  )
+                  .join("")}
+              </div>
+            </div>
+
+            <div class="sagaz-player-panel animation-showcase__player-panel" data-animation-showcase-panel>
+              <div class="animation-showcase__head">
+                <p class="section-kicker">${initialEntry.typeLabel ?? animationHub.entryKicker}</p>
+                ${initialEntry.externalUrl
+                  ? `<a class="sagaz-browser__playlist-link animation-showcase__quick-link" href="${initialEntry.externalUrl}" target="_blank" rel="noreferrer">${initialEntry.externalLabel ?? animationHub.entryButtons.external}</a>`
+                  : ""}
+              </div>
+
+              <div class="sagaz-player animation-showcase__player" data-animation-showcase-player>
+                ${renderShowcasePlayer(initialEntry)}
+              </div>
+              <article class="sagaz-player__meta animation-showcase__meta">
+                <p class="sagaz-player__episode-number" data-animation-showcase-type>${initialEntry.typeLabel ?? animationHub.entryKicker}</p>
+                <h4 class="sagaz-player__episode-title animation-showcase__meta-title" data-animation-showcase-title>${initialEntry.title}</h4>
+                <p class="sagaz-player__episode-summary animation-showcase__meta-text" data-animation-showcase-subtitle>${initialEntry.subtitle}</p>
+                <p class="sagaz-player__episode-summary animation-showcase__meta-context" data-animation-showcase-context>${initialEntry.context ?? ""}</p>
+                <div class="animation-showcase__actions" data-animation-showcase-actions>
+                  ${initialEntry.relatedLinks?.length
+                    ? initialEntry.relatedLinks
+                        .map(
+                          (relatedLink) => `
+                            <a class="button button--ghost" href="${relatedLink.href}" ${relatedLink.href.startsWith("#") ? "" : 'target="_blank" rel="noreferrer"'}>
+                              ${relatedLink.label}
+                            </a>
+                          `
+                        )
+                        .join("")
+                    : ""}
+                  ${initialEntry.externalUrl
+                    ? `<a class="button button--primary" href="${initialEntry.externalUrl}" target="_blank" rel="noreferrer">${initialEntry.externalLabel ?? animationHub.entryButtons.external}</a>`
+                    : ""}
+                </div>
+              </article>
+            </div>
+          </section>
+        `;
+
+        if (typeof imageCleanup === "function") {
+          imageCleanup();
+          imageCleanup = null;
+        }
+
+        if (typeof showcaseCleanup === "function") {
+          showcaseCleanup();
+          showcaseCleanup = null;
+        }
+
+        const thumbImages = Array.from(entriesNode.querySelectorAll(".animation-showcase-card__thumb-image"));
+        const removeImageListeners = [];
+
+        thumbImages.forEach((imageNode) => {
+          const placeholderNode = imageNode.parentElement?.querySelector(".animation-showcase-card__thumb-placeholder");
+
+          const handleLoad = () => {
+            imageNode.classList.add("animation-showcase-card__thumb-image--ready");
+            imageNode.classList.add("episode-card__thumb-image--ready");
+            placeholderNode?.classList.add("animation-showcase-card__thumb-placeholder--hidden");
+            placeholderNode?.classList.add("episode-card__thumb-placeholder--hidden");
+          };
+
+          const handleError = () => {
+            imageNode.classList.remove("animation-showcase-card__thumb-image--ready");
+            imageNode.classList.remove("episode-card__thumb-image--ready");
+            placeholderNode?.classList.remove("animation-showcase-card__thumb-placeholder--hidden");
+            placeholderNode?.classList.remove("episode-card__thumb-placeholder--hidden");
+          };
+
+          imageNode.addEventListener("load", handleLoad);
+          imageNode.addEventListener("error", handleError);
+
+          if (imageNode.complete && imageNode.naturalWidth > 0) {
+            handleLoad();
+          }
+
+          removeImageListeners.push(() => {
+            imageNode.removeEventListener("load", handleLoad);
+            imageNode.removeEventListener("error", handleError);
+          });
+        });
+
+        const cardNodes = Array.from(entriesNode.querySelectorAll("[data-showcase-entry]"));
+        const playerNode = entriesNode.querySelector("[data-animation-showcase-player]");
+        const panelNode = entriesNode.querySelector("[data-animation-showcase-panel]");
+        const quickLinkNode = entriesNode.querySelector(".animation-showcase__quick-link");
+        const typeNode = entriesNode.querySelector("[data-animation-showcase-type]");
+        const showcaseTitleNode = entriesNode.querySelector("[data-animation-showcase-title]");
+        const subtitleNode = entriesNode.querySelector("[data-animation-showcase-subtitle]");
+        const contextNode = entriesNode.querySelector("[data-animation-showcase-context]");
+        const actionsNode = entriesNode.querySelector("[data-animation-showcase-actions]");
+
+        const updateShowcase = (entryTitle, { scrollToPlayer = false } = {}) => {
+          const activeEntry = category.entries.find((entry) => entry.title === entryTitle) ?? initialEntry;
+
+          cardNodes.forEach((cardNode) => {
+            const isActive = cardNode.dataset.showcaseEntry === activeEntry.title;
+            cardNode.classList.toggle("animation-showcase-card--active", isActive);
+            cardNode.classList.toggle("episode-card--active", isActive);
+          });
+
+          playerNode.innerHTML = renderShowcasePlayer(activeEntry);
+          if (quickLinkNode) {
+            if (activeEntry.externalUrl) {
+              quickLinkNode.href = activeEntry.externalUrl;
+              quickLinkNode.textContent = activeEntry.externalLabel ?? animationHub.entryButtons.external;
+              quickLinkNode.style.display = "";
+            } else {
+              quickLinkNode.style.display = "none";
+            }
+          }
+          typeNode.textContent = activeEntry.typeLabel ?? animationHub.entryKicker;
+          showcaseTitleNode.textContent = activeEntry.title;
+          subtitleNode.textContent = activeEntry.subtitle;
+          contextNode.textContent = activeEntry.context ?? "";
+          actionsNode.innerHTML = `
+            ${activeEntry.relatedLinks?.length
+              ? activeEntry.relatedLinks
+                  .map(
+                    (relatedLink) => `
+                      <a class="button button--ghost" href="${relatedLink.href}" ${relatedLink.href.startsWith("#") ? "" : 'target="_blank" rel="noreferrer"'}>
+                        ${relatedLink.label}
+                      </a>
+                    `
+                  )
+                  .join("")
+              : ""}
+            ${activeEntry.externalUrl
+              ? `<a class="button button--primary" href="${activeEntry.externalUrl}" target="_blank" rel="noreferrer">${activeEntry.externalLabel ?? animationHub.entryButtons.external}</a>`
+              : ""}
+          `;
+
+          if (scrollToPlayer) {
+            panelNode.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          }
+        };
+
+        const handleCardClick = (event) => {
+          updateShowcase(event.currentTarget.dataset.showcaseEntry, { scrollToPlayer: true });
+        };
+
+        cardNodes.forEach((cardNode) => {
+          cardNode.addEventListener("click", handleCardClick);
+        });
+
+        showcaseCleanup = () => {
+          cardNodes.forEach((cardNode) => {
+            cardNode.removeEventListener("click", handleCardClick);
+          });
+
+          removeImageListeners.forEach((removeListener) => removeListener());
+        };
+      };
+
       const updateFocus = (categoryId) => {
         const category = hubState.get(categoryId);
 
@@ -168,6 +423,17 @@ export const renderAnimationPage = () => {
 
         titleNode.textContent = category.title;
         descriptionNode.textContent = category.description;
+
+        if (category.displayMode === "showcase") {
+          renderShowcase(category);
+          return;
+        }
+
+        if (typeof showcaseCleanup === "function") {
+          showcaseCleanup();
+          showcaseCleanup = null;
+        }
+
         renderEntries(category.entries);
       };
 
@@ -190,6 +456,11 @@ export const renderAnimationPage = () => {
         if (typeof imageCleanup === "function") {
           imageCleanup();
           imageCleanup = null;
+        }
+
+        if (typeof showcaseCleanup === "function") {
+          showcaseCleanup();
+          showcaseCleanup = null;
         }
       };
     },

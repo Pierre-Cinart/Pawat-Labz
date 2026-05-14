@@ -149,6 +149,11 @@ const translations = {
         "Chaque sous-menu peut devenir une porte d'entrée vers une série, une collection de clips, des pubs ou un mini-univers visuel plus détaillé.",
       entryKicker: "SÉRIE ANIMÉE",
       imageLabel: "Image",
+      entryButtons: {
+        internal: "Ouvrir la fiche",
+        external: "Voir la vidéo",
+        related: "Voir le lien"
+      },
       categories: [
         {
           id: "series-animees",
@@ -179,10 +184,84 @@ const translations = {
           id: "publicites-courtes",
           label: "Publicités courtes",
           title: "Publicités courtes",
+          displayMode: "showcase",
           description:
             "Formats promo courts, idées visuelles rapides, humour, gimmicks et messages percutants.",
-          entries: []
-        }
+          entries: [
+            {
+              title: "Kameomago live magie",
+              subtitle:
+                "Spot promo  pour mettre en avant un spectacle de magie organisé par Kaméo.",
+              image: "assets/images/animation/pubs/kameomago-live-magie.webp",
+              imageAlt: "Illustration pub Kameomago live magie",
+              typeLabel: "PUB / SPECTACLE",
+              context:
+                "Publicité pensée pour présenter l'univers du spectacle, attirer l'œil rapidement et créer une ambiance drôle autour de la magie.",
+              youtubeId: "QLsLNYFr8cQ",
+              externalUrl: "https://www.youtube.com/shorts/QLsLNYFr8cQ",
+              externalLabel: "Voir la pub",
+              relatedLinks: [
+                {
+                  label: "Lien artiste / contact",
+                  href: "#"
+                }
+              ]
+            },
+            {
+              title: "Thysha balance Pawat",
+              subtitle:
+                "Promo humour façon Père Noël pour annoncer une sortie du titre 'malabarz' avec un ton décalé.",
+              image: "assets/images/animation/pubs/thysha-balance-pawat.webp",
+              imageAlt: "Illustration pub Thysha balance Pawat",
+              typeLabel: "PUB / SORTIE MUSICALE",
+              context:
+                "Cette pub joue la carte de l humour promo pour annoncer une sortie musicale du titre 'malabarz' en collaboration avec Thysha et Nino",
+              youtubeId: "XFR2i_YtrjI",
+              externalUrl: "https://www.youtube.com/shorts/XFR2i_YtrjI",
+              externalLabel: "Voir la pub",
+              relatedLinks: [
+                {
+                  label: "Lien artiste / projet",
+                  href: "#"
+                }
+              ]
+            },
+            {
+              title: "Nino veut son cadeau",
+              subtitle:
+                "Pub humoristique  pour  un clip manga rap avec une pincée d'humour.",
+              image: "assets/images/animation/pubs/malabarz-promo.webp",
+              imageAlt: "Illustration pub Malabarz",
+              typeLabel: "PUB / CLIP RAP",
+              context:
+                "Format très court imaginé comme une pub-annonce pour préparer le terrain avant la sortie et la mise en avant du clip 'malabarz'.",
+              youtubeId: "LIRF834MB_Q",
+              externalUrl: "https://www.youtube.com/shorts/LIRF834MB_Q",
+              externalLabel: "Voir la pub",
+              relatedLinks: [
+                {
+                  label: "Lien artiste / projet",
+                  href: "#"
+                }
+              ]
+            },
+            {
+              title: "Pub Pawat TV",
+              subtitle:
+                "Spot d'auto-promo pour présenter l'identité de Pawat TV et l'univers animation / vidéo du labo.",
+              image: "assets/images/animation/pubs/pawat-tv-promo.webp",
+              imageAlt: "Illustration pub Pawat TV",
+              typeLabel: "AUTO-PROMO",
+              context:
+                "Auto promo pensée pour affirmer une identité visuelle, poser un ton et annoncer l'univers de création vidéo .",
+              youtubeId: "f4qpAZ0iLZQ",
+              externalUrl: "https://www.youtube.com/shorts/f4qpAZ0iLZQ",
+              externalLabel: "Voir la pub",
+              relatedLinks: []
+            }   
+          ]
+        },
+        
       ],
       emptyState: "Cette rubrique pourra accueillir plusieurs projets plus tard."
     },
@@ -482,6 +561,11 @@ const translations = {
         "Each submenu can become a doorway toward a series, a clip collection, short ads or a more detailed visual universe.",
       entryKicker: "ANIMATED SERIES",
       imageLabel: "Image",
+      entryButtons: {
+        internal: "Open project",
+        external: "Watch video",
+        related: "Open link"
+      },
       categories: [
         {
           id: "animated-series",
@@ -512,9 +596,82 @@ const translations = {
           id: "short-ads",
           label: "Short ads",
           title: "Short ads",
+          displayMode: "showcase",
           description:
             "Short promo formats, quick visual ideas, humor, gimmicks and punchy messages.",
-          entries: []
+          entries: [
+            {
+              title: "Kameomago live magie",
+              subtitle:
+                "Promo spot created to highlight a magic show organized by Kaméo.",
+              image: "assets/images/animation/pubs/kameomago-live-magie.webp",
+              imageAlt: "Kameomago live magic ad illustration",
+              typeLabel: "AD / LIVE SHOW",
+              context:
+                "An ad designed to present the spirit of the show, catch the eye quickly and build a playful atmosphere around the magic performance.",
+              youtubeId: "QLsLNYFr8cQ",
+              externalUrl: "https://www.youtube.com/shorts/QLsLNYFr8cQ",
+              externalLabel: "Watch the ad",
+              relatedLinks: [
+                {
+                  label: "Artist / contact link",
+                  href: "#"
+                }
+              ]
+            },
+            {
+              title: "Thysha balance Pawat",
+              subtitle:
+                "A Santa-style comedy promo used to announce the release of the track 'Malabarz' with an offbeat tone.",
+              image: "assets/images/animation/pubs/thysha-balance-pawat.webp",
+              imageAlt: "Thysha drops Pawat ad illustration",
+              typeLabel: "AD / MUSIC RELEASE",
+              context:
+                "This ad leans into promo humor to announce the musical release of the track 'Malabarz' in collaboration with Thysha and Nino.",
+              youtubeId: "XFR2i_YtrjI",
+              externalUrl: "https://www.youtube.com/shorts/XFR2i_YtrjI",
+              externalLabel: "Watch the ad",
+              relatedLinks: [
+                {
+                  label: "Artist / project link",
+                  href: "#"
+                }
+              ]
+            },
+            {
+              title: "Nino veut son cadeau",
+              subtitle:
+                "A humorous promo for a manga rap clip with a playful touch of comedy.",
+              image: "assets/images/animation/pubs/malabarz-promo.webp",
+              imageAlt: "Malabarz ad illustration",
+              typeLabel: "AD / RAP CLIP",
+              context:
+                "A very short format imagined like a promo trailer to prepare the ground before the release and spotlight of the clip 'Malabarz'.",
+              youtubeId: "LIRF834MB_Q",
+              externalUrl: "https://www.youtube.com/shorts/LIRF834MB_Q",
+              externalLabel: "Watch the ad",
+              relatedLinks: [
+                {
+                  label: "Artist / project link",
+                  href: "#"
+                }
+              ]
+            },
+            {
+              title: "Pawat TV promo",
+              subtitle:
+                "A self-promo spot presenting the identity of Pawat TV and the animation / video side of the Lab.",
+              image: "assets/images/animation/pubs/pawat-tv-promo.webp",
+              imageAlt: "Pawat TV promo illustration",
+              typeLabel: "SELF PROMO",
+              context:
+                "A self-promo piece built to assert a visual identity, set a tone and introduce the video creation universe.",
+              youtubeId: "f4qpAZ0iLZQ",
+              externalUrl: "https://www.youtube.com/shorts/f4qpAZ0iLZQ",
+              externalLabel: "Watch the ad",
+              relatedLinks: []
+            }
+          ]
         }
       ],
       emptyState: "This section can host several projects later on."
