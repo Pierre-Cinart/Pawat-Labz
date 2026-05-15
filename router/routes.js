@@ -1,4 +1,5 @@
 import Route from "./Route.js";
+import { renderAboutPage } from "../pages/about.js";
 import { renderAnimationPage } from "../pages/animation.js";
 import { renderSagaZPage } from "../pages/animation-sagaz.js";
 import { renderDevPage } from "../pages/dev.js";
@@ -13,6 +14,7 @@ import { renderUniversPage } from "../pages/univers.js";
 export const routes = [
   new Route("/", "Accueil", renderHomePage),
   new Route("/univers", "Univers", renderUniversPage),
+  new Route("/about", "About", renderAboutPage),
   new Route("/musique", "Musique", renderMusiquePage),
   new Route("/animation", "Animation", renderAnimationPage),
   new Route("/animation/sagaz-zzz", "SagaZ zzz", renderSagaZPage),

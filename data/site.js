@@ -20,7 +20,8 @@ const translations = {
       { index: "03", label: "Dev", path: "/dev" },
       { index: "04", label: "Gaming", path: "/gaming" },
       { index: "05", label: "Freestyle", path: "/freestyle" },
-      { index: "06", label: "Tutos", path: "/tutos" }
+      { index: "06", label: "Tutos", path: "/tutos" },
+      { index: "00B", label: "ABOUT", path: "/about" }
     ],
     footerMeta: {
       signature: "PAWAT LABZ - laboratoire créatif vivant",
@@ -57,12 +58,11 @@ const translations = {
         title: "Productions, instrus et identité sonore",
         text: "La musique est un des moteurs principaux de Pawat Labz. On y retrouve mes productions, mes instrus, mes projets personnels, mes collaborations, mes cyphers et mes futurs albums.",
         details: [
-          { label: "Instrus", path: "/musique" },
-          { label: "Productions", path: "/musique" },
-          { label: "Clips", path: "/musique" },
-          { label: "Album solo", path: "/musique" },
-          { label: "Feat / Cypher", path: "/musique" },
-          { label: "YouTube / réseaux", path: "/musique" }
+          { label: "Projets", path: "/musique?focus=projets" },
+          { label: "Clips", path: "/musique?focus=clips" },
+          { label: "Feat/Cypher", path: "/musique?focus=feat-cypher" },
+          { label: "Instrus", path: "/musique?focus=instrus" },
+          { label: "Réseaux", path: "/musique?focus=reseaux" }
         ]
       },
       {
@@ -181,6 +181,171 @@ const translations = {
         "Tutos en cours de scriptage",
         "Passerelle vers des formations plus complètes"
       ]
+    },
+    musicHub: {
+      introLabel: "Exploration musique",
+      introTitle: "Choisis une rubrique pour faire apparaitre son point d'entree sonore.",
+      introText:
+        "La section musique va se structurer autour des memes portes d'entree que celles deja visibles dans le site : projets, clips, feat/cypher, instrus et reseaux.",
+      categoryKicker: "SIGNAL AUDIO",
+      categories: [
+        {
+          id: "projets",
+          label: "Projets",
+          title: "Projets",
+          description: "Espace dedie aux morceaux construits, a l'ecriture sonore globale et aux projets qui prennent une vraie forme finale.",
+          highlights: [
+            "Tracks finalises ou en evolution",
+            "Assemblage entre voix, instrumental et univers",
+            "Sorties personnelles et projets pilotes"
+          ]
+        },
+        {
+          id: "clips",
+          label: "Clips",
+          title: "Clips",
+          description: "La musique ne reste pas seule : elle dialogue avec l'image, le montage et les formats video lies au labo.",
+          highlights: [
+            "Pont direct entre son et image",
+            "Clips musicaux et formats hybrides",
+            "Passerelle naturelle vers la section Animation"
+          ]
+        },
+        {
+          id: "feat-cypher",
+          label: "Feat/Cypher",
+          title: "Feat/Cypher",
+          description: "Collaborations, cyphers, croisements d'energie et moments collectifs qui etendent le terrain du labo.",
+          highlights: [
+            "Collaborations vocales et croisements de styles",
+            "Formats collectifs et cypher energy",
+            "Ouverture vers d'autres artistes et invites"
+          ]
+        },
+        {
+          id: "instrus",
+          label: "Instrus",
+          title: "Instrus",
+          description: "Base sonore du laboratoire : beats, textures, directions d'ambiance et terrains de jeu pour les futures voix.",
+          highlights: [
+            "Beats originaux et identite instrumentale maison",
+            "Directions sonores pour freestyle, clips ou jeux",
+            "Fondation du futur catalogue audio"
+          ]
+        },
+        {
+          id: "reseaux",
+          label: "Réseaux",
+          title: "Réseaux",
+          description: "Canal de diffusion, mise en avant des sorties et connexions publiques autour de l'univers musical Pawat-Labz.",
+          highlights: [
+            "Visibilite des contenus musicaux du labo",
+            "Pont vers clips, annonces et formats courts",
+            "Presence publique evolutive autour des projets"
+          ],
+          featuredLink: {
+            platform: "YouTube",
+            handle: "@Pawat_Music",
+            url: "https://www.youtube.com/@Pawat_Music",
+            summary: "Chaine principale pour retrouver les morceaux, clips, sorties et futurs signaux musicaux du labo.",
+            buttonLabel: "Voir la chaine"
+          }
+        }
+      ]
+    },
+    aboutLab: {
+      overview: {
+        kicker: "LAB ENTRY",
+        title: "Une zone transversale pour sentir comment le laboratoire respire.",
+        text:
+          "ABOUT ouvre une porte plus large sur la logique interne de Pawat-Labz : musique, jeux, animation, outils, IA et experimentation s'y croisent comme dans un studio-laboratoire vivant."
+      },
+      signals: [
+        {
+          label: "Creative core",
+          value: "Music + visuals + code",
+          note: "Chaque discipline nourrit les autres et fait naitre de nouveaux formats."
+        },
+        {
+          label: "Lab direction",
+          value: "Hybrid creative systems",
+          note: "Le but n'est pas de separer les rubriques, mais de les faire dialoguer."
+        },
+        {
+          label: "Production mode",
+          value: "Independent and evolving",
+          note: "Le labo grandit projet apres projet, prototype apres prototype."
+        },
+        {
+          label: "Open channels",
+          value: "Web / video / sound / play",
+          note: "Chaque idee peut devenir une interface, un clip, un outil ou un terrain de jeu."
+        }
+      ],
+      sections: [
+        {
+          signal: "SND",
+          title: "Music Production",
+          text: "Production musicale, instrus, identite sonore, sorties, energie rap et textures plus experimentales se rencontrent ici."
+        },
+        {
+          signal: "GME",
+          title: "Game Development",
+          text: "Des prototypes jouables, des idees de gameplay et des passerelles entre code, fun et direction artistique prennent forme dans le Lab."
+        },
+        {
+          signal: "VIS",
+          title: "Animation & Visual Experiments",
+          text: "Series animees, clips, pubs courtes et experiences visuelles servent a faire bouger les personnages, les rythmes et les mondes."
+        },
+        {
+          signal: "OSS",
+          title: "Open Source & Tools",
+          text: "Le cote constructeur de Pawat-Labz passe aussi par des outils maison, des prototypes techniques et une envie de partager des briques utiles."
+        },
+        {
+          signal: "AI",
+          title: "AI Assisted Creation",
+          text: "L'IA est pensee comme une extension creative : ideation, acceleration de workflow, tests visuels et nouvelles pistes de production."
+        },
+        {
+          signal: "EXP",
+          title: "Experimental Projects",
+          text: "Interfaces hybrides, concepts web plus libres, croisements inattendus et formats difficiles a classer font partie du coeur vivant du labo."
+        }
+      ],
+      systemStatus: {
+        kicker: "SYSTEM STATUS",
+        title: "Le laboratoire reste en mouvement.",
+        text:
+          "Plusieurs chantiers tournent en meme temps : composition, jeu, video, interfaces et outillage. L'ensemble avance comme un systeme vivant plutot que comme une simple vitrine statique.",
+        items: [
+          {
+            label: "Projects in progress",
+            value: "Multiple creative threads active"
+          },
+          {
+            label: "Experimental systems online",
+            value: "UI, routing and media layers stable"
+          },
+          {
+            label: "New portals opening",
+            value: "Fresh sections and new formats in preparation"
+          },
+          {
+            label: "Development active",
+            value: "Code, visuals and stories evolving together"
+          }
+        ]
+      },
+      support: {
+        kicker: "SUPPORT THE LABZ",
+        title: "Une future zone de soutien prendra place dans le laboratoire.",
+        text:
+          "Cette interface preparera plus tard plusieurs formats simples pour soutenir les creations, les outils et l'evolution du labo sans casser l'identite du site.",
+        channels: ["Donation", "Support", "Buy me a coffee", "Patreon-like support"],
+        buttonLabel: "Support Coming Soon"
+      }
     },
     animationHub: {
       introLabel: "Exploration animation",
@@ -406,6 +571,12 @@ const translations = {
         text: "Cette page résume les grandes rubriques du site et donne une vision plus claire de chaque monde créatif du Labz.",
         badge: "OVERVIEW"
       },
+      about: {
+        kicker: "SIGNAL 00B",
+        title: "ABOUT THE LAB",
+        text: "Pawat-Labz is an independent creative laboratory mixing games, music, animation, experimental web experiences and AI-assisted workflows.",
+        badge: "ABOUT"
+      },
       musique: {
         kicker: "SECTION 01",
         title: "Musique",
@@ -472,7 +643,8 @@ const translations = {
       { index: "03", label: "Dev", path: "/dev" },
       { index: "04", label: "Gaming", path: "/gaming" },
       { index: "05", label: "Freestyle", path: "/freestyle" },
-      { index: "06", label: "Tutorials", path: "/tutos" }
+      { index: "06", label: "Tutorials", path: "/tutos" },
+      { index: "00B", label: "ABOUT", path: "/about" }
     ],
     footerMeta: {
       signature: "PAWAT LABZ - living creative lab",
@@ -509,12 +681,11 @@ const translations = {
         title: "Productions, beats and sonic identity",
         text: "Music is one of the main engines behind Pawat Labz. This section gathers my productions, beats, personal projects, collaborations, cyphers and future albums.",
         details: [
-          { label: "Beats", path: "/musique" },
-          { label: "Productions", path: "/musique" },
-          { label: "Clips", path: "/musique" },
-          { label: "Solo album", path: "/musique" },
-          { label: "Feat / Cypher", path: "/musique" },
-          { label: "YouTube / socials", path: "/musique" }
+          { label: "Projects", path: "/musique?focus=projets" },
+          { label: "Clips", path: "/musique?focus=clips" },
+          { label: "Feat/Cypher", path: "/musique?focus=feat-cypher" },
+          { label: "Beats", path: "/musique?focus=instrus" },
+          { label: "Socials", path: "/musique?focus=reseaux" }
         ]
       },
       {
@@ -633,6 +804,171 @@ const translations = {
         "Tutorials currently being scripted",
         "Gateway toward more complete training"
       ]
+    },
+    musicHub: {
+      introLabel: "Music exploration",
+      introTitle: "Choose a section to reveal its sonic entry point.",
+      introText:
+        "The music section is now structured around the same visible gateways: projects, clips, feat/cypher, beats and socials.",
+      categoryKicker: "AUDIO SIGNAL",
+      categories: [
+        {
+          id: "projets",
+          label: "Projects",
+          title: "Projects",
+          description: "A space dedicated to finished tracks, full sonic construction and projects taking a stronger final shape.",
+          highlights: [
+            "Finished or evolving tracks",
+            "Assembly between voice, instrumental and worldbuilding",
+            "Personal releases and pilot projects"
+          ]
+        },
+        {
+          id: "clips",
+          label: "Clips",
+          title: "Clips",
+          description: "Music does not stay isolated here: it connects with image, editing and video formats tied to the Lab.",
+          highlights: [
+            "Direct bridge between sound and image",
+            "Music clips and hybrid formats",
+            "Natural gateway toward the Animation section"
+          ]
+        },
+        {
+          id: "feat-cypher",
+          label: "Feat/Cypher",
+          title: "Feat/Cypher",
+          description: "Collaborations, cyphers, shared energy and collective moments that expand the Lab's field.",
+          highlights: [
+            "Vocal collaborations and style crossovers",
+            "Collective formats and cypher energy",
+            "Openings toward guest artists and new voices"
+          ]
+        },
+        {
+          id: "instrus",
+          label: "Beats",
+          title: "Beats",
+          description: "The sonic base of the laboratory: beats, textures, atmospheres and playgrounds for future voices.",
+          highlights: [
+            "Original beats and in-house instrumental identity",
+            "Sound directions for freestyle, clips or games",
+            "Foundation for the future audio catalog"
+          ]
+        },
+        {
+          id: "reseaux",
+          label: "Socials",
+          title: "Socials",
+          description: "A distribution channel for releases, public presence and visible connections around the musical side of Pawat-Labz.",
+          highlights: [
+            "Visibility for the lab's music content",
+            "Bridge toward clips, announcements and short formats",
+            "An evolving public layer around the projects"
+          ],
+          featuredLink: {
+            platform: "YouTube",
+            handle: "@Pawat_Music",
+            url: "https://www.youtube.com/@Pawat_Music",
+            summary: "Main channel for tracks, clips, releases and future musical signals coming from the Lab.",
+            buttonLabel: "Open channel"
+          }
+        }
+      ]
+    },
+    aboutLab: {
+      overview: {
+        kicker: "LAB ENTRY",
+        title: "A transversal zone designed to reveal how the laboratory actually breathes.",
+        text:
+          "ABOUT opens a wider access point into the living logic of Pawat-Labz, where music, games, animation, tools, AI and experimentation connect inside one creative system."
+      },
+      signals: [
+        {
+          label: "Creative core",
+          value: "Music + visuals + code",
+          note: "Each discipline feeds the others and helps new formats emerge."
+        },
+        {
+          label: "Lab direction",
+          value: "Hybrid creative systems",
+          note: "The goal is not to isolate sections, but to let them talk to each other."
+        },
+        {
+          label: "Production mode",
+          value: "Independent and evolving",
+          note: "The lab grows project by project, prototype after prototype."
+        },
+        {
+          label: "Open channels",
+          value: "Web / video / sound / play",
+          note: "Any idea can become an interface, a clip, a tool or a playground."
+        }
+      ],
+      sections: [
+        {
+          signal: "SND",
+          title: "Music Production",
+          text: "Music production, beats, sonic identity, releases, rap energy and more experimental textures all intersect here."
+        },
+        {
+          signal: "GME",
+          title: "Game Development",
+          text: "Playable prototypes, gameplay ideas and bridges between code, fun and art direction take shape inside the Lab."
+        },
+        {
+          signal: "VIS",
+          title: "Animation & Visual Experiments",
+          text: "Animated series, clips, short ads and visual experiments help move characters, rhythms and worlds."
+        },
+        {
+          signal: "OSS",
+          title: "Open Source & Tools",
+          text: "The builder side of Pawat-Labz also lives through custom tools, technical prototypes and a desire to share useful building blocks."
+        },
+        {
+          signal: "AI",
+          title: "AI Assisted Creation",
+          text: "AI is treated like a creative extension for ideation, workflow acceleration, visual tests and fresh production directions."
+        },
+        {
+          signal: "EXP",
+          title: "Experimental Projects",
+          text: "Hybrid interfaces, freer web concepts, unexpected crossovers and hard-to-classify formats belong to the living core of the lab."
+        }
+      ],
+      systemStatus: {
+        kicker: "SYSTEM STATUS",
+        title: "The laboratory stays in motion.",
+        text:
+          "Several construction threads run in parallel: composition, games, video, interfaces and tooling. The whole thing moves like a living system rather than a static showcase.",
+        items: [
+          {
+            label: "Projects in progress",
+            value: "Multiple creative threads active"
+          },
+          {
+            label: "Experimental systems online",
+            value: "UI, routing and media layers stable"
+          },
+          {
+            label: "New portals opening",
+            value: "Fresh sections and new formats in preparation"
+          },
+          {
+            label: "Development active",
+            value: "Code, visuals and stories evolving together"
+          }
+        ]
+      },
+      support: {
+        kicker: "SUPPORT THE LABZ",
+        title: "A future support zone is being prepared inside the laboratory.",
+        text:
+          "This interface will later host simple ways to support the creations, tools and evolution of the Lab without breaking the identity of the site.",
+        channels: ["Donation", "Support", "Buy me a coffee", "Patreon-like support"],
+        buttonLabel: "Support Coming Soon"
+      }
     },
     animationHub: {
       introLabel: "Animation focus",
@@ -857,6 +1193,12 @@ const translations = {
         text: "This page sums up the main sections of the site and gives a clearer view of each creative world inside the Labz.",
         badge: "OVERVIEW"
       },
+      about: {
+        kicker: "SIGNAL 00B",
+        title: "ABOUT THE LAB",
+        text: "Pawat-Labz is an independent creative laboratory mixing games, music, animation, experimental web experiences and AI-assisted workflows.",
+        badge: "ABOUT"
+      },
       musique: {
         kicker: "SECTION 01",
         title: "Music",
@@ -955,6 +1297,8 @@ export const getPageHighlights = () => getLocaleContent().pageHighlights;
 export const getPageContent = (pageKey) => getLocaleContent().pageContent[pageKey];
 export const getAnimationHub = () => getLocaleContent().animationHub;
 export const getAnimationSeries = (seriesKey) => getLocaleContent().animationSeries[seriesKey];
+export const getMusicHub = () => getLocaleContent().musicHub;
+export const getAboutLab = () => getLocaleContent().aboutLab;
 
 export const getRouteTitle = (path) => {
   const localeContent = getLocaleContent();
