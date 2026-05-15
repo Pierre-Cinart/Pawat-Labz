@@ -20,10 +20,21 @@ const resolveDetail = (universe, detail) => {
   };
 };
 
+const navigateFromCard = (cardNode) => {
+  const targetPath = cardNode?.dataset.cardPath;
+
+  if (!targetPath) {
+    return;
+  }
+
+  window.location.hash = targetPath;
+};
+
 export const renderHomePage = () => {
   const homeContent = getPageContent("home");
   const creativeUniverses = getCreativeUniverses();
   const homeManifesto = getHomeManifesto();
+  let cleanupHomePage = null;
 
   return {
     html: `
@@ -62,7 +73,13 @@ export const renderHomePage = () => {
           ${creativeUniverses
             .map(
               (universe) => `
-                <article class="universe-card">
+                <article
+                  class="universe-card"
+                  data-card-path="${universe.path}"
+                  tabindex="0"
+                  role="link"
+                  aria-label="${universe.label}"
+                >
                   <p class="universe-card__index">${universe.index}</p>
                   <p class="universe-card__label">${universe.label}</p>
                   <a class="universe-card__main-link" href="#${universe.path}" data-link>
@@ -98,6 +115,44 @@ export const renderHomePage = () => {
           badge: homeContent.panel.badge
         })}
       </section>
-    `
+    `,
+    onMount: () => {
+      const cardNodes = Array.from(document.querySelectorAll("[data-card-path]"));
+
+      const handleCardClick = (event) => {
+        if (event.target.closest("a, button")) {
+          return;
+        }
+
+        navigateFromCard(event.currentTarget);
+      };
+
+      const handleCardKeydown = (event) => {
+        if (event.key !== "Enter" && event.key !== " ") {
+          return;
+        }
+
+        event.preventDefault();
+        navigateFromCard(event.currentTarget);
+      };
+
+      cardNodes.forEach((cardNode) => {
+        cardNode.addEventListener("click", handleCardClick);
+        cardNode.addEventListener("keydown", handleCardKeydown);
+      });
+
+      cleanupHomePage = () => {
+        cardNodes.forEach((cardNode) => {
+          cardNode.removeEventListener("click", handleCardClick);
+          cardNode.removeEventListener("keydown", handleCardKeydown);
+        });
+      };
+    },
+    onUnmount: () => {
+      if (typeof cleanupHomePage === "function") {
+        cleanupHomePage();
+        cleanupHomePage = null;
+      }
+    }
   };
 };

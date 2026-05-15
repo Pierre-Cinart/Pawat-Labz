@@ -142,6 +142,7 @@
     border-color var(--transition-fast),
     box-shadow var(--transition-fast),
     background var(--transition-fast);
+  cursor: pointer;
 }
 
 .universe-card:hover {
@@ -150,7 +151,12 @@
   box-shadow: var(--shadow-green-sm);
   background:
     linear-gradient(180deg, rgba(0, 255, 65, 0.05), transparent 40%),
-    rgba(10, 16, 24, 0.95);
+     rgba(10, 16, 24, 0.95);
+}
+
+.universe-card:focus-visible {
+  outline: 2px solid rgba(0, 212, 255, 0.34);
+  outline-offset: 4px;
 }
 
 .universe-card__index,
@@ -729,12 +735,6 @@
   text-transform: uppercase;
 }
 
-.music-focus__lead {
-  margin: var(--space-4) 0 0;
-  color: var(--color-text-dim);
-  line-height: 1.7;
-}
-
 .music-focus-card {
   display: grid;
   gap: var(--space-4);
@@ -842,6 +842,11 @@
 
 .music-featured-link__button {
   white-space: nowrap;
+}
+
+.music-focus__entries {
+  display: grid;
+  gap: var(--space-4);
 }
 
 .animation-focus,

@@ -188,6 +188,12 @@ const translations = {
       introText:
         "La section musique va se structurer autour des memes portes d'entree que celles deja visibles dans le site : projets, clips, feat/cypher, instrus et reseaux.",
       categoryKicker: "SIGNAL AUDIO",
+      entryKicker: "CLIP MUSICAL",
+      imageLabel: "Image",
+      entryButtons: {
+        external: "Voir le clip"
+      },
+      emptyState: "Cette rubrique pourra accueillir plusieurs clips plus tard.",
       categories: [
         {
           id: "projets",
@@ -204,11 +210,84 @@ const translations = {
           id: "clips",
           label: "Clips",
           title: "Clips",
+          displayMode: "showcase",
           description: "La musique ne reste pas seule : elle dialogue avec l'image, le montage et les formats video lies au labo.",
           highlights: [
             "Pont direct entre son et image",
             "Clips musicaux et formats hybrides",
             "Passerelle naturelle vers la section Animation"
+          ],
+          entries: [
+            {
+              title: "MALABARZ",
+              subtitle: "",
+              image: "https://img.youtube.com/vi/_RjHrjYH0bs/maxresdefault.jpg",
+              imageAlt: "Miniature MALABARZ",
+              typeLabel: "CLIP RAP",
+              context: "Artiste : Wampawat feat Nino — Instru : Tysha — Clip : Pawat_TV",
+              youtubeId: "_RjHrjYH0bs",
+              externalUrl: "https://www.youtube.com/watch?v=_RjHrjYH0bs"
+            },
+            {
+              title: "SANDERS TOUS ENSEMBLE",
+              subtitle: "",
+              image: "https://img.youtube.com/vi/H9kXElI4U24/maxresdefault.jpg",
+              imageAlt: "Miniature SANDERS TOUS ENSEMBLE",
+              typeLabel: "SHORT CLIP — \"TOUS ENSEMBLE\"",
+              context: "Artiste : SANDERS — Instru : Pawat_Music x Fanatik1200 — Clip : Pawat_TV",
+              youtubeId: "H9kXElI4U24",
+              externalUrl: "https://www.youtube.com/watch?v=H9kXElI4U24"
+            },
+            {
+              title: "SHEIN B TOUS ENSEMBLE",
+              subtitle: "",
+              image: "https://img.youtube.com/vi/SXhbD9AEaGY/maxresdefault.jpg",
+              imageAlt: "Miniature SHEIN B TOUS ENSEMBLE",
+              typeLabel: "SHORT CLIP — \"TOUS ENSEMBLE\"",
+              context: "Artiste : Shein B — Instru : Pawat_Music x Fanatik1200 — Clip : Pawat_TV",
+              youtubeId: "SXhbD9AEaGY",
+              externalUrl: "https://www.youtube.com/watch?v=SXhbD9AEaGY"
+            },
+            {
+              title: "KAMEO TOUS ENSEMBLE",
+              subtitle: "",
+              image: "https://img.youtube.com/vi/JrTGw8cbWj8/maxresdefault.jpg",
+              imageAlt: "Miniature KAMEO TOUS ENSEMBLE",
+              typeLabel: "SHORT CLIP — \"TOUS ENSEMBLE\"",
+              context: "Artiste : KAMEO — Instru : Pawat_Music x Fanatik1200 — Clip : Pawat_TV",
+              youtubeId: "JrTGw8cbWj8",
+              externalUrl: "https://www.youtube.com/watch?v=JrTGw8cbWj8"
+            },
+            {
+              title: "WAMPAWAT TOUS ENSEMBLE",
+              subtitle: "",
+              image: "https://img.youtube.com/vi/-Gq8e5jIKWk/maxresdefault.jpg",
+              imageAlt: "Miniature WAMPAWAT TOUS ENSEMBLE",
+              typeLabel: "SHORT CLIP — \"TOUS ENSEMBLE\"",
+              context: "Artiste : Wampawat — Instru : Pawat_Music x Fanatik1200 — Clip : Pawat_TV",
+              youtubeId: "-Gq8e5jIKWk",
+              externalUrl: "https://www.youtube.com/watch?v=-Gq8e5jIKWk"
+            },
+            {
+              title: "BGE TOUS ENSEMBLE",
+              subtitle: "",
+              image: "https://img.youtube.com/vi/4yc6VFMwRME/maxresdefault.jpg",
+              imageAlt: "Miniature BGE TOUS ENSEMBLE",
+              typeLabel: "SHORT CLIP — \"TOUS ENSEMBLE\"",
+              context: "Artiste : BGE — Instru : Pawat_Music x Fanatik1200 — Clip : Pawat_TV",
+              youtubeId: "4yc6VFMwRME",
+              externalUrl: "https://www.youtube.com/watch?v=4yc6VFMwRME"
+            },
+            {
+              title: "OLD SCHOOL CYPHER",
+              subtitle: "",
+              image: "https://img.youtube.com/vi/fNPp0caMptc/maxresdefault.jpg",
+              imageAlt: "Miniature OLD SCHOOL CYPHER",
+              typeLabel: "EXPERIMENTAL ANIMATED MUSIC CLIP",
+              context: "Artistes : Process lvx, BGE, Malro, Kameo, Inconiko, Pawat — Instru : Pawat_Music — Clip : Pawat_TV",
+              youtubeId: "fNPp0caMptc",
+              externalUrl: "https://www.youtube.com/watch?v=fNPp0caMptc"
+            }
           ]
         },
         {
@@ -811,6 +890,12 @@ const translations = {
       introText:
         "The music section is now structured around the same visible gateways: projects, clips, feat/cypher, beats and socials.",
       categoryKicker: "AUDIO SIGNAL",
+      entryKicker: "MUSIC CLIP",
+      imageLabel: "Image",
+      entryButtons: {
+        external: "Watch the clip"
+      },
+      emptyState: "This section can host several clips later on.",
       categories: [
         {
           id: "projets",
@@ -827,11 +912,84 @@ const translations = {
           id: "clips",
           label: "Clips",
           title: "Clips",
+          displayMode: "showcase",
           description: "Music does not stay isolated here: it connects with image, editing and video formats tied to the Lab.",
           highlights: [
             "Direct bridge between sound and image",
             "Music clips and hybrid formats",
             "Natural gateway toward the Animation section"
+          ],
+          entries: [
+            {
+              title: "MALABARZ",
+              subtitle: "",
+              image: "https://img.youtube.com/vi/_RjHrjYH0bs/maxresdefault.jpg",
+              imageAlt: "MALABARZ thumbnail",
+              typeLabel: "RAP CLIP",
+              context: "Artist : Wampawat feat Nino — Prod. : Tysha — Clip : Pawat_TV",
+              youtubeId: "_RjHrjYH0bs",
+              externalUrl: "https://www.youtube.com/watch?v=_RjHrjYH0bs"
+            },
+            {
+              title: "SANDERS TOUS ENSEMBLE",
+              subtitle: "",
+              image: "https://img.youtube.com/vi/H9kXElI4U24/maxresdefault.jpg",
+              imageAlt: "SANDERS TOUS ENSEMBLE thumbnail",
+              typeLabel: "SHORT CLIP — \"TOUS ENSEMBLE\"",
+              context: "Artist : SANDERS — Prod. : Pawat_Music x Fanatik1200 — Clip : Pawat_TV",
+              youtubeId: "H9kXElI4U24",
+              externalUrl: "https://www.youtube.com/watch?v=H9kXElI4U24"
+            },
+            {
+              title: "SHEIN B TOUS ENSEMBLE",
+              subtitle: "",
+              image: "https://img.youtube.com/vi/SXhbD9AEaGY/maxresdefault.jpg",
+              imageAlt: "SHEIN B TOUS ENSEMBLE thumbnail",
+              typeLabel: "SHORT CLIP — \"TOUS ENSEMBLE\"",
+              context: "Artist : Shein B — Prod. : Pawat_Music x Fanatik1200 — Clip : Pawat_TV",
+              youtubeId: "SXhbD9AEaGY",
+              externalUrl: "https://www.youtube.com/watch?v=SXhbD9AEaGY"
+            },
+            {
+              title: "KAMEO TOUS ENSEMBLE",
+              subtitle: "",
+              image: "https://img.youtube.com/vi/JrTGw8cbWj8/maxresdefault.jpg",
+              imageAlt: "KAMEO TOUS ENSEMBLE thumbnail",
+              typeLabel: "SHORT CLIP — \"TOUS ENSEMBLE\"",
+              context: "Artist : KAMEO — Prod. : Pawat_Music x Fanatik1200 — Clip : Pawat_TV",
+              youtubeId: "JrTGw8cbWj8",
+              externalUrl: "https://www.youtube.com/watch?v=JrTGw8cbWj8"
+            },
+            {
+              title: "WAMPAWAT TOUS ENSEMBLE",
+              subtitle: "",
+              image: "https://img.youtube.com/vi/-Gq8e5jIKWk/maxresdefault.jpg",
+              imageAlt: "WAMPAWAT TOUS ENSEMBLE thumbnail",
+              typeLabel: "SHORT CLIP — \"TOUS ENSEMBLE\"",
+              context: "Artist : Wampawat — Prod. : Pawat_Music x Fanatik1200 — Clip : Pawat_TV",
+              youtubeId: "-Gq8e5jIKWk",
+              externalUrl: "https://www.youtube.com/watch?v=-Gq8e5jIKWk"
+            },
+            {
+              title: "BGE TOUS ENSEMBLE",
+              subtitle: "",
+              image: "https://img.youtube.com/vi/4yc6VFMwRME/maxresdefault.jpg",
+              imageAlt: "BGE TOUS ENSEMBLE thumbnail",
+              typeLabel: "SHORT CLIP — \"TOUS ENSEMBLE\"",
+              context: "Artist : BGE — Prod. : Pawat_Music x Fanatik1200 — Clip : Pawat_TV",
+              youtubeId: "4yc6VFMwRME",
+              externalUrl: "https://www.youtube.com/watch?v=4yc6VFMwRME"
+            },
+            {
+              title: "OLD SCHOOL CYPHER",
+              subtitle: "",
+              image: "https://img.youtube.com/vi/fNPp0caMptc/maxresdefault.jpg",
+              imageAlt: "OLD SCHOOL CYPHER thumbnail",
+              typeLabel: "EXPERIMENTAL ANIMATED MUSIC CLIP",
+              context: "Artists : Process lvx, BGE, Malro, Kameo, Inconiko, Pawat — Prod. : Pawat_Music — Clip : Pawat_TV",
+              youtubeId: "fNPp0caMptc",
+              externalUrl: "https://www.youtube.com/watch?v=fNPp0caMptc"
+            }
           ]
         },
         {
