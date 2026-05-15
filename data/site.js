@@ -648,7 +648,7 @@ const translations = {
       },
       categories: [
         {
-          id: "animated-series",
+          id: "series-animees",
           label: "Animated series",
           title: "Animated series",
           description:
@@ -665,7 +665,7 @@ const translations = {
           ]
         },
         {
-          id: "animated-clips",
+          id: "clips-animes",
           label: "Animated clips",
           title: "Animated clips",
           description:
@@ -673,7 +673,7 @@ const translations = {
           entries: []
         },
         {
-          id: "short-ads",
+          id: "publicites-courtes",
           label: "Short ads",
           title: "Short ads",
           displayMode: "showcase",

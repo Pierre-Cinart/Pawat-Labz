@@ -1,6 +1,12 @@
 import { renderPanel } from "../components/ui/panel.js";
 import { getAnimationHub, getPageContent } from "../data/site.js";
 
+const ANIMATION_CATEGORY_ALIASES = {
+  "animated-series": "series-animees",
+  "animated-clips": "clips-animes",
+  "short-ads": "publicites-courtes"
+};
+
 const getRequestedAnimationFocus = () => {
   const [, queryString = ""] = window.location.hash.replace(/^#/, "").split("?");
   const searchParams = new URLSearchParams(queryString);
@@ -8,12 +14,23 @@ const getRequestedAnimationFocus = () => {
   return searchParams.get("focus");
 };
 
+const resolveAnimationCategoryId = (requestedFocus, categories) => {
+  if (!requestedFocus) {
+    return categories[0]?.id ?? "";
+  }
+
+  const canonicalCategoryId = ANIMATION_CATEGORY_ALIASES[requestedFocus] ?? requestedFocus;
+
+  return categories.find((category) => category.id === canonicalCategoryId)?.id ?? categories[0]?.id ?? "";
+};
+
 export const renderAnimationPage = () => {
   const animationContent = getPageContent("animation");
   const animationHub = getAnimationHub();
   const requestedFocus = getRequestedAnimationFocus();
+  const initialCategoryId = resolveAnimationCategoryId(requestedFocus, animationHub.categories);
   const initialCategory =
-    animationHub.categories.find((category) => category.id === requestedFocus) ?? animationHub.categories[0];
+    animationHub.categories.find((category) => category.id === initialCategoryId) ?? animationHub.categories[0];
   let cleanupAnimationHub = null;
 
   return {
@@ -491,7 +508,9 @@ export const renderAnimationPage = () => {
         triggerNode.addEventListener("click", handleTriggerClick);
       });
 
-      updateFocus(initialCategory.id, { shouldCenter: Boolean(requestedFocus) });
+      updateFocus(resolveAnimationCategoryId(requestedFocus, animationHub.categories), {
+        shouldCenter: Boolean(requestedFocus)
+      });
 
       cleanupAnimationHub = () => {
         triggerNodes.forEach((triggerNode) => {
