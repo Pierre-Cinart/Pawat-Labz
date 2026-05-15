@@ -1576,23 +1576,38 @@
   }
 
   .episode-card {
-    grid-template-columns: 92px minmax(0, 1fr);
-    gap: var(--space-3);
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: var(--space-2);
     padding: var(--space-3);
   }
 
   .episode-card__title {
-    font-size: 1.28rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.01em;
   }
 
   .episode-card__summary,
   .sagaz-player__episode-summary {
-    font-size: 1.02rem;
+    font-size: 0.82rem;
   }
 
   .episode-card__meta-label,
   .sagaz-player__episode-number {
     font-size: 0.8rem;
     letter-spacing: 0.12em;
+  }
+
+  .section-title {
+    font-size: clamp(1.3rem, 5.5vw, 1.8rem);
+  }
+
+  .music-focus__title,
+  .animation-focus__title,
+  .sagaz-player__episode-title {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+  }
+
+  .animation-entry-card__title {
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
   }
 }
