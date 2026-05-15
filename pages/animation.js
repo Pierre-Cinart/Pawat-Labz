@@ -1,10 +1,19 @@
 import { renderPanel } from "../components/ui/panel.js";
 import { getAnimationHub, getPageContent } from "../data/site.js";
 
+const getRequestedAnimationFocus = () => {
+  const [, queryString = ""] = window.location.hash.replace(/^#/, "").split("?");
+  const searchParams = new URLSearchParams(queryString);
+
+  return searchParams.get("focus");
+};
+
 export const renderAnimationPage = () => {
   const animationContent = getPageContent("animation");
   const animationHub = getAnimationHub();
-  const initialCategory = animationHub.categories[0];
+  const requestedFocus = getRequestedAnimationFocus();
+  const initialCategory =
+    animationHub.categories.find((category) => category.id === requestedFocus) ?? animationHub.categories[0];
   let cleanupAnimationHub = null;
 
   return {
@@ -99,6 +108,8 @@ export const renderAnimationPage = () => {
     `,
     onMount: () => {
       const hubState = new Map(animationHub.categories.map((category) => [category.id, category]));
+      const requestedFocus = getRequestedAnimationFocus();
+      const animationFocusNode = document.querySelector(".animation-focus");
       const triggerNodes = Array.from(document.querySelectorAll("[data-animation-category]"));
       const titleNode = document.querySelector("[data-animation-focus-title]");
       const descriptionNode = document.querySelector("[data-animation-focus-description]");
@@ -408,7 +419,24 @@ export const renderAnimationPage = () => {
         };
       };
 
-      const updateFocus = (categoryId) => {
+      const centerAnimationTarget = (targetNode) => {
+        if (!targetNode) {
+          return;
+        }
+
+        // On laisse d'abord le routeur terminer son focus global sur #app,
+        // puis on reprend la main pour centrer la vraie sous-section demandée.
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            targetNode.scrollIntoView({
+              behavior: "smooth",
+              block: "center"
+            });
+          });
+        });
+      };
+
+      const updateFocus = (categoryId, { shouldCenter = false } = {}) => {
         const category = hubState.get(categoryId);
 
         if (!category) {
@@ -426,6 +454,14 @@ export const renderAnimationPage = () => {
 
         if (category.displayMode === "showcase") {
           renderShowcase(category);
+          if (shouldCenter) {
+            const focusTarget =
+              entriesNode.querySelector(".animation-showcase") ??
+              entriesNode.querySelector(".animation-showcase__player-panel") ??
+              entriesNode;
+
+            centerAnimationTarget(focusTarget);
+          }
           return;
         }
 
@@ -435,18 +471,27 @@ export const renderAnimationPage = () => {
         }
 
         renderEntries(category.entries);
+
+        if (shouldCenter) {
+          const focusTarget =
+            entriesNode.querySelector(".animation-entry-card") ??
+            entriesNode.querySelector(".animation-entry-empty") ??
+            animationFocusNode;
+
+          centerAnimationTarget(focusTarget);
+        }
       };
 
       const handleTriggerClick = (event) => {
         const triggerNode = event.currentTarget;
-        updateFocus(triggerNode.dataset.animationCategory);
+        updateFocus(triggerNode.dataset.animationCategory, { shouldCenter: true });
       };
 
       triggerNodes.forEach((triggerNode) => {
         triggerNode.addEventListener("click", handleTriggerClick);
       });
 
-      updateFocus(initialCategory.id);
+      updateFocus(initialCategory.id, { shouldCenter: Boolean(requestedFocus) });
 
       cleanupAnimationHub = () => {
         triggerNodes.forEach((triggerNode) => {

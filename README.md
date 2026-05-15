@@ -1,59 +1,66 @@
 # Pawat-Labz
 
-Pawat-Labz est la vitrine du laboratoire creatif de Pawat : musique, animation, developpement, gaming et experiences artistiques interactives.
+Pawat-Labz est le laboratoire créatif personnel de Pawat.
 
-Le projet est pense comme un espace evolutif, capable de reunir plusieurs univers creatifs dans une seule identite visuelle coherente, retro-futuriste et immersive.
+Le site rassemble plusieurs univers dans une même identité visuelle : musique, animation, développement, gaming, improvisation et transmission. L’idée n’est pas seulement de montrer des contenus, mais de faire ressentir une ambiance, une direction artistique et une manière de créer.
 
 ## Vision
 
-Le site a pour objectif de presenter :
+Pawat-Labz a vocation à présenter :
 
-- des creations musicales et audiovisuelles
-- des projets de developpement et d'outils
-- des prototypes gaming et experiences interactives
-- une direction artistique forte, entre laboratoire numerique et interface neon
-
-## Etat actuel
-
-Cette version pose les premieres fondations de la vitrine :
-
-- une structure generale du site
-- une navigation fluide entre les grands univers
-- une premiere direction visuelle inspiree de l'identite Pawat-Labz
-- une base modulaire prevue pour faire grandir chaque section
-
-Le contenu sera ensuite enrichi progressivement au fil du developpement.
+- des créations musicales et audiovisuelles
+- des séries, clips et formats animation
+- des outils, prototypes et expériences de développement
+- des mini-jeux, démos jouables et projets interactifs
+- des tutos, bases et contenus de transmission
 
 ## Univers du site
 
 - Accueil
+- Univers
 - Musique
 - Animation
 - Dev
 - Gaming
-- Freestyle / Impro Lab
+- Freestyle Lab
+- Tutos
 
-## Intention visuelle
+## Direction visuelle
 
-L'univers graphique s'inspire d'une interface de laboratoire creatif :
+L’interface s’appuie sur une esthétique de laboratoire créatif rétro-futuriste :
 
-- ambiance sombre et contraste neon
-- typographies techno et systeme
-- textures numeriques subtiles
-- interface pensee comme un hub d'exploration
+- fond sombre
+- accents néon verts et cyan
+- typographies techno / système
+- cartes et panneaux immersifs
+- navigation pensée comme un hub d’exploration
 
-## Conventions
+## Expérience actuelle
 
-Le projet suit une structure simple et evolutive :
+Le site propose déjà une base interactive solide :
 
-- fichiers nommes en kebab-case
-- separation claire entre pages, composants, styles, donnees et routage
-- assets ranges par type pour preparer la suite du developpement
-- chargement progressif prevu pour les medias lourds quand le contenu sera enrichi
+- navigation SPA fluide
+- interface bilingue FR / EN
+- navbar sticky et menu burger mobile
+- transitions de navigation et focus sur certaines sous-sections
+- première section animation enrichie avec série, épisodes et lecteur YouTube
 
-## Suite du projet
+## Organisation du projet
 
-Les prochaines iterations serviront a enrichir chaque section avec de vrais contenus, des composants plus pousses, des experiences interactives et une mise en scene plus forte de l'univers Pawat-Labz.
+La structure reste pensée pour évoluer facilement :
 
-## license
-© Pawat Labz — Tous droits réservés
+- `assets/` pour les médias
+- `components/` pour le layout et les petits blocs UI
+- `pages/` pour les vues du site
+- `router/` pour la navigation SPA
+- `scripts/` pour le démarrage et la logique globale
+- `styles/` pour le design system et les styles de pages
+- `data/` pour les contenus, textes et configurations éditoriales
+
+## Suite
+
+Le projet continue d’être enrichi rubrique par rubrique, avec l’objectif de transformer chaque section en univers identifiable, vivant et cohérent.
+
+## Licence
+
+© Pawat Labz - Tous droits réservés

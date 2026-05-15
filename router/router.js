@@ -8,12 +8,13 @@ import { notFoundRoute, routes } from "./routes.js";
  */
 const normalizeHash = (hash) => {
   const rawValue = hash.replace(/^#/, "").trim();
+  const [pathOnly] = rawValue.split("?");
 
-  if (!rawValue || rawValue === "/") {
+  if (!pathOnly || pathOnly === "/") {
     return "/";
   }
 
-  return rawValue.endsWith("/") ? rawValue.slice(0, -1) : rawValue;
+  return pathOnly.endsWith("/") ? pathOnly.slice(0, -1) : pathOnly;
 };
 
 const getCurrentPath = () => normalizeHash(window.location.hash);
@@ -38,7 +39,11 @@ export const renderCurrentRoute = ({ shouldFocus = true } = {}) => {
   setActiveNavigation(currentRoute.path === "/404" ? "" : currentRoute.path);
 
   if (shouldFocus) {
-    app.focus();
+    app.scrollIntoView({
+      block: "start",
+      behavior: "auto"
+    });
+    app.focus({ preventScroll: true });
   }
 };
 

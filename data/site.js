@@ -56,7 +56,14 @@ const translations = {
         label: "Musique",
         title: "Productions, instrus et identité sonore",
         text: "La musique est un des moteurs principaux de Pawat Labz. On y retrouve mes productions, mes instrus, mes projets personnels, mes collaborations, mes cyphers et mes futurs albums.",
-        details: ["Instrus", "Productions", "Clips", "Album solo", "Feat / Cypher", "YouTube / réseaux"]
+        details: [
+          { label: "Instrus", path: "/musique" },
+          { label: "Productions", path: "/musique" },
+          { label: "Clips", path: "/musique" },
+          { label: "Album solo", path: "/musique" },
+          { label: "Feat / Cypher", path: "/musique" },
+          { label: "YouTube / réseaux", path: "/musique" }
+        ]
       },
       {
         path: "/animation",
@@ -64,7 +71,14 @@ const translations = {
         label: "Animation",
         title: "Images en mouvement, séries et univers visuels",
         text: "Découvrez ici mes créations animées, mes dessins animés, mes concepts de séries, mes clips animés, mes publicités courtes et mes expérimentations visuelles.",
-        details: ["Séries animées", "Clips animés", "Publicités courtes", "Univers visuels", "Expérimentations", "Concepts narratifs"]
+        details: [
+          { label: "Séries animées", path: "/animation?focus=series-animees" },
+          { label: "Clips animés", path: "/animation?focus=clips-animes" },
+          { label: "Publicités courtes", path: "/animation?focus=publicites-courtes" },
+          { label: "Univers visuels", path: "/animation" },
+          { label: "Expérimentations", path: "/animation" },
+          { label: "Concepts narratifs", path: "/animation" }
+        ]
       },
       {
         path: "/dev",
@@ -72,7 +86,14 @@ const translations = {
         label: "Dev",
         title: "Outils, prototypes et construction technique",
         text: "La section Dev montre mon côté constructeur. J'y partage mes projets web, mes prototypes, mes outils maison, mes systèmes JavaScript, mes expérimentations open source et mes futurs utilitaires.",
-        details: ["Développement web", "Outils open source", "Phaser tools", "Utilitaires PC/.NET", "Prototypes techniques", "GitHub"]
+        details: [
+          { label: "Développement web", path: "/dev" },
+          { label: "Outils open source", path: "/dev" },
+          { label: "Phaser tools", path: "/dev" },
+          { label: "Utilitaires PC/.NET", path: "/dev" },
+          { label: "Prototypes techniques", path: "/dev" },
+          { label: "GitHub", path: "/dev" }
+        ]
       },
       {
         path: "/gaming",
@@ -80,7 +101,13 @@ const translations = {
         label: "Gaming",
         title: "Prototypes jouables et expériences interactives",
         text: "Cette section est pensée comme un terrain de jeu. Elle regroupe mes petits prototypes jouables en ligne, mes concepts de jeux, mes projets Phaser, mes mini-jeux arcade et mes futurs jeux complets.",
-        details: ["Mini-jeux jouables", "Prototypes Phaser", "Futurs jeux Play Store", "Jeux téléchargeables", "Projets complets"]
+        details: [
+          { label: "Mini-jeux jouables", path: "/gaming" },
+          { label: "Prototypes Phaser", path: "/gaming" },
+          { label: "Futurs jeux Play Store", path: "/gaming" },
+          { label: "Jeux téléchargeables", path: "/gaming" },
+          { label: "Projets complets", path: "/gaming" }
+        ]
       },
       {
         path: "/freestyle",
@@ -88,7 +115,14 @@ const translations = {
         label: "Freestyle Lab",
         title: "On balance les mots, le beat et c'est parti pour l'impro",
         text: "Impro Lab est un outil interactif pensé pour les rappeurs, improvisateurs et curieux. Des mots apparaissent aléatoirement pendant qu'une instru tourne, avec vitesse et difficulté réglables.",
-        details: ["Générateur de mots", "Difficulté", "Vitesse", "Instrus disponibles", "Freestyle", "Entraînement impro"]
+        details: [
+          { label: "Générateur de mots", path: "/freestyle" },
+          { label: "Difficulté", path: "/freestyle" },
+          { label: "Vitesse", path: "/freestyle" },
+          { label: "Instrus disponibles", path: "/freestyle" },
+          { label: "Freestyle", path: "/freestyle" },
+          { label: "Entraînement impro", path: "/freestyle" }
+        ]
       },
       {
         path: "/tutos",
@@ -96,7 +130,13 @@ const translations = {
         label: "Tutos",
         title: "Bases, transmission et formations à développer",
         text: "Retrouvez ici mes tutos, mes bases, des explications progressives et des contenus de transmission plus complets. L'idée n'est pas seulement de montrer, mais aussi d'aider à comprendre, pratiquer et aller plus loin.",
-        details: ["Bases", "Tutos en cours", "Méthodes", "Ressources", "Formations avancées"]
+        details: [
+          { label: "Bases", path: "/tutos" },
+          { label: "Tutos en cours", path: "/tutos" },
+          { label: "Méthodes", path: "/tutos" },
+          { label: "Ressources", path: "/tutos" },
+          { label: "Formations avancées", path: "/tutos" }
+        ]
       }
     ],
     homeManifesto: [
@@ -354,9 +394,9 @@ const translations = {
         visionLabel: "VISION",
         panel: {
           kicker: "UNE INTERFACE ENTRE ART, CODE ET EXPÉRIMENTATION",
-          title: "Un espace en évolution construit autour de ma manière de créer.",
+          title: "Un laboratoire vivant pensé pour relier mes idées, mes outils et mes univers.",
           text:
-            "Pawat Labz n'est pas seulement un site. C'est un espace en évolution, construit autour de ma manière de créer : tester, mélanger, détourner, apprendre et transformer les idées en expériences concrètes. Chaque rubrique doit devenir un monde identifiable, avec sa propre énergie, ses propres détails et sa propre narration visuelle.",
+            "Pawat Labz n'est pas juste une vitrine. C'est un laboratoire créatif personnel où je rassemble ce que je compose, ce que j'anime, ce que je développe et ce que j'expérimente. L'idée est de faire de chaque rubrique un vrai territoire, avec sa propre ambiance, sa propre logique et une manière bien à elle de raconter ce qu'elle contient.",
           badge: "INTENTION"
         }
       },
@@ -468,7 +508,14 @@ const translations = {
         label: "Music",
         title: "Productions, beats and sonic identity",
         text: "Music is one of the main engines behind Pawat Labz. This section gathers my productions, beats, personal projects, collaborations, cyphers and future albums.",
-        details: ["Beats", "Productions", "Clips", "Solo album", "Feat / Cypher", "YouTube / socials"]
+        details: [
+          { label: "Beats", path: "/musique" },
+          { label: "Productions", path: "/musique" },
+          { label: "Clips", path: "/musique" },
+          { label: "Solo album", path: "/musique" },
+          { label: "Feat / Cypher", path: "/musique" },
+          { label: "YouTube / socials", path: "/musique" }
+        ]
       },
       {
         path: "/animation",
@@ -476,7 +523,14 @@ const translations = {
         label: "Animation",
         title: "Moving images, series and visual worlds",
         text: "Discover my animated creations, cartoons, series concepts, animated clips, short ads and visual experiments here.",
-        details: ["Animated series", "Animated clips", "Short ads", "Visual worlds", "Experiments", "Narrative concepts"]
+        details: [
+          { label: "Animated series", path: "/animation?focus=series-animees" },
+          { label: "Animated clips", path: "/animation?focus=clips-animes" },
+          { label: "Short ads", path: "/animation?focus=publicites-courtes" },
+          { label: "Visual worlds", path: "/animation" },
+          { label: "Experiments", path: "/animation" },
+          { label: "Narrative concepts", path: "/animation" }
+        ]
       },
       {
         path: "/dev",
@@ -484,7 +538,14 @@ const translations = {
         label: "Dev",
         title: "Tools, prototypes and technical craft",
         text: "The Dev section shows my builder side. I share web projects, prototypes, custom tools, JavaScript systems, open source experiments and future utilities.",
-        details: ["Web development", "Open source tools", "Phaser tools", "PC/.NET utilities", "Technical prototypes", "GitHub"]
+        details: [
+          { label: "Web development", path: "/dev" },
+          { label: "Open source tools", path: "/dev" },
+          { label: "Phaser tools", path: "/dev" },
+          { label: "PC/.NET utilities", path: "/dev" },
+          { label: "Technical prototypes", path: "/dev" },
+          { label: "GitHub", path: "/dev" }
+        ]
       },
       {
         path: "/gaming",
@@ -492,7 +553,13 @@ const translations = {
         label: "Gaming",
         title: "Playable prototypes and interactive experiences",
         text: "This section is designed as a playground. It gathers my small online prototypes, game concepts, Phaser projects, arcade mini-games and future full games.",
-        details: ["Playable mini-games", "Phaser prototypes", "Future Play Store games", "Downloadable games", "Full projects"]
+        details: [
+          { label: "Playable mini-games", path: "/gaming" },
+          { label: "Phaser prototypes", path: "/gaming" },
+          { label: "Future Play Store games", path: "/gaming" },
+          { label: "Downloadable games", path: "/gaming" },
+          { label: "Full projects", path: "/gaming" }
+        ]
       },
       {
         path: "/freestyle",
@@ -500,7 +567,14 @@ const translations = {
         label: "Freestyle Lab",
         title: "Words, beat, flow - and the improv begins",
         text: "Impro Lab is an interactive tool made for rappers, improvisers and curious minds. Random words appear while a beat plays, with adjustable speed and difficulty.",
-        details: ["Word generator", "Difficulty", "Speed", "Available beats", "Freestyle", "Impro training"]
+        details: [
+          { label: "Word generator", path: "/freestyle" },
+          { label: "Difficulty", path: "/freestyle" },
+          { label: "Speed", path: "/freestyle" },
+          { label: "Available beats", path: "/freestyle" },
+          { label: "Freestyle", path: "/freestyle" },
+          { label: "Impro training", path: "/freestyle" }
+        ]
       },
       {
         path: "/tutos",
@@ -508,7 +582,13 @@ const translations = {
         label: "Tutorials",
         title: "Foundations, knowledge sharing and future training",
         text: "Here you will find my tutorials, learning foundations, progressive explanations and more complete educational content. The goal is not only to show, but to help people understand, practice and go further.",
-        details: ["Basics", "Tutorials in progress", "Methods", "Resources", "Advanced training"]
+        details: [
+          { label: "Basics", path: "/tutos" },
+          { label: "Tutorials in progress", path: "/tutos" },
+          { label: "Methods", path: "/tutos" },
+          { label: "Resources", path: "/tutos" },
+          { label: "Advanced training", path: "/tutos" }
+        ]
       }
     ],
     homeManifesto: [
@@ -765,9 +845,9 @@ const translations = {
         visionLabel: "VISION",
         panel: {
           kicker: "AN INTERFACE BETWEEN ART, CODE AND EXPERIMENTATION",
-          title: "An evolving space built around the way I create.",
+          title: "A living lab designed to connect my ideas, my tools and my creative worlds.",
           text:
-            "Pawat Labz is not just a website. It is an evolving space built around the way I create: testing, blending, bending, learning and turning ideas into concrete experiences. Each section is meant to become a recognizable world, with its own energy, details and visual storytelling.",
+            "Pawat Labz is not just a showcase website. It is a personal creative lab where I bring together what I compose, animate, build and experiment with. The goal is for each section to feel like a real territory, with its own atmosphere, its own internal logic and its own way of telling what lives inside it.",
           badge: "INTENTION"
         }
       },

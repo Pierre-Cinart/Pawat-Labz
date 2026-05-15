@@ -3,15 +3,27 @@ import { renderPanel } from "../components/ui/panel.js";
 import {
   getCreativeUniverses,
   getHomeManifesto,
-  getPageContent,
-  getPageHighlights
+  getPageContent
 } from "../data/site.js";
+
+const resolveDetail = (universe, detail) => {
+  if (typeof detail === "string") {
+    return {
+      label: detail,
+      path: universe.path
+    };
+  }
+
+  return {
+    label: detail.label,
+    path: detail.path ?? universe.path
+  };
+};
 
 export const renderHomePage = () => {
   const homeContent = getPageContent("home");
   const creativeUniverses = getCreativeUniverses();
   const homeManifesto = getHomeManifesto();
-  const pageHighlights = getPageHighlights();
 
   return {
     html: `
@@ -50,27 +62,28 @@ export const renderHomePage = () => {
           ${creativeUniverses
             .map(
               (universe) => `
-                <a class="universe-card" href="#${universe.path}" data-link>
+                <article class="universe-card">
                   <p class="universe-card__index">${universe.index}</p>
                   <p class="universe-card__label">${universe.label}</p>
-                  <h3 class="universe-card__title">${universe.title}</h3>
+                  <a class="universe-card__main-link" href="#${universe.path}" data-link>
+                    <h3 class="universe-card__title">${universe.title}</h3>
+                  </a>
                   <p class="universe-card__text">${universe.text}</p>
                   <ul class="universe-card__tags">
-                    ${universe.details.map((detail) => `<li>${detail}</li>`).join("")}
-                  </ul>
-                </a>
-              `
-            )
-            .join("")}
-        </section>
+                    ${universe.details
+                      .map((detail) => {
+                        const resolvedDetail = resolveDetail(universe, detail);
 
-        <section class="manifesto-grid">
-          ${pageHighlights.home
-            .map(
-              (item, index) => `
-                <article class="manifesto-card">
-                  <p class="manifesto-card__index">0${index + 1}</p>
-                  <p class="manifesto-card__text">${item}</p>
+                        return `
+                          <li>
+                            <a class="universe-card__tag-link" href="#${resolvedDetail.path}" data-link>
+                              ${resolvedDetail.label}
+                            </a>
+                          </li>
+                        `;
+                      })
+                      .join("")}
+                  </ul>
                 </article>
               `
             )

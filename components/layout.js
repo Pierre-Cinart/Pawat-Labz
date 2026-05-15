@@ -13,14 +13,39 @@ export const renderHeader = () => {
   const languageSwitcher = getLanguageSwitcher();
   const currentLanguage = getLanguage();
 
+  const navigationMarkup = navigationItems
+    .map(
+      (item) => `
+        <li>
+          <a
+            class="primary-nav__link"
+            href="#${item.path}"
+            data-link
+            data-route="${item.path}"
+          >
+            <span class="primary-nav__index">${item.index}</span>
+            <span>${item.label}</span>
+          </a>
+        </li>
+      `
+    )
+    .join("");
+
   return `
-    <div class="header-panel">
-      <div class="header-topbar">
-        <span class="header-badge">PAWAT LABZ / CREATIVE SYSTEM</span>
+    <div class="sticky-nav-shell">
+      <div class="sticky-nav-bar">
+        <a class="sticky-nav-bar__brand" href="#/" data-link data-home-brand>
+          <span class="sticky-nav-bar__brand-main">${siteMeta.titlePrimary}</span>
+          <span class="sticky-nav-bar__brand-accent">${siteMeta.titleAccent}</span>
+        </a>
 
-        <div class="header-topbar__meta">
-          <span class="header-version">${siteMeta.version}</span>
+        <nav class="primary-nav primary-nav--desktop" aria-label="Navigation principale du site">
+          <ul class="primary-nav__list">
+            ${navigationMarkup}
+          </ul>
+        </nav>
 
+        <div class="sticky-nav-bar__actions">
           <div class="language-switcher" aria-label="${languageSwitcher.label}">
             <span class="language-switcher__label">${languageSwitcher.label}</span>
 
@@ -41,7 +66,35 @@ export const renderHeader = () => {
                 .join("")}
             </div>
           </div>
+
+          <button
+            class="nav-burger"
+            type="button"
+            data-nav-toggle
+            aria-expanded="false"
+            aria-controls="mobile-primary-nav"
+            aria-label="Ouvrir le menu"
+          >
+            <span class="nav-burger__line"></span>
+            <span class="nav-burger__line"></span>
+            <span class="nav-burger__line"></span>
+          </button>
         </div>
+      </div>
+
+      <div class="mobile-nav-panel" id="mobile-primary-nav" data-mobile-nav hidden>
+        <nav class="primary-nav primary-nav--mobile" aria-label="Navigation mobile du site">
+          <ul class="primary-nav__list primary-nav__list--mobile">
+            ${navigationMarkup}
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="header-panel">
+      <div class="header-topbar">
+        <span class="header-badge">PAWAT LABZ / CREATIVE SYSTEM</span>
+        <span class="header-version">${siteMeta.version}</span>
       </div>
 
       <div class="header-hero">
@@ -54,37 +107,7 @@ export const renderHeader = () => {
           <p class="site-tagline">${siteMeta.tagline}</p>
           <p class="site-description">${siteMeta.description}</p>
         </div>
-
-        <div class="header-status-card">
-          <p class="status-label">SIGNAL</p>
-          <p class="status-value">CREATIVE LAB ONLINE</p>
-          <p class="status-note">
-            ${siteMeta.description}
-          </p>
-        </div>
       </div>
-
-      <nav class="primary-nav" aria-label="Navigation principale du site">
-        <ul class="primary-nav__list">
-          ${navigationItems
-            .map(
-              (item) => `
-                <li>
-                  <a
-                    class="primary-nav__link"
-                    href="#${item.path}"
-                    data-link
-                    data-route="${item.path}"
-                  >
-                    <span class="primary-nav__index">${item.index}</span>
-                    <span>${item.label}</span>
-                  </a>
-                </li>
-              `
-            )
-            .join("")}
-        </ul>
-      </nav>
     </div>
   `;
 };

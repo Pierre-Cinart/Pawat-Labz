@@ -42,6 +42,64 @@ const renderShell = () => {
   footer.innerHTML = renderFooter();
 };
 
+const scrollAppIntoView = () => {
+  const app = document.getElementById("app");
+
+  if (!app) {
+    return;
+  }
+
+  app.scrollIntoView({
+    block: "start",
+    behavior: "smooth"
+  });
+
+  window.setTimeout(() => {
+    app.focus({ preventScroll: true });
+  }, 120);
+};
+
+const scrollHomeHeaderIntoView = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+};
+
+const setMobileNavState = (isOpen) => {
+  const header = document.getElementById("site-header");
+  const toggleButton = header.querySelector("[data-nav-toggle]");
+  const mobileNav = header.querySelector("[data-mobile-nav]");
+
+  if (!toggleButton || !mobileNav) {
+    return;
+  }
+
+  toggleButton.setAttribute("aria-expanded", String(isOpen));
+
+  if (isOpen) {
+    mobileNav.hidden = false;
+    requestAnimationFrame(() => {
+      mobileNav.dataset.open = "true";
+    });
+    return;
+  }
+
+  delete mobileNav.dataset.open;
+
+  window.setTimeout(() => {
+    const latestToggleState = toggleButton.getAttribute("aria-expanded") === "true";
+
+    if (!latestToggleState) {
+      mobileNav.hidden = true;
+    }
+  }, 260);
+};
+
+const closeMobileNav = () => {
+  setMobileNavState(false);
+};
+
 /**
  * Le son d'interface doit accompagner les vrais changements de rubrique,
  * pas tous les clics de l'application.
@@ -85,6 +143,29 @@ const bindLanguageSwitcher = () => {
 
   header.addEventListener("click", (event) => {
     const languageButton = event.target.closest("[data-language-switch]");
+    const navToggleButton = event.target.closest("[data-nav-toggle]");
+    const navLink = event.target.closest("[data-link]");
+
+    if (navToggleButton) {
+      const isExpanded = navToggleButton.getAttribute("aria-expanded") === "true";
+      setMobileNavState(!isExpanded);
+      return;
+    }
+
+    if (navLink) {
+      closeMobileNav();
+
+      const targetHash = navLink.getAttribute("href");
+      const isHomeBrand = navLink.hasAttribute("data-home-brand");
+
+      if (isHomeBrand) {
+        scrollHomeHeaderIntoView();
+      }
+
+      if (!isHomeBrand && targetHash === window.location.hash) {
+        scrollAppIntoView();
+      }
+    }
 
     if (!languageButton) {
       return;
@@ -93,7 +174,26 @@ const bindLanguageSwitcher = () => {
     const nextLanguage = languageButton.dataset.languageSwitch;
     setLanguage(nextLanguage);
     renderShell();
+    closeMobileNav();
     renderCurrentRoute({ shouldFocus: false });
+  });
+
+  document.addEventListener("click", (event) => {
+    const mobileNav = header.querySelector("[data-mobile-nav]");
+    const navToggleButton = header.querySelector("[data-nav-toggle]");
+    const isMenuOpen = navToggleButton?.getAttribute("aria-expanded") === "true";
+
+    if (!mobileNav || !navToggleButton || !isMenuOpen) {
+      return;
+    }
+
+    const clickedInsideHeader = event.target.closest("#site-header");
+
+    if (clickedInsideHeader) {
+      return;
+    }
+
+    closeMobileNav();
   });
 };
 

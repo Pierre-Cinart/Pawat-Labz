@@ -6,6 +6,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--sticky-nav-offset);
 }
 
 body {
@@ -19,6 +20,13 @@ body {
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: 1.6;
+}
+
+#app,
+.page,
+.animation-showcase__player-panel,
+.sagaz-player-panel {
+  scroll-margin-top: var(--sticky-nav-offset);
 }
 
 a {
@@ -45,8 +53,8 @@ iframe {
 }
 
 ::selection {
-  background: rgba(0, 255, 65, 0.18);
-  color: var(--color-text-strong);
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
 }
 
 .background-grid {

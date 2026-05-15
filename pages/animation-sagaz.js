@@ -1,7 +1,10 @@
 import { renderButtonLink } from "../components/ui/button.js";
 import { getAnimationSeries } from "../data/site.js";
 
-const renderEpisodeList = (episodes, activeEpisodeId) =>
+const getEpisodeMetaLabel = (sagaz, season, episode) =>
+  `${sagaz.seasonLabel.toUpperCase()} ${season.label.replace(/[^0-9]/g, "") || season.label} / ${sagaz.episodeLabel.slice(0, -1).toUpperCase()} ${episode.number}`;
+
+const renderEpisodeList = (sagaz, season, episodes, activeEpisodeId) =>
   episodes
     .map(
       (episode) => `
@@ -15,6 +18,7 @@ const renderEpisodeList = (episodes, activeEpisodeId) =>
             <span class="episode-card__thumb-placeholder">${episode.number}</span>
           </span>
           <span class="episode-card__body">
+            <span class="episode-card__meta-label">${getEpisodeMetaLabel(sagaz, season, episode)}</span>
             <span class="episode-card__title">${episode.title}</span>
             <span class="episode-card__summary">${episode.summary}</span>
           </span>
@@ -115,7 +119,7 @@ export const renderSagaZPage = () => {
             <div class="episode-list-panel">
               <p class="section-kicker">${sagaz.episodeLabel}</p>
               <div class="episode-list" data-episode-list>
-                ${renderEpisodeList(initialSeason.episodes, initialEpisode.id)}
+                ${renderEpisodeList(sagaz, initialSeason, initialSeason.episodes, initialEpisode.id)}
               </div>
             </div>
 
@@ -125,7 +129,7 @@ export const renderSagaZPage = () => {
               </div>
 
               <article class="sagaz-player__meta">
-                <p class="sagaz-player__episode-number" data-current-episode-number>${initialEpisode.number}</p>
+                <p class="sagaz-player__episode-number" data-current-episode-number>${getEpisodeMetaLabel(sagaz, initialSeason, initialEpisode)}</p>
                 <h3 class="sagaz-player__episode-title" data-current-episode-name>${initialEpisode.title}</h3>
                 <p class="sagaz-player__episode-summary" data-current-episode-summary>${initialEpisode.summary}</p>
                 <div class="sagaz-player__actions" data-current-episode-actions>
@@ -152,6 +156,7 @@ export const renderSagaZPage = () => {
       const heroImageNode = document.querySelector(".sagaz-hero__image");
       const heroPlaceholderNode = document.querySelector(".sagaz-hero__image-placeholder");
 
+      let activeSeason = initialSeason;
       let episodeCleanup = null;
       let heroImageCleanup = null;
       let thumbnailCleanup = null;
@@ -160,7 +165,7 @@ export const renderSagaZPage = () => {
       const getEpisodeById = (episodes, episodeId) => episodes.find((episode) => episode.id === episodeId) ?? episodes[0];
 
       const updateEpisodeMeta = (episode, { focusPlayer = false } = {}) => {
-        currentEpisodeNumberNode.textContent = episode.number;
+        currentEpisodeNumberNode.textContent = getEpisodeMetaLabel(sagaz, activeSeason, episode);
         currentEpisodeNameNode.textContent = episode.title;
         currentEpisodeSummaryNode.textContent = episode.summary;
         playerNode.innerHTML = renderPlayer(sagaz, episode);
@@ -249,12 +254,13 @@ export const renderSagaZPage = () => {
       const renderSeason = (seasonId) => {
         const season = getSeasonById(seasonId);
         const episode = getEpisodeById(season.episodes, season.episodes[0]?.id);
+        activeSeason = season;
 
         seasonButtons.forEach((button) => {
           button.classList.toggle("season-switcher__button--active", button.dataset.seasonId === season.id);
         });
 
-        episodeListNode.innerHTML = renderEpisodeList(season.episodes, episode.id);
+        episodeListNode.innerHTML = renderEpisodeList(sagaz, season, season.episodes, episode.id);
         updateEpisodeMeta(episode);
         bindEpisodeButtons(season.episodes);
       };
