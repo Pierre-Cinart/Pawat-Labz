@@ -2065,18 +2065,18 @@
 
   .impro-lab__stage {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
     grid-template-areas:
-      "lang"
+      "topbar"
       "word"
-      "history"
       "controls"
       "player";
     min-height: auto;
     align-items: stretch;
+    gap: var(--space-4);
+    padding: 1rem;
   }
 
-  .impro-lab__history,
   .impro-lab__controls,
   .impro-lab__player {
     position: static;
@@ -2085,17 +2085,48 @@
     max-width: none;
   }
 
-  .impro-lab__controls {
-    margin-top: var(--space-5);
+  .impro-lab__topbar {
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    gap: 0.75rem;
+    margin-bottom: 0;
   }
 
-  .impro-lab__history,
+  .impro-lab__language {
+    justify-self: start;
+  }
+
+  .impro-lab__start--top {
+    grid-column: auto;
+    width: 100%;
+    max-width: none;
+  }
+
+  .impro-lab__controls {
+    margin-top: 0;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
   .impro-lab__player {
     margin-bottom: 0;
   }
 
   .impro-lab__word-wrap {
-    padding: 1rem 0 1.5rem;
+    padding: 0.2rem 0 0;
+    min-width: 0;
+  }
+
+  .impro-lab__word {
+    width: 100%;
+    min-height: 220px;
+  }
+
+  .impro-lab__history {
+    left: 1.1rem;
+    right: 1.1rem;
+    bottom: 0.9rem;
+    max-width: none;
   }
 
   .animation-focus__title,
@@ -2163,10 +2194,67 @@
     padding: var(--space-4);
   }
 
+  .impro-lab__topbar {
+    gap: 0.6rem;
+  }
+
   .impro-lab__word {
-    min-height: 180px;
-    border-radius: 24px;
-    font-size: clamp(1.7rem, 10vw, 2.8rem);
+    min-height: 250px;
+    width: 100%;
+    padding: 1.1rem 1rem 3.8rem;
+    border-radius: 22px;
+    font-size: clamp(1.8rem, 11.2vw, 3rem);
+    line-height: 0.9;
+  }
+
+  .impro-lab__word-label {
+    margin-bottom: var(--space-3);
+    font-size: 0.68rem;
+  }
+
+  .impro-lab__history {
+    left: 1rem;
+    right: 1rem;
+    bottom: 0.85rem;
+    gap: 0.12rem;
+  }
+
+  .impro-lab__history-title {
+    font-size: 0.58rem;
+  }
+
+  .impro-lab__history-item {
+    font-size: 0.7rem;
+    line-height: 1.15;
+  }
+
+  .impro-lab__difficulty-buttons {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+
+  .impro-lab__difficulty-button {
+    min-height: 74px;
+    padding: 0.5rem 0.35rem;
+    font-size: 0.84rem;
+  }
+
+  .impro-lab__difficulty-index {
+    font-size: 0.58rem;
+  }
+
+  .impro-lab__toggle {
+    font-size: 0.82rem;
+  }
+
+  .impro-lab__beat-select {
+    min-height: 46px;
+    padding: 0.75rem 0.85rem;
+    font-size: 0.92rem;
+  }
+
+  .impro-lab__beat-meta {
+    font-size: 0.82rem;
   }
 
   .music-library__head,
