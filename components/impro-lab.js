@@ -6,9 +6,46 @@ const IMPRO_WORD_FILES = {
 };
 
 const IMPRO_BEATS_FILE = "data/impro-beats.json";
-const IMPRO_DEFAULT_SPEED = 2600;
-const IMPRO_SPEED_MIN_DELAY = 1600;
-const IMPRO_SPEED_MAX_DELAY = 4200;
+const IMPRO_DEFAULT_SPEED = 3200;
+const IMPRO_SPEED_MIN_DELAY = 1200;
+const IMPRO_SPEED_MAX_DELAY = 5200;
+
+const IMPRO_DIFFICULTY_CONFIG = {
+  "1": {
+    minSyllables: 2,
+    maxSyllables: 4,
+    weights: { easy: 5, medium: 1, hard: 0 },
+    perSyllableDelay: 320
+  },
+  "2": {
+    minSyllables: 2,
+    maxSyllables: 6,
+    weights: { easy: 2, medium: 3, hard: 1 },
+    perSyllableDelay: 220
+  },
+  "3": {
+    minSyllables: 4,
+    maxSyllables: 12,
+    weights: { easy: 1, medium: 2, hard: 5 },
+    perSyllableDelay: 120
+  }
+};
+
+const SPECIAL_SYLLABLES = {
+  fr: {
+    ntm: 3,
+    iam: 3,
+    atm: 3,
+    kdd: 3,
+    "dr-dre": 3,
+    "dr-dree": 3,
+    "dr-dreologie": 5
+  },
+  en: {
+    "dr-dre": 3,
+    "wu-tang-clan": 3
+  }
+};
 
 const improState = {
   difficulty: "2",
@@ -97,6 +134,12 @@ const cleanWord = (word) => {
 
 export const countSyllables = (word, lang) => {
   const normalizedWord = cleanWord(word);
+  const specialCount = SPECIAL_SYLLABLES[lang]?.[normalizedWord];
+
+  if (specialCount) {
+    return specialCount;
+  }
+
   const vowelGroups = normalizedWord.match(/[aeiouy]+/g);
   let count = vowelGroups ? vowelGroups.length : 0;
 
@@ -113,19 +156,35 @@ export const countSyllables = (word, lang) => {
 
 const getDifficultyPools = (lang) => {
   const bank = improState.wordsByLanguage[lang] ?? improState.wordsByLanguage.fr;
+  const config = IMPRO_DIFFICULTY_CONFIG[improState.difficulty] ?? IMPRO_DIFFICULTY_CONFIG["2"];
   const easy = bank.easy ?? [];
   const medium = bank.medium ?? [];
   const hard = bank.hard ?? [];
 
-  if (improState.difficulty === "1") {
-    return easy.length ? easy : [...medium, ...hard];
+  const filterWords = (words) =>
+    words.filter((word) => {
+      const syllables = countSyllables(word, lang);
+      return syllables >= config.minSyllables && syllables <= config.maxSyllables;
+    });
+
+  const weightedPool = [];
+  const weightedSources = [
+    { words: filterWords(easy), weight: config.weights.easy },
+    { words: filterWords(medium), weight: config.weights.medium },
+    { words: filterWords(hard), weight: config.weights.hard }
+  ];
+
+  weightedSources.forEach(({ words, weight }) => {
+    for (let index = 0; index < weight; index += 1) {
+      weightedPool.push(...words);
+    }
+  });
+
+  if (weightedPool.length) {
+    return weightedPool;
   }
 
-  if (improState.difficulty === "2") {
-    return [...easy, ...easy, ...medium];
-  }
-
-  return [...medium, ...medium, ...hard, ...hard, ...easy];
+  return [...easy, ...medium, ...hard];
 };
 
 const getRandomItem = (items, excludedValue = "") => {
@@ -147,12 +206,9 @@ const getRandomItem = (items, excludedValue = "") => {
 };
 
 const getNextWordDelay = (word, lang) => {
+  const config = IMPRO_DIFFICULTY_CONFIG[improState.difficulty] ?? IMPRO_DIFFICULTY_CONFIG["2"];
   const syllables = countSyllables(word, lang);
-  const speedModifier = improState.difficulty === "1" ? 260 : improState.difficulty === "3" ? 160 : 210;
-  const extraDelay =
-    improState.difficulty === "2"
-      ? Math.max(0, syllables - 3) * 280
-      : Math.max(0, syllables - 4) * speedModifier;
+  const extraDelay = Math.max(0, syllables - config.minSyllables) * config.perSyllableDelay;
   return improState.speed + extraDelay;
 };
 
@@ -585,9 +641,9 @@ export const mountImproLab = async () => {
     startImproSession();
   };
 
-  const handleSpeedInput = (event) => {
+const handleSpeedInput = (event) => {
     improState.speed = sliderValueToDelay(event.currentTarget.value);
-    syncImproLabUI();
+    restartWordFlow();
   };
 
   const handleBeatChange = (event) => {
