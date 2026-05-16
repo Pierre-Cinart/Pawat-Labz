@@ -435,14 +435,27 @@
 }
 
 .impro-lab__beat-select {
-  min-height: 42px;
-  padding: 0.7rem 0.9rem;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.75rem 2.7rem 0.75rem 0.9rem;
   border: 1px solid rgba(0, 255, 65, 0.12);
   border-radius: var(--radius-md);
-  background: rgba(8, 14, 20, 0.94);
-  color: var(--color-text-strong);
+  background: #f3f6f8;
+  color: #05080b;
+  -webkit-text-fill-color: #05080b;
   font: inherit;
   appearance: auto;
+  color-scheme: light;
+}
+
+.impro-lab__beat-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.impro-lab__beat-select option {
+  color: #05080b;
+  background: #ffffff;
 }
 
 .impro-lab__beat-meta {
@@ -2249,7 +2262,7 @@
 
   .impro-lab__beat-select {
     min-height: 46px;
-    padding: 0.75rem 0.85rem;
+    padding: 0.75rem 2.5rem 0.75rem 0.85rem;
     font-size: 0.92rem;
   }
 

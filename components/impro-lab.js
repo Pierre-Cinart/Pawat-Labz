@@ -234,6 +234,24 @@ const drawNextWord = () => {
   }, getNextWordDelay(nextWord, lang));
 };
 
+const rescheduleCurrentWord = () => {
+  if (!improState.isRunning || !improState.currentWord) {
+    syncImproLabUI();
+    return;
+  }
+
+  stopWordFlow();
+  const lang = getLanguage();
+  improState.timer = window.setTimeout(() => {
+    if (!improState.isRunning) {
+      return;
+    }
+
+    drawNextWord();
+  }, getNextWordDelay(improState.currentWord, lang));
+  syncImproLabUI();
+};
+
 const restartWordFlow = () => {
   if (!improState.isRunning) {
     syncImproLabUI();
@@ -564,6 +582,7 @@ const syncImproLabUI = () => {
   }
 
   if (beatSelectNode) {
+    beatSelectNode.innerHTML = renderBeatOptions();
     beatSelectNode.value = improState.selectedBeatId;
     beatSelectNode.disabled = improState.noInstru;
   }
@@ -603,6 +622,7 @@ const syncImproLabUI = () => {
     buttonNode.classList.toggle("impro-lab__difficulty-button--active", isActive);
     buttonNode.setAttribute("aria-pressed", isActive ? "true" : "false");
   });
+
 };
 
 export const mountImproLab = async () => {
@@ -626,7 +646,7 @@ export const mountImproLab = async () => {
   const randomNode = document.querySelector("[data-impro-random]");
   const repeatNode = document.querySelector("[data-impro-repeat]");
   const noInstruNode = document.querySelector("[data-impro-no-instru]");
-  const difficultyNodes = Array.from(document.querySelectorAll("[data-impro-difficulty]"));
+  const getDifficultyNodes = () => Array.from(document.querySelectorAll("[data-impro-difficulty]"));
 
   const handleStartClick = () => {
     if (improState.hasError) {
@@ -641,21 +661,26 @@ export const mountImproLab = async () => {
     startImproSession();
   };
 
-const handleSpeedInput = (event) => {
+  const handleSpeedInput = (event) => {
     improState.speed = sliderValueToDelay(event.currentTarget.value);
-    restartWordFlow();
+    rescheduleCurrentWord();
   };
 
   const handleBeatChange = (event) => {
+    const beatId = event.currentTarget.value;
+    if (!beatId) {
+      return;
+    }
+
     improState.randomBeat = false;
-    improState.selectedBeatId = event.currentTarget.value;
-    improState.currentBeatId = event.currentTarget.value;
+    improState.selectedBeatId = beatId;
+    improState.currentBeatId = beatId;
     const nextBeat = getBeatById(improState.selectedBeatId);
 
     if (improState.audioNode && nextBeat && !improState.noInstru) {
       improState.audioNode.src = encodeURI(nextBeat.path);
 
-      if (improState.isRunning) {
+      if (improState.isRunning || !improState.audioNode.paused) {
         playBeat(nextBeat);
       }
     }
@@ -697,7 +722,7 @@ const handleSpeedInput = (event) => {
   randomNode?.addEventListener("change", handleRandomChange);
   repeatNode?.addEventListener("change", handleRepeatChange);
   noInstruNode?.addEventListener("change", handleNoInstruChange);
-  difficultyNodes.forEach((buttonNode) => buttonNode.addEventListener("click", handleDifficultyClick));
+  getDifficultyNodes().forEach((buttonNode) => buttonNode.addEventListener("click", handleDifficultyClick));
   improState.audioNode?.removeEventListener("ended", handleBeatEnded);
   improState.audioNode?.addEventListener("ended", handleBeatEnded);
 
@@ -720,7 +745,7 @@ const handleSpeedInput = (event) => {
     randomNode?.removeEventListener("change", handleRandomChange);
     repeatNode?.removeEventListener("change", handleRepeatChange);
     noInstruNode?.removeEventListener("change", handleNoInstruChange);
-    difficultyNodes.forEach((buttonNode) => buttonNode.removeEventListener("click", handleDifficultyClick));
+    getDifficultyNodes().forEach((buttonNode) => buttonNode.removeEventListener("click", handleDifficultyClick));
     improState.audioNode?.removeEventListener("ended", handleBeatEnded);
   };
 };
