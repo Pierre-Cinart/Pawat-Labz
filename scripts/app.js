@@ -59,6 +59,38 @@ const scrollAppIntoView = () => {
   }, 120);
 };
 
+const scrollFocusedSectionIntoView = (targetHash) => {
+  if (!targetHash) {
+    return false;
+  }
+
+  const [, queryString = ""] = targetHash.replace(/^#/, "").split("?");
+  const searchParams = new URLSearchParams(queryString);
+  const focusTarget = searchParams.get("focus");
+
+  if (!focusTarget) {
+    return false;
+  }
+
+  const focusMap = {
+    "impro-labz": "[data-impro-stage]"
+  };
+
+  const selector = focusMap[focusTarget];
+  const targetNode = selector ? document.querySelector(selector) : null;
+
+  if (!targetNode) {
+    return false;
+  }
+
+  targetNode.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+  return true;
+};
+
 const scrollHomeHeaderIntoView = () => {
   window.scrollTo({
     top: 0,
@@ -163,7 +195,9 @@ const bindLanguageSwitcher = () => {
       }
 
       if (!isHomeBrand && targetHash === window.location.hash) {
-        scrollAppIntoView();
+        if (!scrollFocusedSectionIntoView(targetHash)) {
+          scrollAppIntoView();
+        }
       }
     }
 

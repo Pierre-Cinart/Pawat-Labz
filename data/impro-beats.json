@@ -1,0 +1,18 @@
+{
+  "beats": [
+    {
+      "id": "gotham-city",
+      "title": "Gotham City",
+      "path": "assets/audio/music/instrus/boombap/gotham city (93BPM).m4a",
+      "bpm": "93 BPM",
+      "type": "Freestyle beat / boom bap"
+    },
+    {
+      "id": "yakuza-v2",
+      "title": "Yakuza V2",
+      "path": "assets/audio/music/instrus/boombap/yakuza v2 (98.8 BPM).m4a",
+      "bpm": "98.8 BPM",
+      "type": "Harp oriental atypique / 3 x 16"
+    }
+  ]
+}

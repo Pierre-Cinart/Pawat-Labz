@@ -20,6 +20,7 @@ const translations = {
       { index: "03", label: "Dev", path: "/dev" },
       { index: "04", label: "Gaming", path: "/gaming" },
       { index: "05", label: "Freestyle", path: "/freestyle" },
+      { index: "05A", label: "Impro Labz", path: "/freestyle?focus=impro-labz" },
       { index: "06", label: "Tutos", path: "/tutos" },
       { index: "00B", label: "ABOUT", path: "/about" }
     ],
@@ -115,9 +116,9 @@ const translations = {
         index: "05",
         label: "Freestyle Lab",
         title: "On balance les mots, le beat et c'est parti pour l'impro",
-        text: "Impro Lab est un outil interactif pensé pour les rappeurs, improvisateurs et curieux. Des mots apparaissent aléatoirement pendant qu'une instru tourne, avec vitesse et difficulté réglables.",
+        text: "Impro Labz est un outil interactif pensé pour les rappeurs, improvisateurs et curieux. Des mots apparaissent aléatoirement pendant qu'une instru tourne, avec vitesse et difficulté réglables.",
         details: [
-          { label: "Générateur de mots", path: "/freestyle" },
+          { label: "Impro Labz", path: "/freestyle?focus=impro-labz" },
           { label: "Difficulté", path: "/freestyle" },
           { label: "Vitesse", path: "/freestyle" },
           { label: "Instrus disponibles", path: "/freestyle" },
@@ -173,7 +174,7 @@ const translations = {
         "Présentation arcade rétro-futuriste"
       ],
       freestyle: [
-        "Impro Lab et génération de mots",
+        "Impro Labz et génération de mots",
         "Interaction audio et visuelle en temps réel",
         "Modes de difficulté et ambiance scène / labo"
       ],
@@ -405,11 +406,49 @@ const translations = {
           label: "Instrus",
           title: "Instrus",
           description: "Base sonore du laboratoire : beats, textures, directions d'ambiance et terrains de jeu pour les futures voix.",
-          highlights: [
-            "Beats originaux et identite instrumentale maison",
-            "Directions sonores pour freestyle, clips ou jeux",
-            "Fondation du futur catalogue audio"
-          ]
+          displayMode: "library",
+          library: {
+            introLabel: "BANQUE INSTRU",
+            introTitle: "Beats, ambiances et terrains de jeu",
+            introText:
+              "Cette zone rassemble les instrus du labo : boom bap, directions d'ambiance, textures atypiques et supports pensés pour les voix futures.",
+            statusLabel: "BEATS ONLINE",
+            subsectionLabel: "Familles",
+            sectionKicker: "Signal instrumental",
+            trackKicker: "Instru",
+            trackButtonMore: "Lire plus",
+            trackButtonLess: "Refermer",
+            audioLabel: "Lecture",
+            artistsLabel: "Type",
+            beatmakerLabel: "Beatmaker",
+            folders: [],
+            subsections: [
+              {
+                id: "boombap",
+                label: "Boom bap",
+                title: "Boom bap",
+                description: "Textures boom bap maison, pensées pour le freestyle, le rap et les ambiances plus marquées.",
+                entries: [
+                  {
+                    title: "Gotham City",
+                    description:
+                      "Instru boom bap 93 BPM pensée comme un freestyle beat sombre, urbain et direct, avec une énergie de session brute.",
+                    artists: "Freestyle beat / boom bap 93 BPM",
+                    beatmaker: "Pawat_Music",
+                    audioSrc: "assets/audio/music/instrus/boombap/gotham city (93BPM).m4a"
+                  },
+                  {
+                    title: "Yakuza V2",
+                    description:
+                      "Instru boom bap 98.8 BPM au parfum de harpe orientale atypique, construite pour un format 3 x 16 plus narratif et singulier.",
+                    artists: "Harp oriental atypique / boom bap 98.8 BPM / 3 x 16",
+                    beatmaker: "Pawat_Music",
+                    audioSrc: "assets/audio/music/instrus/boombap/yakuza v2 (98.8 BPM).m4a"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           id: "reseaux",
@@ -795,9 +834,41 @@ const translations = {
       },
       freestyle: {
         kicker: "SECTION 05",
-        title: "Freestyle / Impro Lab",
-        text: "Cette section préparera l'outil interactif de génération de mots et d'ambiance pensé pour l'improvisation, l'entraînement et la performance.",
+        title: "Freestyle / Impro Labz",
+        text: "Cette section accueille désormais Impro Labz : un outil interactif de génération de mots et d'ambiance pensé pour l'improvisation, l'entraînement et la performance.",
         badge: "INTERACTIF"
+      },
+      improLab: {
+        kicker: "MODE IMPRO",
+        title: "Impro Labz",
+        intro: "Impro Labz, entraîne toi pour devenir le roi de l'impro",
+        directLabel: "Accès direct",
+        start: "Start",
+        stop: "Stop",
+        loading: "Chargement des banques de mots...",
+        ready: "Prêt à lancer la session.",
+        error: "Impossible de charger les banques de mots pour le moment.",
+        noInstru: "No instru",
+        random: "Random",
+        repeat: "Repeat",
+        playlistTitle: "Playlist instru",
+        difficultyTitle: "Difficulté",
+        speedTitle: "Vitesse",
+        speedSlow: "Lent",
+        speedMedium: "Medium",
+        speedFast: "Rapide",
+        languageTitle: "Langue",
+        currentWordLabel: "Mot courant",
+        historyTitle: "Derniers mots",
+        beatLabel: "Instru",
+        beatTypeLabel: "Type",
+        beatBpmLabel: "BPM",
+        pendingWord: "Appuie sur Start pour lancer le flux.",
+        difficulties: {
+          "1": "Mots faciles",
+          "2": "Mix équilibré",
+          "3": "Mots plus longs"
+        }
       },
       tutos: {
         kicker: "TUTOS",
@@ -835,6 +906,7 @@ const translations = {
       { index: "03", label: "Dev", path: "/dev" },
       { index: "04", label: "Gaming", path: "/gaming" },
       { index: "05", label: "Freestyle", path: "/freestyle" },
+      { index: "05A", label: "Impro Labz", path: "/freestyle?focus=impro-labz" },
       { index: "06", label: "Tutorials", path: "/tutos" },
       { index: "00B", label: "ABOUT", path: "/about" }
     ],
@@ -930,9 +1002,9 @@ const translations = {
         index: "05",
         label: "Freestyle Lab",
         title: "Words, beat, flow - and the improv begins",
-        text: "Impro Lab is an interactive tool made for rappers, improvisers and curious minds. Random words appear while a beat plays, with adjustable speed and difficulty.",
+        text: "Impro Labz is an interactive tool made for rappers, improvisers and curious minds. Random words appear while a beat plays, with adjustable speed and difficulty.",
         details: [
-          { label: "Word generator", path: "/freestyle" },
+          { label: "Impro Labz", path: "/freestyle?focus=impro-labz" },
           { label: "Difficulty", path: "/freestyle" },
           { label: "Speed", path: "/freestyle" },
           { label: "Available beats", path: "/freestyle" },
@@ -988,7 +1060,7 @@ const translations = {
         "Retro-futuristic arcade presentation"
       ],
       freestyle: [
-        "Impro Lab and word generation",
+        "Impro Labz and word generation",
         "Real-time audio and visual interaction",
         "Difficulty modes and stage / lab atmosphere"
       ],
@@ -1220,11 +1292,49 @@ const translations = {
           label: "Beats",
           title: "Beats",
           description: "The sonic base of the laboratory: beats, textures, atmospheres and playgrounds for future voices.",
-          highlights: [
-            "Original beats and in-house instrumental identity",
-            "Sound directions for freestyle, clips or games",
-            "Foundation for the future audio catalog"
-          ]
+          displayMode: "library",
+          library: {
+            introLabel: "INSTRUMENTAL BANK",
+            introTitle: "Beats, moods and creative playgrounds",
+            introText:
+              "This zone gathers the Lab's instrumentals: boom bap foundations, stronger atmospheres, atypical textures and supports built for future voices.",
+            statusLabel: "BEATS ONLINE",
+            subsectionLabel: "Families",
+            sectionKicker: "Instrumental signal",
+            trackKicker: "Beat",
+            trackButtonMore: "Read more",
+            trackButtonLess: "Close",
+            audioLabel: "Playback",
+            artistsLabel: "Type",
+            beatmakerLabel: "Beatmaker",
+            folders: [],
+            subsections: [
+              {
+                id: "boombap",
+                label: "Boom bap",
+                title: "Boom bap",
+                description: "In-house boom bap textures designed for freestyle, rap writing and stronger atmosphere work.",
+                entries: [
+                  {
+                    title: "Gotham City",
+                    description:
+                      "A 93 BPM boom bap instrumental built like a dark, urban freestyle beat with a raw session energy.",
+                    artists: "Freestyle beat / 93 BPM boom bap",
+                    beatmaker: "Pawat_Music",
+                    audioSrc: "assets/audio/music/instrus/boombap/gotham city (93BPM).m4a"
+                  },
+                  {
+                    title: "Yakuza V2",
+                    description:
+                      "A 98.8 BPM boom bap instrumental shaped around an atypical oriental harp mood, built for a more narrative 3 x 16 format.",
+                    artists: "Atypical oriental harp / 98.8 BPM boom bap / 3 x 16",
+                    beatmaker: "Pawat_Music",
+                    audioSrc: "assets/audio/music/instrus/boombap/yakuza v2 (98.8 BPM).m4a"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           id: "reseaux",
@@ -1609,9 +1719,42 @@ const translations = {
       },
       freestyle: {
         kicker: "SECTION 05",
-        title: "Freestyle / Impro Lab",
-        text: "This section prepares an interactive tool for word generation and atmosphere, designed for improvisation, training and performance.",
+        title: "Freestyle / Impro Labz",
+        text: "This section now hosts Impro Labz: an interactive tool for word generation and atmosphere, designed for improvisation, training and performance.",
         badge: "INTERACTIVE"
+      },
+      improLab: {
+        kicker: "IMPRO MODE",
+        title: "Impro Labz",
+        intro:
+          "Impro Labz throws timed words on screen to train improvisation, freestyle reflexes and stage fluency while staying inside the Lab's identity.",
+        directLabel: "Direct access",
+        start: "Start",
+        stop: "Stop",
+        loading: "Loading word banks...",
+        ready: "Ready to launch the session.",
+        error: "Unable to load the word banks right now.",
+        noInstru: "No beat",
+        random: "Random",
+        repeat: "Repeat",
+        playlistTitle: "Beat playlist",
+        difficultyTitle: "Difficulty",
+        speedTitle: "Speed",
+        speedSlow: "Slow",
+        speedMedium: "Medium",
+        speedFast: "Fast",
+        languageTitle: "Language",
+        currentWordLabel: "Current word",
+        historyTitle: "Recent words",
+        beatLabel: "Beat",
+        beatTypeLabel: "Type",
+        beatBpmLabel: "BPM",
+        pendingWord: "Press Start to launch the flow.",
+        difficulties: {
+          "1": "Easy words",
+          "2": "Balanced mix",
+          "3": "Longer words"
+        }
       },
       tutos: {
         kicker: "TUTORIALS",
@@ -1679,6 +1822,7 @@ export const getCreativeUniverses = () => getLocaleContent().creativeUniverses;
 export const getHomeManifesto = () => getLocaleContent().homeManifesto;
 export const getPageHighlights = () => getLocaleContent().pageHighlights;
 export const getPageContent = (pageKey) => getLocaleContent().pageContent[pageKey];
+export const getImproLabContent = () => getLocaleContent().pageContent.improLab;
 export const getAnimationHub = () => getLocaleContent().animationHub;
 export const getAnimationSeries = (seriesKey) => getLocaleContent().animationSeries[seriesKey];
 export const getMusicHub = () => getLocaleContent().musicHub;

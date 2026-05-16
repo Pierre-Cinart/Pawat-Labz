@@ -84,7 +84,7 @@ const renderMusicTrackCard = (entry, library, extraClass = "") => {
     ? `
         <div class="music-track-card__player">
           <p class="music-track-card__meta-label">${library.audioLabel}</p>
-          <audio controls preload="none" src="${encodeURI(entry.audioSrc)}"></audio>
+          <audio controls controlsList="nodownload" preload="none" src="${encodeURI(entry.audioSrc)}"></audio>
         </div>
       `
     : "";

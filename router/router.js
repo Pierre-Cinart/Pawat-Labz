@@ -36,7 +36,7 @@ export const renderCurrentRoute = ({ shouldFocus = true } = {}) => {
 
   renderView(app, viewDefinition);
   document.title = `${getRouteTitle(currentRoute.path)} - ${siteMeta.titlePrimary} ${siteMeta.titleAccent}`;
-  setActiveNavigation(currentRoute.path === "/404" ? "" : currentRoute.path);
+  setActiveNavigation(currentRoute.path === "/404" ? "" : window.location.hash.replace(/^#/, "") || currentRoute.path);
 
   if (shouldFocus) {
     app.scrollIntoView({

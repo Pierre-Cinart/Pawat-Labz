@@ -161,8 +161,30 @@ export const renderFooter = () => {
 };
 
 export const setActiveNavigation = (activePath) => {
-  document.querySelectorAll("[data-route]").forEach((link) => {
-    const isActive = link.dataset.route === activePath;
+  const normalizeTarget = (target) => {
+    if (!target) {
+      return "/";
+    }
+
+    const normalizedTarget = target.replace(/^#/, "").trim();
+
+    if (!normalizedTarget || normalizedTarget === "/") {
+      return "/";
+    }
+
+    return normalizedTarget.endsWith("/") ? normalizedTarget.slice(0, -1) : normalizedTarget;
+  };
+
+  const stripQuery = (target) => normalizeTarget(target).split("?")[0];
+  const normalizedActivePath = normalizeTarget(activePath);
+  const navigationLinks = Array.from(document.querySelectorAll("[data-route]"));
+  const hasExactMatch = navigationLinks.some((link) => normalizeTarget(link.dataset.route) === normalizedActivePath);
+
+  navigationLinks.forEach((link) => {
+    const linkTarget = normalizeTarget(link.dataset.route);
+    const isActive = hasExactMatch
+      ? linkTarget === normalizedActivePath
+      : stripQuery(linkTarget) === stripQuery(normalizedActivePath);
     link.classList.toggle("primary-nav__link--active", isActive);
     link.setAttribute("aria-current", isActive ? "page" : "false");
   });
