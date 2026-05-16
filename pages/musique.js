@@ -7,6 +7,8 @@ const MUSIC_CATEGORY_ALIASES = {
   "youtube-reseaux": "reseaux"
 };
 
+const MUSIC_DESCRIPTION_PREVIEW_LENGTH = 164;
+
 const getRequestedMusicFocus = () => {
   const [, queryString = ""] = window.location.hash.replace(/^#/, "").split("?");
   const searchParams = new URLSearchParams(queryString);
@@ -63,6 +65,65 @@ const renderMusicShowcasePlayer = (entry) => {
         referrerpolicy="strict-origin-when-cross-origin"
       ></iframe>
     </div>
+  `;
+};
+
+const getMusicDescriptionPreview = (description) => {
+  if (!description || description.length <= MUSIC_DESCRIPTION_PREVIEW_LENGTH) {
+    return description;
+  }
+
+  const preview = description.slice(0, MUSIC_DESCRIPTION_PREVIEW_LENGTH).trim();
+  return `${preview.replace(/[.,;:!?-]?\s*$/, "")}...`;
+};
+
+const renderMusicTrackCard = (entry, library, extraClass = "") => {
+  const hasLongDescription = (entry.description?.length ?? 0) > MUSIC_DESCRIPTION_PREVIEW_LENGTH;
+  const initialDescription = hasLongDescription ? getMusicDescriptionPreview(entry.description) : entry.description;
+  const audioMarkup = entry.audioSrc
+    ? `
+        <div class="music-track-card__player">
+          <p class="music-track-card__meta-label">${library.audioLabel}</p>
+          <audio controls preload="none" src="${encodeURI(entry.audioSrc)}"></audio>
+        </div>
+      `
+    : "";
+
+  return `
+    <article class="music-track-card ${extraClass}">
+      <div class="music-track-card__head">
+        <div>
+          <p class="music-track-card__kicker">${library.trackKicker}</p>
+          <h4 class="music-track-card__title">${entry.title}</h4>
+        </div>
+      </div>
+
+      ${audioMarkup}
+
+      <div class="music-track-card__description-block" data-music-description>
+        <p
+          class="music-track-card__description ${hasLongDescription ? "music-track-card__description--collapsible" : ""}"
+          data-music-description-body
+          data-full-text="${entry.description ?? ""}"
+          data-preview-text="${initialDescription ?? ""}"
+          data-expanded="false"
+        >${initialDescription ?? ""}</p>
+        ${hasLongDescription
+          ? `<button class="music-track-card__toggle" type="button" data-music-description-toggle>${library.trackButtonMore}</button>`
+          : ""}
+      </div>
+
+      <div class="music-track-card__meta">
+        <div class="music-track-card__meta-item">
+          <p class="music-track-card__meta-label">${library.artistsLabel}</p>
+          <p class="music-track-card__meta-value">${entry.artists}</p>
+        </div>
+        <div class="music-track-card__meta-item">
+          <p class="music-track-card__meta-label">${library.beatmakerLabel}</p>
+          <p class="music-track-card__meta-value">${entry.beatmaker}</p>
+        </div>
+      </div>
+    </article>
   `;
 };
 
@@ -140,6 +201,8 @@ export const renderMusiquePage = () => {
       const featuredLinkNode = document.querySelector("[data-music-focus-featured-link]");
       let imageCleanup = null;
       let showcaseCleanup = null;
+      let libraryCleanup = null;
+      let activeAudioNode = null;
 
       const renderEntries = (entries) => {
         if (typeof imageCleanup === "function") {
@@ -376,11 +439,202 @@ export const renderMusiquePage = () => {
         };
       };
 
-      const centerMusicTarget = (targetNode) => {
+      const renderLibrary = (category) => {
+        const library = category.library;
+        const initialSubsection = library?.subsections?.[0];
+
+        if (!library || !initialSubsection) {
+          entriesNode.innerHTML = `
+            <div class="animation-entry-empty">
+              <p>${musicHub.emptyState}</p>
+            </div>
+          `;
+          return;
+        }
+
+        if (typeof imageCleanup === "function") {
+          imageCleanup();
+          imageCleanup = null;
+        }
+
+        if (typeof showcaseCleanup === "function") {
+          showcaseCleanup();
+          showcaseCleanup = null;
+        }
+
+        if (typeof libraryCleanup === "function") {
+          libraryCleanup();
+          libraryCleanup = null;
+        }
+
+        entriesNode.innerHTML = `
+          <section class="music-library">
+            <div class="music-library__head">
+              <div class="music-library__head-copy">
+                <p class="section-kicker">${library.introLabel}</p>
+                <h4 class="music-library__title">${library.introTitle}</h4>
+                <p class="section-text">${library.introText}</p>
+              </div>
+              <span class="music-focus-card__status">${library.statusLabel}</span>
+            </div>
+
+            <div class="music-library__subnav" role="tablist" aria-label="${library.subsectionLabel}">
+              ${library.subsections
+                .map(
+                  (subsection, index) => `
+                    <button
+                      class="music-library__subtrigger ${index === 0 ? "music-library__subtrigger--active" : ""}"
+                      type="button"
+                      data-music-subsection="${subsection.id}"
+                      aria-expanded="${index === 0 ? "true" : "false"}"
+                    >
+                      ${subsection.label}
+                    </button>
+                  `
+                )
+                .join("")}
+            </div>
+
+            <div class="music-library__panel" data-music-library-panel></div>
+          </section>
+        `;
+
+        const subsectionNodes = Array.from(entriesNode.querySelectorAll("[data-music-subsection]"));
+        const libraryPanelNode = entriesNode.querySelector("[data-music-library-panel]");
+
+        const renderFolderBlock = (folder) => `
+          <article class="music-library-folder">
+            <div class="music-library-folder__head">
+              <div>
+                <p class="music-track-card__kicker">${library.dossierKicker}</p>
+                <h5 class="music-library-folder__title">${folder.title}</h5>
+              </div>
+              <span class="music-library-folder__badge">${folder.label}</span>
+            </div>
+            <p class="music-library-folder__text">${folder.text}</p>
+            <div class="music-library-folder__tracks">
+              ${folder.entries.map((entry) => renderMusicTrackCard(entry, library, "music-track-card--folder")).join("")}
+            </div>
+          </article>
+        `;
+
+        const updateDescriptionToggle = (toggleNode, bodyNode, isExpanded) => {
+          toggleNode.textContent = isExpanded ? library.trackButtonLess : library.trackButtonMore;
+          bodyNode.dataset.expanded = isExpanded ? "true" : "false";
+        };
+
+        const renderSubsection = (subsectionId) => {
+          const activeSubsection =
+            library.subsections.find((subsection) => subsection.id === subsectionId) ?? initialSubsection;
+
+          subsectionNodes.forEach((subsectionNode) => {
+            const isActive = subsectionNode.dataset.musicSubsection === activeSubsection.id;
+            subsectionNode.classList.toggle("music-library__subtrigger--active", isActive);
+            subsectionNode.setAttribute("aria-expanded", isActive ? "true" : "false");
+          });
+
+          const folderMarkup =
+            activeSubsection.id === "cyphers" && library.folders?.length
+              ? `
+                  <section class="music-library__folders">
+                    ${library.folders.map((folder) => renderFolderBlock(folder)).join("")}
+                  </section>
+                `
+              : "";
+
+          libraryPanelNode.innerHTML = `
+            <div class="music-library__section-head">
+              <p class="music-track-card__kicker">${library.sectionKicker}</p>
+              <h4 class="music-library__section-title">${activeSubsection.title}</h4>
+              <p class="section-text">${activeSubsection.description}</p>
+            </div>
+            <div class="music-library__tracks">
+              ${activeSubsection.entries.map((entry) => renderMusicTrackCard(entry, library)).join("")}
+            </div>
+            ${folderMarkup}
+          `;
+
+          const descriptionNodes = Array.from(libraryPanelNode.querySelectorAll("[data-music-description]"));
+          descriptionNodes.forEach((descriptionNode) => {
+            const bodyNode = descriptionNode.querySelector("[data-music-description-body]");
+            const toggleNode = descriptionNode.querySelector("[data-music-description-toggle]");
+
+            if (!bodyNode || !toggleNode) {
+              return;
+            }
+
+            updateDescriptionToggle(toggleNode, bodyNode, false);
+          });
+        };
+
+        const handleSubsectionClick = (event) => {
+          renderSubsection(event.currentTarget.dataset.musicSubsection);
+        };
+
+        const handleDescriptionClick = (event) => {
+          const toggleNode = event.target.closest("[data-music-description-toggle]");
+          if (!toggleNode) {
+            return;
+          }
+
+          const descriptionNode = toggleNode.closest("[data-music-description]");
+          const bodyNode = descriptionNode?.querySelector("[data-music-description-body]");
+
+          if (!bodyNode) {
+            return;
+          }
+
+          const isExpanded = bodyNode.dataset.expanded === "true";
+          bodyNode.textContent = isExpanded ? bodyNode.dataset.previewText : bodyNode.dataset.fullText;
+          updateDescriptionToggle(toggleNode, bodyNode, !isExpanded);
+        };
+
+        const handleAudioPlay = (event) => {
+          const nextAudioNode = event.target;
+          if (!(nextAudioNode instanceof HTMLAudioElement)) {
+            return;
+          }
+
+          if (activeAudioNode && activeAudioNode !== nextAudioNode) {
+            activeAudioNode.pause();
+            activeAudioNode.currentTime = 0;
+          }
+
+          activeAudioNode = nextAudioNode;
+        };
+
+        const handleAudioPause = (event) => {
+          const pausedAudioNode = event.target;
+          if (pausedAudioNode === activeAudioNode && pausedAudioNode.ended) {
+            activeAudioNode = null;
+          }
+        };
+
+        subsectionNodes.forEach((subsectionNode) => {
+          subsectionNode.addEventListener("click", handleSubsectionClick);
+        });
+
+        libraryPanelNode.addEventListener("click", handleDescriptionClick);
+        libraryPanelNode.addEventListener("play", handleAudioPlay, true);
+        libraryPanelNode.addEventListener("pause", handleAudioPause, true);
+        renderSubsection(initialSubsection.id);
+
+        libraryCleanup = () => {
+          subsectionNodes.forEach((subsectionNode) => {
+            subsectionNode.removeEventListener("click", handleSubsectionClick);
+          });
+          libraryPanelNode.removeEventListener("click", handleDescriptionClick);
+          libraryPanelNode.removeEventListener("play", handleAudioPlay, true);
+          libraryPanelNode.removeEventListener("pause", handleAudioPause, true);
+          activeAudioNode = null;
+        };
+      };
+
+      const scrollMusicTarget = (targetNode, block = "start") => {
         if (!targetNode) return;
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
-            targetNode.scrollIntoView({ behavior: "smooth", block: "center" });
+            targetNode.scrollIntoView({ behavior: "smooth", block });
           });
         });
       };
@@ -398,11 +652,20 @@ export const renderMusiquePage = () => {
         titleNode.textContent = category.title;
         descriptionNode.textContent = category.description;
 
-        if (category.entries !== undefined) {
+        if (category.entries !== undefined || category.displayMode === "library") {
           cardNode.style.display = "none";
           entriesNode.style.display = "";
 
-          if (category.displayMode === "showcase") {
+          if (category.displayMode === "library") {
+            renderLibrary(category);
+            if (shouldCenter) {
+              const focusTarget =
+                entriesNode.querySelector(".music-library") ??
+                entriesNode.querySelector(".animation-entry-empty") ??
+                entriesNode;
+              scrollMusicTarget(focusTarget, "start");
+            }
+          } else if (category.displayMode === "showcase") {
             if (category.entries.length) {
               renderShowcase(category);
             } else {
@@ -425,7 +688,7 @@ export const renderMusiquePage = () => {
                 entriesNode.querySelector(".animation-showcase") ??
                 entriesNode.querySelector(".animation-entry-empty") ??
                 entriesNode;
-              centerMusicTarget(focusTarget);
+              scrollMusicTarget(focusTarget, "start");
             }
           } else {
             if (typeof showcaseCleanup === "function") {
@@ -438,7 +701,7 @@ export const renderMusiquePage = () => {
                 entriesNode.querySelector(".animation-entry-card") ??
                 entriesNode.querySelector(".animation-entry-empty") ??
                 musicFocusNode;
-              centerMusicTarget(focusTarget);
+              scrollMusicTarget(focusTarget, "start");
             }
           }
         } else {
@@ -447,6 +710,10 @@ export const renderMusiquePage = () => {
           if (typeof imageCleanup === "function") {
             imageCleanup();
             imageCleanup = null;
+          }
+          if (typeof libraryCleanup === "function") {
+            libraryCleanup();
+            libraryCleanup = null;
           }
           if (typeof showcaseCleanup === "function") {
             showcaseCleanup();
@@ -465,7 +732,7 @@ export const renderMusiquePage = () => {
       const handleTriggerClick = (event) => {
         const categoryId = event.currentTarget.dataset.musicCategory;
         const category = hubState.get(categoryId);
-        const hasEntries = category?.entries !== undefined;
+        const hasEntries = category?.entries !== undefined || category?.displayMode === "library";
         updateFocus(categoryId, {
           shouldScroll: !hasEntries,
           shouldCenter: hasEntries
@@ -476,7 +743,7 @@ export const renderMusiquePage = () => {
         triggerNode.addEventListener("click", handleTriggerClick);
       });
 
-      const initialHasEntries = initialCategory.entries !== undefined;
+      const initialHasEntries = initialCategory.entries !== undefined || initialCategory.displayMode === "library";
       updateFocus(resolveMusicCategoryId(requestedFocus, musicHub.categories), {
         shouldScroll: Boolean(requestedFocus) && !initialHasEntries,
         shouldCenter: Boolean(requestedFocus) && initialHasEntries
@@ -489,6 +756,10 @@ export const renderMusiquePage = () => {
         if (typeof imageCleanup === "function") {
           imageCleanup();
           imageCleanup = null;
+        }
+        if (typeof libraryCleanup === "function") {
+          libraryCleanup();
+          libraryCleanup = null;
         }
         if (typeof showcaseCleanup === "function") {
           showcaseCleanup();

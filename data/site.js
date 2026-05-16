@@ -31,8 +31,8 @@ const translations = {
       {
         title: "YouTube",
         links: [
-          { label: "@Pawat_Music", href: "https://youtube.com/@Pawat_Music", available: true },
-          { label: "@Pawat_TV", href: "https://youtube.com/@Pawat_TV", available: true }
+          { label: "@Pawat_Music", href: "https://youtube.com/@Pawat_Music?sub_confirmation=1", available: true },
+          { label: "@Pawat_TV", href: "https://youtube.com/@Pawat_TV?sub_confirmation=1", available: true }
         ]
       },
       {
@@ -75,6 +75,7 @@ const translations = {
           { label: "Séries animées", path: "/animation?focus=series-animees" },
           { label: "Clips animés", path: "/animation?focus=clips-animes" },
           { label: "Publicités courtes", path: "/animation?focus=publicites-courtes" },
+          { label: "Réseaux", path: "/animation?focus=reseaux" },
           { label: "Univers visuels", path: "/animation" },
           { label: "Expérimentations", path: "/animation" },
           { label: "Concepts narratifs", path: "/animation" }
@@ -295,11 +296,109 @@ const translations = {
           label: "Feat/Cypher",
           title: "Feat/Cypher",
           description: "Collaborations, cyphers, croisements d'energie et moments collectifs qui etendent le terrain du labo.",
-          highlights: [
-            "Collaborations vocales et croisements de styles",
-            "Formats collectifs et cypher energy",
-            "Ouverture vers d'autres artistes et invites"
-          ]
+          displayMode: "library",
+          library: {
+            introLabel: "ARCHIVES COLLECTIVES",
+            introTitle: "Cyphers, feats et dossiers ouverts",
+            introText:
+              "Cette zone regroupe les rencontres rap du labo : formats collectifs, collaborations vocales et dossiers en construction comme La RE-7.",
+            statusLabel: "AUDIO ONLINE",
+            subsectionLabel: "Canaux",
+            sectionKicker: "Signal collectif",
+            dossierKicker: "Dossier cypher",
+            trackKicker: "Signal audio",
+            trackButtonMore: "Lire plus",
+            trackButtonLess: "Refermer",
+            audioLabel: "Lecture",
+            artistsLabel: "Artistes",
+            beatmakerLabel: "Beatmaker",
+            folders: [
+              {
+                id: "la-re-7",
+                label: "La RE-7",
+                title: "La RE-7",
+                text: "Compile de cyphers en cours de mix, pensee comme une archive a part dans le laboratoire. Volume I deja en place, d'autres signaux pourront suivre.",
+                entries: [
+                  {
+                    title: "La RE-7 Cypher I",
+                    description:
+                      "Premier signal de la compile La RE-7, pense comme une capsule cypher a part, plus archivee et plus frontale dans son energie.",
+                    artists: "K7_Z'onde, Wampawat, Inconiko, Sanders, Arco",
+                    beatmaker: "TBS",
+                    audioSrc: "assets/audio/music/cyphers/La RE-7 Volume 1/La RE-7 Cypher I.m4a"
+                  }
+                ]
+              }
+            ],
+            subsections: [
+              {
+                id: "cyphers",
+                label: "Cyphers",
+                title: "Cyphers",
+                description: "Formats collectifs, energie brute, grosses reunions de voix et archives rap construites autour du labo.",
+                entries: [
+                  {
+                    title: "HipHop is not dead",
+                    description:
+                      "Cypher rap organise par Caractere Prod reunissant 14 MCs autour d'une energie rap brute, collective et sans filtre.",
+                    artists:
+                      "Pilot en Flamme, Pawat_Music, Inconiko, IWH, Saika, Lezo Miska, Nino, Sanders, Osah, Thanos, Lorenben, Thysha, Arco, Kmax l'alchimiste",
+                    beatmaker: "Caractere Prod",
+                    audioSrc: "assets/audio/music/cyphers/HipHop is not dead.m4a"
+                  },
+                  {
+                    title: "OLD SCHOOL CYPHER",
+                    description:
+                      "Cypher rap organise par Pawat_Music dans une couleur old school, avec une distribution resserree et une energie de session brute.",
+                    artists: "Process Lvx, BGE (Grosse equipe), Malro, Kameo, Inconiko, Wampawat",
+                    beatmaker: "Pawat_Music",
+                    audioSrc: "assets/audio/music/cyphers/OLD SCHOOL CYPHER.m4a"
+                  },
+                  {
+                    title: "Tous_ensemble",
+                    description:
+                      "Enorme cypher rap organise par Pawat_Music reunissant 31 artistes, pense comme un grand rassemblement de voix, d'ambiances et de connexions.",
+                    artists:
+                      "BGE (Grosse equipe), Inconiko, Thanos, Process Lvx, Jiji, Sanders, Malro, La Chapka, El Tchicko, Arco, Wampawat, K7_Z'onde, Music4800, Vega de la Suite, Ejay, Shein B, Youss le Prolifik, HSN, Una Sola, Nessa Nyams, Kameo, Nozey, Nino, Thysha, Soso La Hyene, Adil Serafin, Zanatik, Soulalys, S2G, La Galeci, Pilot en Flamme, Spy Cam, Oktay",
+                    beatmaker: "Pawat_Music x Fanatik 12000",
+                    audioSrc: "assets/audio/music/cyphers/Tous_ensemble.m4a"
+                  }
+                ]
+              },
+              {
+                id: "feats",
+                label: "Feats",
+                title: "Feats",
+                description: "Croisements de voix, invites et morceaux rap plus cibles, entre ego-trip, old school et signaux plus directs.",
+                entries: [
+                  {
+                    title: "Indesirables",
+                    description:
+                      "Titre old school rap porte par Arco, Wampawat et Malro dans une approche brute, directe et tres rap.",
+                    artists: "Arco, Wampawat, Malro",
+                    beatmaker: "Pawat_Music",
+                    audioSrc: "assets/audio/music/feats/Indésirables feat Arco et Malro.m4a"
+                  },
+                  {
+                    title: "Malabarz",
+                    description:
+                      "Morceau rap ego axe sur l'attitude et l'impact, avec Nino et Wampawat sur une production de Thysha.",
+                    artists: "Nino, Wampawat",
+                    beatmaker: "Thysha",
+                    audioSrc: "assets/audio/music/feats/Malabarz feat Nino.m4a"
+                  },
+                  {
+                    title: "N'oublie jamais",
+                    description:
+                      "Morceau boom bap conscient autour de toutes les choses importantes qu'on oublie, avec Wampawat, Soso La Hyene et Inconiko sur une prod de Darkness Prod.",
+                    artists: "Wampawat, Soso La Hyene, Inconiko",
+                    beatmaker: "Darkness Prod",
+                    audioSrc: "assets/audio/music/feats/N'oublie Jamais Feat inconiko et Soso la hyène.m4a"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           id: "instrus",
@@ -325,7 +424,7 @@ const translations = {
           featuredLink: {
             platform: "YouTube",
             handle: "@Pawat_Music",
-            url: "https://www.youtube.com/@Pawat_Music",
+            url: "https://www.youtube.com/@Pawat_Music?sub_confirmation=1",
             summary: "Chaine principale pour retrouver les morceaux, clips, sorties et futurs signaux musicaux du labo.",
             buttonLabel: "Voir la chaine"
           }
@@ -545,7 +644,21 @@ const translations = {
             }   
           ]
         },
-        
+        {
+          id: "reseaux",
+          label: "Réseaux",
+          title: "Réseaux",
+          description:
+            "Canal de diffusion pour les clips, shorts, playlists et signaux publics qui prolongent l'univers animation du labo.",
+          featuredLink: {
+            platform: "YouTube",
+            handle: "@Pawat_TV",
+            url: "https://www.youtube.com/@Pawat_TV?sub_confirmation=1",
+            summary: "Chaîne principale pour retrouver les clips, contenus vidéo et sorties visuelles signées Pawat_TV.",
+            buttonLabel: "Voir la chaîne"
+          }
+        },
+
       ],
       emptyState: "Cette rubrique pourra accueillir plusieurs projets plus tard."
     },
@@ -733,8 +846,8 @@ const translations = {
       {
         title: "YouTube",
         links: [
-          { label: "@Pawat_Music", href: "https://youtube.com/@Pawat_Music", available: true },
-          { label: "@Pawat_TV", href: "https://youtube.com/@Pawat_TV", available: true }
+          { label: "@Pawat_Music", href: "https://youtube.com/@Pawat_Music?sub_confirmation=1", available: true },
+          { label: "@Pawat_TV", href: "https://youtube.com/@Pawat_TV?sub_confirmation=1", available: true }
         ]
       },
       {
@@ -777,6 +890,7 @@ const translations = {
           { label: "Animated series", path: "/animation?focus=series-animees" },
           { label: "Animated clips", path: "/animation?focus=clips-animes" },
           { label: "Short ads", path: "/animation?focus=publicites-courtes" },
+          { label: "Socials", path: "/animation?focus=reseaux" },
           { label: "Visual worlds", path: "/animation" },
           { label: "Experiments", path: "/animation" },
           { label: "Narrative concepts", path: "/animation" }
@@ -997,11 +1111,109 @@ const translations = {
           label: "Feat/Cypher",
           title: "Feat/Cypher",
           description: "Collaborations, cyphers, shared energy and collective moments that expand the Lab's field.",
-          highlights: [
-            "Vocal collaborations and style crossovers",
-            "Collective formats and cypher energy",
-            "Openings toward guest artists and new voices"
-          ]
+          displayMode: "library",
+          library: {
+            introLabel: "COLLECTIVE ARCHIVES",
+            introTitle: "Cyphers, feats and open folders",
+            introText:
+              "This zone gathers the Lab's rap encounters: collective formats, vocal collaborations and evolving folders such as La RE-7.",
+            statusLabel: "AUDIO ONLINE",
+            subsectionLabel: "Channels",
+            sectionKicker: "Collective signal",
+            dossierKicker: "Cypher folder",
+            trackKicker: "Audio signal",
+            trackButtonMore: "Read more",
+            trackButtonLess: "Close",
+            audioLabel: "Playback",
+            artistsLabel: "Artists",
+            beatmakerLabel: "Beatmaker",
+            folders: [
+              {
+                id: "la-re-7",
+                label: "La RE-7",
+                title: "La RE-7",
+                text: "A cypher compilation currently being mixed, imagined as a separate archive inside the Lab. Volume I is already in place and more signals can follow.",
+                entries: [
+                  {
+                    title: "La RE-7 Cypher I",
+                    description:
+                      "First signal from the La RE-7 compilation, built like a sharper, more archival cypher capsule.",
+                    artists: "K7_Z'onde, Wampawat, Inconiko, Sanders, Arco",
+                    beatmaker: "TBS",
+                    audioSrc: "assets/audio/music/cyphers/La RE-7 Volume 1/La RE-7 Cypher I.m4a"
+                  }
+                ]
+              }
+            ],
+            subsections: [
+              {
+                id: "cyphers",
+                label: "Cyphers",
+                title: "Cyphers",
+                description: "Collective formats, raw energy, large voice gatherings and rap archives built around the Lab.",
+                entries: [
+                  {
+                    title: "HipHop is not dead",
+                    description:
+                      "A rap cypher organised by Caractere Prod bringing together 14 MCs around a raw, collective hip-hop energy.",
+                    artists:
+                      "Pilot en Flamme, Pawat_Music, Inconiko, IWH, Saika, Lezo Miska, Nino, Sanders, Osah, Thanos, Lorenben, Thysha, Arco, Kmax l'alchimiste",
+                    beatmaker: "Caractere Prod",
+                    audioSrc: "assets/audio/music/cyphers/HipHop is not dead.m4a"
+                  },
+                  {
+                    title: "OLD SCHOOL CYPHER",
+                    description:
+                      "A rap cypher organised by Pawat_Music with an old school color, a tighter cast and a raw session feel.",
+                    artists: "Process Lvx, BGE (Grosse equipe), Malro, Kameo, Inconiko, Wampawat",
+                    beatmaker: "Pawat_Music",
+                    audioSrc: "assets/audio/music/cyphers/OLD SCHOOL CYPHER.m4a"
+                  },
+                  {
+                    title: "Tous_ensemble",
+                    description:
+                      "A huge rap cypher organised by Pawat_Music gathering 31 artists as a large meeting point for voices, moods and connections.",
+                    artists:
+                      "BGE (Grosse equipe), Inconiko, Thanos, Process Lvx, Jiji, Sanders, Malro, La Chapka, El Tchicko, Arco, Wampawat, K7_Z'onde, Music4800, Vega de la Suite, Ejay, Shein B, Youss le Prolifik, HSN, Una Sola, Nessa Nyams, Kameo, Nozey, Nino, Thysha, Soso La Hyene, Adil Serafin, Zanatik, Soulalys, S2G, La Galeci, Pilot en Flamme, Spy Cam, Oktay",
+                    beatmaker: "Pawat_Music x Fanatik 12000",
+                    audioSrc: "assets/audio/music/cyphers/Tous_ensemble.m4a"
+                  }
+                ]
+              },
+              {
+                id: "feats",
+                label: "Feats",
+                title: "Feats",
+                description: "Voice crossovers, invited artists and more targeted rap tracks ranging from ego-trip to old school tones.",
+                entries: [
+                  {
+                    title: "Indesirables",
+                    description:
+                      "An old school rap track carried by Arco, Wampawat and Malro in a direct, no-frills approach.",
+                    artists: "Arco, Wampawat, Malro",
+                    beatmaker: "Pawat_Music",
+                    audioSrc: "assets/audio/music/feats/Indésirables feat Arco et Malro.m4a"
+                  },
+                  {
+                    title: "Malabarz",
+                    description:
+                      "An ego-driven rap cut built on attitude and impact, with Nino and Wampawat over a Thysha beat.",
+                    artists: "Nino, Wampawat",
+                    beatmaker: "Thysha",
+                    audioSrc: "assets/audio/music/feats/Malabarz feat Nino.m4a"
+                  },
+                  {
+                    title: "N'oublie jamais",
+                    description:
+                      "A conscious boom bap track about all the important things we forget, with Wampawat, Soso La Hyene and Inconiko over a Darkness Prod beat.",
+                    artists: "Wampawat, Soso La Hyene, Inconiko",
+                    beatmaker: "Darkness Prod",
+                    audioSrc: "assets/audio/music/feats/N'oublie Jamais Feat inconiko et Soso la hyène.m4a"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           id: "instrus",
@@ -1027,7 +1239,7 @@ const translations = {
           featuredLink: {
             platform: "YouTube",
             handle: "@Pawat_Music",
-            url: "https://www.youtube.com/@Pawat_Music",
+            url: "https://www.youtube.com/@Pawat_Music?sub_confirmation=1",
             summary: "Main channel for tracks, clips, releases and future musical signals coming from the Lab.",
             buttonLabel: "Open channel"
           }
@@ -1246,6 +1458,20 @@ const translations = {
               relatedLinks: []
             }
           ]
+        },
+        {
+          id: "reseaux",
+          label: "Socials",
+          title: "Socials",
+          description:
+            "Broadcast channel for clips, shorts, playlists and public signals extending the Lab's animation universe.",
+          featuredLink: {
+            platform: "YouTube",
+            handle: "@Pawat_TV",
+            url: "https://www.youtube.com/@Pawat_TV?sub_confirmation=1",
+            summary: "Main channel to find clips, video content and visual releases published through Pawat_TV.",
+            buttonLabel: "Open the channel"
+          }
         }
       ],
       emptyState: "This section can host several projects later on."
