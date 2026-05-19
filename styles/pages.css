@@ -5,7 +5,7 @@
 }
 
 .page-home {
-  gap: var(--space-8);
+  gap: var(--space-6);
 }
 
 .hero-card,
@@ -32,6 +32,10 @@
 
 .hero-card--home {
   overflow: hidden;
+  background:
+    radial-gradient(circle at top right, rgba(0, 212, 255, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(0, 255, 65, 0.03), transparent 42%),
+    var(--color-surface);
 }
 
 .hero-card__grid {
@@ -44,6 +48,14 @@
 .hero-card__copy {
   display: grid;
   align-content: start;
+}
+
+.hero-card__copy--home {
+  gap: var(--space-3);
+}
+
+.section-title--home {
+  font-size: clamp(2rem, 5vw, 3.3rem);
 }
 
 .hero-card--danger {
@@ -59,6 +71,10 @@
     rgba(7, 15, 22, 0.78);
   padding: var(--space-5);
   box-shadow: var(--shadow-cyan-sm);
+}
+
+.signal-panel--home {
+  align-self: stretch;
 }
 
 .signal-panel__label {
@@ -94,6 +110,11 @@
 .signal-line p {
   margin: 0;
   color: var(--color-text-soft);
+}
+
+.home-universe-stage {
+  display: grid;
+  gap: var(--space-4);
 }
 
 .content-grid {
@@ -2146,6 +2167,10 @@
   .sagaz-player__episode-title {
     font-size: clamp(1.6rem, 5.2vw, 2.1rem);
   }
+
+  .section-title--home {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+  }
 }
 
 @media (max-width: 600px) {
@@ -2301,6 +2326,11 @@
 
   .section-title {
     font-size: clamp(1.3rem, 5.5vw, 1.8rem);
+  }
+
+  .section-title--home {
+    font-size: clamp(1.55rem, 7vw, 2rem);
+    line-height: 1.02;
   }
 
   .music-focus__title,

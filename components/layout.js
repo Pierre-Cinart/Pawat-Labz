@@ -91,21 +91,24 @@ export const renderHeader = () => {
       </div>
     </div>
 
-    <div class="header-panel">
+    <div class="header-panel header-panel--compact">
       <div class="header-topbar">
         <span class="header-badge">PAWAT LABZ / CREATIVE SYSTEM</span>
         <span class="header-version">${siteMeta.version}</span>
       </div>
 
-      <div class="header-hero">
-        <div class="header-copy">
+      <div class="header-hero header-hero--compact">
+        <div class="header-copy header-copy--compact">
           <p class="eyebrow">${siteMeta.eyebrow}</p>
-          <h1 class="site-title">
+          <p class="site-title site-title--compact" aria-label="${siteMeta.titlePrimary} ${siteMeta.titleAccent}">
             ${siteMeta.titlePrimary}
             <span class="site-title-accent">${siteMeta.titleAccent}</span>
-          </h1>
-          <p class="site-tagline">${siteMeta.tagline}</p>
-          <p class="site-description">${siteMeta.description}</p>
+          </p>
+
+          <div class="header-lead">
+            <p class="site-tagline site-tagline--compact">${siteMeta.tagline}</p>
+            <p class="site-description site-description--compact">${siteMeta.description}</p>
+          </div>
         </div>
       </div>
     </div>

@@ -43,6 +43,13 @@
   text-transform: uppercase;
 }
 
+.site-title--compact {
+  margin-bottom: 0;
+  font-size: clamp(1.6rem, 4.4vw, 2.8rem);
+  line-height: 1;
+  letter-spacing: 0.06em;
+}
+
 .site-title-accent {
   color: var(--color-green);
   text-shadow: var(--shadow-green-sm);
@@ -67,10 +74,20 @@
   letter-spacing: 0.12em;
 }
 
+.site-tagline--compact {
+  margin-bottom: 0;
+  font-size: 0.78rem;
+}
+
 .site-description,
 .section-text {
   max-width: 70ch;
   font-size: 1rem;
+}
+
+.site-description--compact {
+  max-width: 62ch;
+  font-size: 0.95rem;
 }
 
 .status-value,

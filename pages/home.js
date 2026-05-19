@@ -39,11 +39,11 @@ export const renderHomePage = () => {
   return {
     html: `
       <section class="page page-home">
-        <div class="hero-card hero-card--home">
+        <section class="hero-card hero-card--home" aria-labelledby="home-entry-title">
           <div class="hero-card__grid">
-            <div class="hero-card__copy">
+            <div class="hero-card__copy hero-card__copy--home">
               <p class="section-kicker">${homeContent.kicker}</p>
-              <h2 class="section-title">${homeContent.title}</h2>
+              <h1 class="section-title section-title--home" id="home-entry-title">${homeContent.title}</h1>
               <p class="section-text">${homeContent.intro}</p>
 
               <div class="hero-actions">
@@ -51,7 +51,7 @@ export const renderHomePage = () => {
               </div>
             </div>
 
-            <div class="signal-panel">
+            <div class="signal-panel signal-panel--home">
               <p class="signal-panel__label">${homeContent.visionLabel}</p>
               <div class="signal-panel__lines">
                 ${homeManifesto
@@ -67,44 +67,46 @@ export const renderHomePage = () => {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <section class="universe-grid">
-          ${creativeUniverses
-            .map(
-              (universe) => `
-                <article
-                  class="universe-card"
-                  data-card-path="${universe.path}"
-                  tabindex="0"
-                  role="link"
-                  aria-label="${universe.label}"
-                >
-                  <p class="universe-card__index">${universe.index}</p>
-                  <p class="universe-card__label">${universe.label}</p>
-                  <a class="universe-card__main-link" href="#${universe.path}" data-link>
-                    <h3 class="universe-card__title">${universe.title}</h3>
-                  </a>
-                  <p class="universe-card__text">${universe.text}</p>
-                  <ul class="universe-card__tags">
-                    ${universe.details
-                      .map((detail) => {
-                        const resolvedDetail = resolveDetail(universe, detail);
+        <section class="home-universe-stage" aria-label="${homeContent.ctaLabel}">
+          <div class="universe-grid">
+            ${creativeUniverses
+              .map(
+                (universe) => `
+                  <article
+                    class="universe-card"
+                    data-card-path="${universe.path}"
+                    tabindex="0"
+                    role="link"
+                    aria-label="${universe.label}"
+                  >
+                    <p class="universe-card__index">${universe.index}</p>
+                    <p class="universe-card__label">${universe.label}</p>
+                    <a class="universe-card__main-link" href="#${universe.path}" data-link>
+                      <h3 class="universe-card__title">${universe.title}</h3>
+                    </a>
+                    <p class="universe-card__text">${universe.text}</p>
+                    <ul class="universe-card__tags">
+                      ${universe.details
+                        .map((detail) => {
+                          const resolvedDetail = resolveDetail(universe, detail);
 
-                        return `
-                          <li>
-                            <a class="universe-card__tag-link" href="#${resolvedDetail.path}" data-link>
-                              ${resolvedDetail.label}
-                            </a>
-                          </li>
-                        `;
-                      })
-                      .join("")}
-                  </ul>
-                </article>
-              `
-            )
-            .join("")}
+                          return `
+                            <li>
+                              <a class="universe-card__tag-link" href="#${resolvedDetail.path}" data-link>
+                                ${resolvedDetail.label}
+                              </a>
+                            </li>
+                          `;
+                        })
+                        .join("")}
+                    </ul>
+                  </article>
+                `
+              )
+              .join("")}
+          </div>
         </section>
 
         ${renderPanel({
