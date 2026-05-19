@@ -24,6 +24,25 @@ const getRouteByPath = (path) => {
 };
 
 /**
+ * Certaines zones se comportent comme de vraies apps plein ecran dans le Lab.
+ * On active alors une navbar compacte avec burger, meme sur desktop, pour
+ * liberer de la hauteur utile. La liste pourra accueillir les futurs jeux.
+ */
+const isCompactAppHash = (hash) => {
+  const [, queryString = ""] = hash.replace(/^#/, "").split("?");
+  const searchParams = new URLSearchParams(queryString);
+  const focusTarget = searchParams.get("focus");
+
+  return focusTarget === "impro-labz";
+};
+
+const updateViewMode = () => {
+  const isAppMode = isCompactAppHash(window.location.hash);
+  document.documentElement.dataset.viewMode = isAppMode ? "app" : "site";
+  document.body.classList.toggle("is-app-mode", isAppMode);
+};
+
+/**
  * Le site est une SPA : sans JavaScript, le routeur ne peut pas injecter les
  * pages, la navigation hash, les lecteurs ou les outils interactifs.
  *
@@ -46,6 +65,8 @@ export const renderCurrentRoute = ({ shouldFocus = true } = {}) => {
   const currentRoute = getRouteByPath(currentPath);
   const viewDefinition = currentRoute.render();
   const siteMeta = getSiteMeta();
+
+  updateViewMode();
 
   // Le View Manager remplace la vue, puis declenche les hooks `onMount/onUnmount`.
   renderView(app, viewDefinition);

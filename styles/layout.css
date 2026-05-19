@@ -74,6 +74,15 @@
   padding-top: 188px;
 }
 
+html[data-view-mode="app"] {
+  --sticky-nav-offset: 104px;
+  --sticky-nav-offset-mobile: 104px;
+}
+
+html[data-view-mode="app"] .site-header {
+  padding-top: 96px;
+}
+
 .site-main {
   padding-bottom: var(--space-16);
 }
@@ -259,6 +268,74 @@
   height: 2px;
   border-radius: 999px;
   background: var(--color-text-strong);
+}
+
+/*
+  Mode app : utilise par Impro Labz et reutilisable plus tard pour les jeux.
+  La navbar devient une barre fine avec burger, meme sur desktop.
+*/
+html[data-view-mode="app"] .sticky-nav-shell {
+  padding-top: var(--space-3);
+}
+
+html[data-view-mode="app"] .sticky-nav-bar {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: 18px;
+}
+
+html[data-view-mode="app"] .sticky-nav-bar__top {
+  min-height: 48px;
+}
+
+html[data-view-mode="app"] .primary-nav--desktop {
+  display: none;
+}
+
+html[data-view-mode="app"] .sticky-nav-bar__actions > .nav-auth-preview,
+html[data-view-mode="app"] .language-switcher__label {
+  display: none;
+}
+
+html[data-view-mode="app"] .nav-burger {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+}
+
+html[data-view-mode="app"] .sticky-nav-bar__brand-main,
+html[data-view-mode="app"] .sticky-nav-bar__brand-accent {
+  font-size: 1.05rem;
+}
+
+html[data-view-mode="app"] .language-switcher {
+  padding-left: 0;
+  border-left: 0;
+}
+
+html[data-view-mode="app"] .language-switcher__button {
+  min-width: 38px;
+  padding: 0.46rem 0.54rem;
+}
+
+html[data-view-mode="app"] .mobile-nav-panel {
+  max-height: calc(100vh - 92px);
+}
+
+html[data-view-mode="app"] .primary-nav__list--mobile {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-2);
+}
+
+html[data-view-mode="app"] .mobile-nav-panel__auth .nav-auth-preview {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+html[data-view-mode="app"] .mobile-nav-panel__auth .nav-auth-preview__button {
+  width: 100%;
 }
 
 .footer-panel {
