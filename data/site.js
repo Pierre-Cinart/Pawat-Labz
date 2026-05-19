@@ -911,7 +911,8 @@ const translations = {
       }
     },
     routeTitles: {
-      "/animation/sagaz-zzz": "SagaZ zzz"
+      "/animation/sagaz-zzz": "SagaZ zzz",
+      "/gaming/jet-bot": "Jet Bot"
     }
   },
   en: {
@@ -1820,7 +1821,8 @@ const translations = {
       }
     },
     routeTitles: {
-      "/animation/sagaz-zzz": "SagaZ zzz"
+      "/animation/sagaz-zzz": "SagaZ zzz",
+      "/gaming/jet-bot": "Jet Bot"
     }
   }
 };

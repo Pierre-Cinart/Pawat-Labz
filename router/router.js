@@ -28,18 +28,27 @@ const getRouteByPath = (path) => {
  * On active alors une navbar compacte avec burger, meme sur desktop, pour
  * liberer de la hauteur utile. La liste pourra accueillir les futurs jeux.
  */
-const isCompactAppHash = (hash) => {
-  const [, queryString = ""] = hash.replace(/^#/, "").split("?");
+const getRouteViewMode = (hash) => {
+  const normalizedHash = hash.replace(/^#/, "");
+  const [pathOnly, queryString = ""] = normalizedHash.split("?");
   const searchParams = new URLSearchParams(queryString);
   const focusTarget = searchParams.get("focus");
 
-  return focusTarget === "impro-labz";
+  if (pathOnly === "/gaming/jet-bot") {
+    return "game";
+  }
+
+  return focusTarget === "impro-labz" ? "app" : "site";
 };
 
 const updateViewMode = () => {
-  const isAppMode = isCompactAppHash(window.location.hash);
-  document.documentElement.dataset.viewMode = isAppMode ? "app" : "site";
+  const viewMode = getRouteViewMode(window.location.hash);
+  const isAppMode = viewMode === "app";
+  const isGameMode = viewMode === "game";
+
+  document.documentElement.dataset.viewMode = viewMode;
   document.body.classList.toggle("is-app-mode", isAppMode);
+  document.body.classList.toggle("is-game-mode", isGameMode);
 };
 
 /**

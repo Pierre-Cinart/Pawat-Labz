@@ -338,6 +338,24 @@ html[data-view-mode="app"] .mobile-nav-panel__auth .nav-auth-preview__button {
   width: 100%;
 }
 
+html[data-view-mode="game"] .site-header,
+html[data-view-mode="game"] .site-footer {
+  display: none;
+}
+
+html[data-view-mode="game"] .site-main {
+  width: 100%;
+  max-width: none;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 0;
+}
+
+html[data-view-mode="game"] .site-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
 .footer-panel {
   display: flex;
   justify-content: space-between;
