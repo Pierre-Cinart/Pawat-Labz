@@ -241,6 +241,17 @@ export const renderTutosPage = () => {
 
         // Le lecteur demarre volontairement vide et ne se remplit qu'apres un clic.
         readerNode.innerHTML = activeTopic ? renderReaderTopic(activeTopic, tutorialHub) : renderReaderEmptyState(tutorialHub);
+
+        if (activeTopic && window.matchMedia("(max-width: 860px)").matches) {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              readerNode.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+              });
+            });
+          });
+        }
       };
 
       const handleShelfClick = (event) => {

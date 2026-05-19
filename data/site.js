@@ -149,9 +149,11 @@ const translations = {
       }
     ],
     homeManifesto: [
-      "Je suis un créateur multitâche, artiste dans l'âme, qui utilise la programmation comme un prolongement naturel de sa créativité.",
-      "Ici, chaque idée peut devenir un son, une interface, un jeu, un clip, un outil ou un univers complet.",
-      "Le visiteur ne doit pas seulement comprendre ce que je fais. Il doit ressentir le monde dans lequel il entre."
+      "BIENVENUE DANS LE MULTIVERS PAWAT-LABZ",
+      "Chaque Labz est un univers. Chaque univers suit sa propre formule.",
+      "Sons, interfaces, clips, jeux, outils, vidéos, expérimentations et créations numériques…",
+      "Des projets en évolution. Des systèmes en construction. Des mondes à découvrir.",
+      "Explorez les sections. Traversez les portails. Bienvenue dans le laboratoire."
     ],
     pageHighlights: {
       home: [
@@ -1042,9 +1044,11 @@ const translations = {
       }
     ],
     homeManifesto: [
-      "I am a multitasking creator, an artist at heart, using programming as a natural extension of creativity.",
-      "Here, every idea can become a sound, an interface, a game, a clip, a tool or a complete universe.",
-      "Visitors should not only understand what I do. They should feel the world they are stepping into."
+      "WELCOME TO THE PAWAT-LABZ MULTIVERSE",
+      "Each Labz is a universe. Each universe follows its own formula.",
+      "Sounds, interfaces, clips, games, tools, videos, experiments and digital creations...",
+      "Projects evolving. Systems under construction. Worlds waiting to be discovered.",
+      "Explore the sections. Cross the portals. Welcome to the laboratory."
     ],
     pageHighlights: {
       home: [
@@ -1828,7 +1832,7 @@ const tutorialHubContent = {
                 kicker: "Game Making / Phaser",
                 title: "Installer Phaser en local dans vos projets",
                 summary:
-                  "Un point de départ simple pour installer Phaser en local et poser les bases de ton propre jeu navigateur.",
+                  "Un point de départ simple pour installer Phaser en local, créer un canvas de jeu et afficher un premier Hello World dans ton propre projet navigateur.",
                 presentationTitle: "Présentation de Phaser",
                 presentation: [
                   "Phaser est un framework JavaScript spécialisé dans le développement de jeux 2D pour le web. Il permet de créer facilement des jeux jouables dans un navigateur, sur ordinateur comme sur mobile.",
@@ -1842,7 +1846,8 @@ const tutorialHubContent = {
                 installTitle: "Récupération du build et installation dans le projet",
                 installIntro: [
                   "Dans ce tuto, on ne passe pas par npm. L'idée est d'utiliser Phaser en copie locale pour que tu puisses lancer ton projet facilement, même avec une structure simple.",
-                  "Cette méthode est parfaite pour un premier jeu navigateur, un prototype personnel ou un projet pédagogique où tu veux comprendre clairement ce que tu ajoutes dans ton dossier."
+                  "Cette méthode est parfaite pour un premier jeu navigateur, un prototype personnel ou un projet pédagogique où tu veux comprendre clairement ce que tu ajoutes dans ton dossier.",
+                  "L'objectif est d'arriver rapidement à une page HTML, un canvas de jeu visible et un Hello World affiché par Phaser."
                 ],
                 steps: [
                   {
@@ -1863,22 +1868,27 @@ const tutorialHubContent = {
                   {
                     title: "4. Préparer une page HTML de test",
                     text:
-                      "Crée un fichier `index.html` et ajoute-y un conteneur de jeu ainsi qu'une balise `<script>` qui charge ton fichier Phaser local. C'est la base la plus simple pour vérifier que tout fonctionne."
+                      "Crée un fichier `index.html` et ajoute-y un conteneur comme `<div id=\"game\"></div>`, puis une balise `<script>` qui charge ton fichier Phaser local. C'est la base la plus simple pour vérifier que tout fonctionne."
                   },
                   {
-                    title: "5. Ajouter ton fichier JavaScript principal",
+                    title: "5. Créer un premier canvas Phaser",
                     text:
-                      "Crée ensuite un fichier comme `main.js` ou `game.js` dans lequel tu initialises une instance Phaser avec une configuration simple : largeur, hauteur, scène de départ et couleur de fond."
+                      "Crée ensuite un fichier comme `main.js` ou `game.js` dans lequel tu initialises une instance Phaser avec une configuration simple : largeur, hauteur, parent `game`, scène de départ et couleur de fond. Phaser injectera alors automatiquement son canvas dans le conteneur."
                   },
                   {
-                    title: "6. Lancer un premier test local",
+                    title: "6. Afficher un Hello World",
                     text:
-                      "Ouvre ton projet avec un petit serveur local, vérifie que Phaser se charge bien, puis commence avec une scène minimale affichant un texte, une image ou un fond coloré avant de construire ton vrai gameplay."
+                      "Dans ta scène de base, utilise par exemple `this.add.text(...)` pour afficher un message comme `Hello World` au centre du jeu. C'est le test le plus simple pour confirmer que ton canvas, ta scène et le rendu Phaser fonctionnent bien."
+                  },
+                  {
+                    title: "7. Lancer un premier test local",
+                    text:
+                      "Ouvre ton projet avec un petit serveur local, vérifie que Phaser se charge bien, puis confirme que ton canvas s'affiche avec ton Hello World avant de construire ton vrai gameplay."
                   }
                 ],
                 localPathLabel: "Chemin local d'exemple",
                 localPath: "vendor/phaser/phaser.min.js",
-                projectTree: `mon-jeu/\n  index.html\n  main.js\n  assets/\n    images/\n    audio/\n  vendor/\n    phaser/\n      phaser.js\n      phaser.min.js`,
+                projectTree: `mon-jeu/\n  index.html\n  main.js\n  assets/\n    images/\n    audio/\n  vendor/\n    phaser/\n      phaser.js\n      phaser.min.js\n\nindex.html\n  <div id="game"></div>\n\nmain.js\n  new Phaser.Game(...)\n  this.add.text(160, 120, "Hello World", ...)`,
                 resources: [
                   {
                     label: "Téléchargement Phaser 3",
@@ -1887,6 +1897,10 @@ const tutorialHubContent = {
                 {
                   label: "Guide officiel d'installation",
                   url: "https://docs.phaser.io/phaser/getting-started/installation"
+                },
+                {
+                  label: "Documentation officielle Phaser",
+                  url: "https://docs.phaser.io/"
                 },
                 {
                   label: "Release GitHub v3.90.0",
@@ -1941,7 +1955,7 @@ const tutorialHubContent = {
                 kicker: "Game Making / Phaser",
                 title: "Install Phaser locally in your projects",
                 summary:
-                  "A simple starting point to install Phaser locally and begin building your own browser game.",
+                  "A simple starting point to install Phaser locally, create a game canvas and display a first Hello World in your own browser game project.",
                 presentationTitle: "What Phaser is",
                 presentation: [
                   "Phaser is a JavaScript framework made for 2D web game development. It helps you create games that run directly in the browser, on desktop and mobile.",
@@ -1955,7 +1969,8 @@ const tutorialHubContent = {
                 installTitle: "Getting the build and installing it inside the project",
                 installIntro: [
                   "In this tutorial, we do not use npm. The idea is to keep a local copy of Phaser inside your project so the setup stays simple and easy to understand.",
-                  "This approach is great for a first browser game, a personal prototype or a learning project where you want to clearly see what files are used."
+                  "This approach is great for a first browser game, a personal prototype or a learning project where you want to clearly see what files are used.",
+                  "The short-term goal is simple: reach a working HTML page, a visible game canvas and a Hello World rendered by Phaser."
                 ],
                 steps: [
                   {
@@ -1976,22 +1991,27 @@ const tutorialHubContent = {
                   {
                     title: "4. Prepare a simple test HTML page",
                     text:
-                      "Create an `index.html` file with a game container and a `<script>` tag that loads your local Phaser file. This is the easiest way to confirm the framework is correctly installed."
+                      "Create an `index.html` file with a game container such as `<div id=\"game\"></div>`, then add a `<script>` tag that loads your local Phaser file. This is the easiest way to confirm the framework is correctly installed."
                   },
                   {
-                    title: "5. Add your main JavaScript file",
+                    title: "5. Create your first Phaser canvas",
                     text:
-                      "Create a file such as `main.js` or `game.js` where you initialize Phaser with a basic config: width, height, starting scene and background color."
+                      "Create a file such as `main.js` or `game.js` where you initialize Phaser with a basic config: width, height, the `game` parent container, a starting scene and a background color. Phaser will then inject its canvas into your page."
                   },
                   {
-                    title: "6. Run a first local test",
+                    title: "6. Display a Hello World",
                     text:
-                      "Open the project with a small local server, confirm that Phaser loads correctly, then begin with a minimal scene showing text, an image or a colored background before moving to real gameplay."
+                      "Inside your base scene, use something like `this.add.text(...)` to display `Hello World` in the middle of the game. This is the fastest way to confirm that the canvas, the scene and the Phaser renderer all work together."
+                  },
+                  {
+                    title: "7. Run a first local test",
+                    text:
+                      "Open the project with a small local server, confirm that Phaser loads correctly, then make sure your canvas and Hello World appear before moving on to actual gameplay."
                   }
                 ],
                 localPathLabel: "Example local path",
                 localPath: "vendor/phaser/phaser.min.js",
-                projectTree: `my-game/\n  index.html\n  main.js\n  assets/\n    images/\n    audio/\n  vendor/\n    phaser/\n      phaser.js\n      phaser.min.js`,
+                projectTree: `my-game/\n  index.html\n  main.js\n  assets/\n    images/\n    audio/\n  vendor/\n    phaser/\n      phaser.js\n      phaser.min.js\n\nindex.html\n  <div id="game"></div>\n\nmain.js\n  new Phaser.Game(...)\n  this.add.text(160, 120, "Hello World", ...)`,
                 resources: [
                   {
                     label: "Phaser 3 downloads",
@@ -2000,6 +2020,10 @@ const tutorialHubContent = {
                 {
                   label: "Official installation guide",
                   url: "https://docs.phaser.io/phaser/getting-started/installation"
+                },
+                {
+                  label: "Official Phaser documentation",
+                  url: "https://docs.phaser.io/"
                 },
                 {
                   label: "GitHub release v3.90.0",
