@@ -64,6 +64,6 @@
   --bp-desktop: 1440px;
 
   /* Offsets de scroll pour la navbar sticky */
-  --sticky-nav-offset: 120px;
-  --sticky-nav-offset-mobile: 104px;
+  --sticky-nav-offset: 204px;
+  --sticky-nav-offset-mobile: 144px;
 }

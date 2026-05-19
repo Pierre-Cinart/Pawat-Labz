@@ -1,20 +1,18 @@
 # Pawat-Labz
 
-Pawat-Labz est le laboratoire créatif personnel de Pawat.
+Pawat-Labz est le laboratoire creatif personnel de Pawat.
 
-Le site rassemble plusieurs univers dans une même identité visuelle : musique, animation, développement, gaming, improvisation et transmission. L’idée n’est pas seulement de montrer des contenus, mais de faire ressentir une ambiance, une direction artistique et une manière de créer.
+Le site rassemble plusieurs univers dans une meme identite visuelle : musique, animation, developpement, gaming, freestyle et tutos. L'objectif n'est pas seulement de montrer des contenus, mais de proposer une entree claire dans un univers creatif vivant.
 
-## Vision
+## Ce que le site presente
 
-Pawat-Labz a vocation à présenter :
+- des creations musicales et audiovisuelles
+- des clips, series et formats animation
+- des outils, prototypes et experiences de developpement
+- des prototypes jouables et futurs web games
+- des tutos et contenus de transmission
 
-- des créations musicales et audiovisuelles
-- des séries, clips et formats animation
-- des outils, prototypes et expériences de développement
-- des mini-jeux, démos jouables et projets interactifs
-- des tutos, bases et contenus de transmission
-
-## Univers du site
+## Rubriques principales
 
 - Accueil
 - Univers
@@ -22,45 +20,52 @@ Pawat-Labz a vocation à présenter :
 - Animation
 - Dev
 - Gaming
-- Freestyle Lab
+- Freestyle / Impro Labz
 - Tutos
 
-## Direction visuelle
-
-L’interface s’appuie sur une esthétique de laboratoire créatif rétro-futuriste :
-
-- fond sombre
-- accents néon verts et cyan
-- typographies techno / système
-- cartes et panneaux immersifs
-- navigation pensée comme un hub d’exploration
-
-## Expérience actuelle
-
-Le site propose déjà une base interactive solide :
+## Experience actuelle
 
 - navigation SPA fluide
 - interface bilingue FR / EN
-- navbar sticky et menu burger mobile
-- transitions de navigation et focus sur certaines sous-sections
-- première section animation enrichie avec série, épisodes et lecteur YouTube
+- navbar sticky desktop et menu burger mobile
+- hub musique avec plusieurs modes de navigation
+- hub animation avec cartes, showcase et lecteur integre
+- hub tutos avec lecture detaillee au clic
 
-## Organisation du projet
+## Choix techniques
 
-La structure reste pensée pour évoluer facilement :
+- front en HTML, CSS et JavaScript vanilla
+- pas de dependance npm obligatoire pour lancer le site
+- architecture modulaire simple a faire evoluer
+- contenus editoriaux centralises dans `data/site.js`
 
-- `assets/` pour les médias
-- `components/` pour le layout et les petits blocs UI
-- `pages/` pour les vues du site
-- `router/` pour la navigation SPA
-- `scripts/` pour le démarrage et la logique globale
-- `styles/` pour le design system et les styles de pages
-- `data/` pour les contenus, textes et configurations éditoriales
+## Lancer le projet en local
 
-## Suite
+Le projet peut etre servi comme un site statique simple.
 
-Le projet continue d’être enrichi rubrique par rubrique, avec l’objectif de transformer chaque section en univers identifiable, vivant et cohérent.
+Exemples :
+
+- VS Code + Live Server
+- un petit serveur local type `http-server`
+- Laragon, XAMPP ou tout autre hebergement local statique
+
+## Structure generale
+
+- `assets/` : images, audio, fonts, vendors et medias
+- `components/` : layout et petits blocs UI reutilisables
+- `data/` : textes, contenus et configurations editoriales
+- `modules/` : briques de logique reutilisable
+- `pages/` : vues du site
+- `router/` : navigation SPA
+- `scripts/` : bootstrap global
+- `styles/` : design system et styles des pages
+
+## Notes
+
+Le README public reste volontairement centre sur le projet, ses sections et son usage general.
+
+La documentation d'architecture, de maintenance et de travail interne est conservee dans `README.tech.md`, un fichier prive ignore par Git.
 
 ## Licence
 
-© Pawat Labz - Tous droits réservés
+© Pawat Labz - Tous droits reserves

@@ -1,6 +1,8 @@
 import { renderPanel } from "../components/ui/panel.js";
 import { getMusicHub, getPageContent } from "../data/site.js";
 
+// Les alias permettent de garder d'anciens liens ou noms de focus sans casser
+// l'URL canonique attendue par la page Musique.
 const MUSIC_CATEGORY_ALIASES = {
   productions: "projets",
   "album-solo": "projets",
@@ -21,6 +23,11 @@ const resolveMusicCategoryId = (requestedFocus, categories) => {
   }
   const canonicalCategoryId = MUSIC_CATEGORY_ALIASES[requestedFocus] ?? requestedFocus;
   return categories.find((category) => category.id === canonicalCategoryId)?.id ?? categories[0]?.id ?? "";
+};
+
+const updateMusicHashFocus = (categoryId) => {
+  const nextHash = categoryId ? `/musique?focus=${encodeURIComponent(categoryId)}` : "/musique";
+  window.history.replaceState(null, "", `#${nextHash}`);
 };
 
 const renderMusicFeaturedLink = (featuredLink) => {
@@ -153,10 +160,10 @@ export const renderMusiquePage = () => {
               .map(
                 (category, index) => `
                   <button
-                    class="music-focus__trigger ${index === 0 ? "music-focus__trigger--active" : ""}"
+                    class="music-focus__trigger ${category.id === initialCategoryId ? "music-focus__trigger--active" : ""}"
                     type="button"
                     data-music-category="${category.id}"
-                    aria-expanded="${index === 0 ? "true" : "false"}"
+                    aria-expanded="${category.id === initialCategoryId ? "true" : "false"}"
                   >
                     <span class="music-focus__trigger-index">0${index + 1}</span>
                     <span>${category.label}</span>
@@ -189,6 +196,8 @@ export const renderMusiquePage = () => {
       </section>
     `,
     onMount: () => {
+      // Toute la page s'appuie sur une seule source de verite en memoire pour
+      // alterner rapidement entre cartes simples, showcase video et bibliotheque.
       const hubState = new Map(musicHub.categories.map((category) => [category.id, category]));
       const requestedFocus = getRequestedMusicFocus();
       const musicFocusNode = document.querySelector(".music-focus");
@@ -204,6 +213,7 @@ export const renderMusiquePage = () => {
       let libraryCleanup = null;
       let activeAudioNode = null;
 
+      // Mode 1 : cartes editoriales simples.
       const renderEntries = (entries) => {
         if (typeof imageCleanup === "function") {
           imageCleanup();
@@ -280,6 +290,7 @@ export const renderMusiquePage = () => {
         };
       };
 
+      // Mode 2 : showcase video, avec une liste a gauche et un lecteur detaille a droite.
       const renderShowcase = (category) => {
         const initialEntry = category.entries[0];
 
@@ -439,6 +450,8 @@ export const renderMusiquePage = () => {
         };
       };
 
+      // Mode 3 : bibliotheque musicale plus dense avec sous-sections, descriptions
+      // repliables et un seul lecteur audio actif a la fois.
       const renderLibrary = (category) => {
         const library = category.library;
         const initialSubsection = library?.subsections?.[0];
@@ -632,6 +645,8 @@ export const renderMusiquePage = () => {
 
       const scrollMusicTarget = (targetNode, block = "start") => {
         if (!targetNode) return;
+        // Le double requestAnimationFrame laisse le DOM et le scroll global se
+        // stabiliser avant de recentrer la vraie zone utile.
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             targetNode.scrollIntoView({ behavior: "smooth", block });
@@ -651,8 +666,10 @@ export const renderMusiquePage = () => {
 
         titleNode.textContent = category.title;
         descriptionNode.textContent = category.description;
+        updateMusicHashFocus(categoryId);
 
         if (category.entries !== undefined || category.displayMode === "library") {
+          // Les categories riches masquent la carte editoriale au profit de la vue detaillee.
           cardNode.style.display = "none";
           entriesNode.style.display = "";
 

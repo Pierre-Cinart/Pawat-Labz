@@ -35,7 +35,6 @@ export const renderHeader = () => {
 
   const authPreviewMarkup = `
     <div class="nav-auth-preview" aria-label="${authPreview.label}">
-      <span class="nav-auth-preview__status">${authPreview.status}</span>
       <button class="nav-auth-preview__button nav-auth-preview__button--ghost" type="button" disabled>
         ${authPreview.signIn}
       </button>
@@ -48,54 +47,56 @@ export const renderHeader = () => {
   return `
     <div class="sticky-nav-shell">
       <div class="sticky-nav-bar">
-        <a class="sticky-nav-bar__brand" href="#/" data-link data-home-brand>
-          <span class="sticky-nav-bar__brand-main">${siteMeta.titlePrimary}</span>
-          <span class="sticky-nav-bar__brand-accent">${siteMeta.titleAccent}</span>
-        </a>
+        <div class="sticky-nav-bar__top">
+          <a class="sticky-nav-bar__brand" href="#/" data-link data-home-brand>
+            <span class="sticky-nav-bar__brand-main">${siteMeta.titlePrimary}</span>
+            <span class="sticky-nav-bar__brand-accent">${siteMeta.titleAccent}</span>
+          </a>
+
+          <div class="sticky-nav-bar__actions">
+            ${authPreviewMarkup}
+
+            <div class="language-switcher" aria-label="${languageSwitcher.label}">
+              <span class="language-switcher__label">${languageSwitcher.label}</span>
+
+              <div class="language-switcher__actions">
+                ${Object.entries(languageSwitcher.options)
+                  .map(
+                    ([languageCode, label]) => `
+                      <button
+                        class="language-switcher__button ${currentLanguage === languageCode ? "language-switcher__button--active" : ""}"
+                        type="button"
+                        data-language-switch="${languageCode}"
+                        aria-pressed="${currentLanguage === languageCode ? "true" : "false"}"
+                      >
+                        ${label}
+                      </button>
+                    `
+                  )
+                  .join("")}
+              </div>
+            </div>
+
+            <button
+              class="nav-burger"
+              type="button"
+              data-nav-toggle
+              aria-expanded="false"
+              aria-controls="mobile-primary-nav"
+              aria-label="Ouvrir le menu"
+            >
+              <span class="nav-burger__line"></span>
+              <span class="nav-burger__line"></span>
+              <span class="nav-burger__line"></span>
+            </button>
+          </div>
+        </div>
 
         <nav class="primary-nav primary-nav--desktop" aria-label="Navigation principale du site">
           <ul class="primary-nav__list">
             ${navigationMarkup}
           </ul>
         </nav>
-
-        <div class="sticky-nav-bar__actions">
-          ${authPreviewMarkup}
-
-          <div class="language-switcher" aria-label="${languageSwitcher.label}">
-            <span class="language-switcher__label">${languageSwitcher.label}</span>
-
-            <div class="language-switcher__actions">
-              ${Object.entries(languageSwitcher.options)
-                .map(
-                  ([languageCode, label]) => `
-                    <button
-                      class="language-switcher__button ${currentLanguage === languageCode ? "language-switcher__button--active" : ""}"
-                      type="button"
-                      data-language-switch="${languageCode}"
-                      aria-pressed="${currentLanguage === languageCode ? "true" : "false"}"
-                    >
-                      ${label}
-                    </button>
-                  `
-                )
-                .join("")}
-            </div>
-          </div>
-
-          <button
-            class="nav-burger"
-            type="button"
-            data-nav-toggle
-            aria-expanded="false"
-            aria-controls="mobile-primary-nav"
-            aria-label="Ouvrir le menu"
-          >
-            <span class="nav-burger__line"></span>
-            <span class="nav-burger__line"></span>
-            <span class="nav-burger__line"></span>
-          </button>
-        </div>
       </div>
 
       <div class="mobile-nav-panel" id="mobile-primary-nav" data-mobile-nav hidden>
@@ -107,28 +108,6 @@ export const renderHeader = () => {
 
         <div class="mobile-nav-panel__auth">
           ${authPreviewMarkup}
-        </div>
-      </div>
-    </div>
-
-    <div class="header-panel header-panel--compact">
-      <div class="header-topbar">
-        <span class="header-badge">PAWAT LABZ / CREATIVE SYSTEM</span>
-        <span class="header-version">${siteMeta.version}</span>
-      </div>
-
-      <div class="header-hero header-hero--compact">
-        <div class="header-copy header-copy--compact">
-          <p class="eyebrow">${siteMeta.eyebrow}</p>
-          <p class="site-title site-title--compact" aria-label="${siteMeta.titlePrimary} ${siteMeta.titleAccent}">
-            ${siteMeta.titlePrimary}
-            <span class="site-title-accent">${siteMeta.titleAccent}</span>
-          </p>
-
-          <div class="header-lead">
-            <p class="site-tagline site-tagline--compact">${siteMeta.tagline}</p>
-            <p class="site-description site-description--compact">${siteMeta.description}</p>
-          </div>
         </div>
       </div>
     </div>

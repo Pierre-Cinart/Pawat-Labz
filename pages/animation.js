@@ -1,6 +1,8 @@
 import { renderPanel } from "../components/ui/panel.js";
 import { getAnimationHub, getPageContent } from "../data/site.js";
 
+// Comme pour Musique, on garde quelques alias legacy pour ne pas casser
+// d'anciens liens externes ou focus deja partages.
 const ANIMATION_CATEGORY_ALIASES = {
   "animated-series": "series-animees",
   "animated-clips": "clips-animes",
@@ -22,6 +24,11 @@ const resolveAnimationCategoryId = (requestedFocus, categories) => {
   const canonicalCategoryId = ANIMATION_CATEGORY_ALIASES[requestedFocus] ?? requestedFocus;
 
   return categories.find((category) => category.id === canonicalCategoryId)?.id ?? categories[0]?.id ?? "";
+};
+
+const updateAnimationHashFocus = (categoryId) => {
+  const nextHash = categoryId ? `/animation?focus=${encodeURIComponent(categoryId)}` : "/animation";
+  window.history.replaceState(null, "", `#${nextHash}`);
 };
 
 const renderAnimationFeaturedLink = (featuredLink) => {
@@ -74,10 +81,10 @@ export const renderAnimationPage = () => {
               .map(
                 (category, index) => `
                   <button
-                    class="animation-focus__trigger ${index === 0 ? "animation-focus__trigger--active" : ""}"
+                    class="animation-focus__trigger ${category.id === initialCategoryId ? "animation-focus__trigger--active" : ""}"
                     type="button"
                     data-animation-category="${category.id}"
-                    aria-expanded="${index === 0 ? "true" : "false"}"
+                    aria-expanded="${category.id === initialCategoryId ? "true" : "false"}"
                   >
                     <span class="animation-focus__trigger-index">0${index + 1}</span>
                     <span>${category.label}</span>
@@ -150,6 +157,9 @@ export const renderAnimationPage = () => {
       </section>
     `,
     onMount: () => {
+      // La page Animation alterne entre deux modes :
+      // 1. cartes / liens standards
+      // 2. showcase media avec liste et lecteur synchronises
       const hubState = new Map(animationHub.categories.map((category) => [category.id, category]));
       const requestedFocus = getRequestedAnimationFocus();
       const animationFocusNode = document.querySelector(".animation-focus");
@@ -183,6 +193,7 @@ export const renderAnimationPage = () => {
         `;
       };
 
+      // Rendu standard d'une categorie sans lecteur dedie.
       const renderEntries = (entries, category = null) => {
         if (category?.featuredLink) {
           entriesNode.innerHTML = renderAnimationFeaturedLink(category.featuredLink);
@@ -280,6 +291,8 @@ export const renderAnimationPage = () => {
         };
       };
 
+      // Rendu "showcase" pour les categories qui meritent une navigation
+      // episode par episode avec lecteur embarque.
       const renderShowcase = (category) => {
         const initialEntry = category.entries[0];
 
@@ -499,7 +512,9 @@ export const renderAnimationPage = () => {
 
         titleNode.textContent = category.title;
         descriptionNode.textContent = category.description;
+        updateAnimationHashFocus(categoryId);
 
+        // Le displayMode pilote toute la strategie de rendu et de recentrage.
         if (category.displayMode === "showcase") {
           renderShowcase(category);
           if (shouldCenter) {
