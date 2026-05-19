@@ -1,4 +1,5 @@
 import {
+  getAuthPreview,
   getFooterLinks,
   getFooterMeta,
   getLanguage,
@@ -11,6 +12,7 @@ export const renderHeader = () => {
   const siteMeta = getSiteMeta();
   const navigationItems = getNavigationItems();
   const languageSwitcher = getLanguageSwitcher();
+  const authPreview = getAuthPreview();
   const currentLanguage = getLanguage();
 
   const navigationMarkup = navigationItems
@@ -31,6 +33,18 @@ export const renderHeader = () => {
     )
     .join("");
 
+  const authPreviewMarkup = `
+    <div class="nav-auth-preview" aria-label="${authPreview.label}">
+      <span class="nav-auth-preview__status">${authPreview.status}</span>
+      <button class="nav-auth-preview__button nav-auth-preview__button--ghost" type="button" disabled>
+        ${authPreview.signIn}
+      </button>
+      <button class="nav-auth-preview__button nav-auth-preview__button--primary" type="button" disabled>
+        ${authPreview.signUp}
+      </button>
+    </div>
+  `;
+
   return `
     <div class="sticky-nav-shell">
       <div class="sticky-nav-bar">
@@ -46,6 +60,8 @@ export const renderHeader = () => {
         </nav>
 
         <div class="sticky-nav-bar__actions">
+          ${authPreviewMarkup}
+
           <div class="language-switcher" aria-label="${languageSwitcher.label}">
             <span class="language-switcher__label">${languageSwitcher.label}</span>
 
@@ -88,6 +104,10 @@ export const renderHeader = () => {
             ${navigationMarkup}
           </ul>
         </nav>
+
+        <div class="mobile-nav-panel__auth">
+          ${authPreviewMarkup}
+        </div>
       </div>
     </div>
 

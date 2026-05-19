@@ -51,6 +51,12 @@ const translations = {
         en: "EN"
       }
     },
+    authPreview: {
+      label: "Espace membre",
+      status: "Bientot",
+      signIn: "Connexion",
+      signUp: "Inscription"
+    },
     creativeUniverses: [
       {
         path: "/musique",
@@ -937,6 +943,12 @@ const translations = {
         en: "EN"
       }
     },
+    authPreview: {
+      label: "Member area",
+      status: "Soon",
+      signIn: "Sign in",
+      signUp: "Sign up"
+    },
     creativeUniverses: [
       {
         path: "/musique",
@@ -1818,6 +1830,7 @@ export const getNavigationItems = () => getLocaleContent().navigationItems;
 export const getFooterMeta = () => getLocaleContent().footerMeta;
 export const getFooterLinks = () => getLocaleContent().footerLinks;
 export const getLanguageSwitcher = () => getLocaleContent().languageSwitcher;
+export const getAuthPreview = () => getLocaleContent().authPreview;
 export const getCreativeUniverses = () => getLocaleContent().creativeUniverses;
 export const getHomeManifesto = () => getLocaleContent().homeManifesto;
 export const getPageHighlights = () => getLocaleContent().pageHighlights;
