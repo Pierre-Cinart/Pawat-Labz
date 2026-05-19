@@ -1,6 +1,12 @@
 import { renderButtonLink } from "../components/ui/button.js";
 import { getAnimationSeries } from "../data/site.js";
 
+/**
+ * Page detaillee SagaZ ZZZ.
+ *
+ * Elle isole le lecteur, la liste d'episodes et les metadonnees de la serie pour
+ * eviter d'alourdir le hub Animation principal.
+ */
 const getEpisodeMetaLabel = (sagaz, season, episode) =>
   `${sagaz.seasonLabel.toUpperCase()} ${season.label.replace(/[^0-9]/g, "") || season.label} / ${sagaz.episodeLabel.slice(0, -1).toUpperCase()} ${episode.number}`;
 

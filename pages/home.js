@@ -6,7 +6,15 @@ import {
   getPageContent
 } from "../data/site.js";
 
+/**
+ * Page Accueil.
+ *
+ * Elle compose l'entree du Lab, le manifeste court et les cartes d'univers.
+ * Les textes/cartes viennent de `data/site.js`; ce fichier garde seulement le
+ * rendu et les interactions propres a l'accueil.
+ */
 const resolveDetail = (universe, detail) => {
+  // Les details peuvent etre de simples textes ou des liens dedies vers une sous-zone.
   if (typeof detail === "string") {
     return {
       label: detail,
@@ -122,6 +130,7 @@ export const renderHomePage = () => {
       const cardNodes = Array.from(document.querySelectorAll("[data-card-path]"));
 
       const handleCardClick = (event) => {
+        // La carte entiere est cliquable, mais les vrais liens internes restent prioritaires.
         if (event.target.closest("a, button")) {
           return;
         }

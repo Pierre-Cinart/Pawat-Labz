@@ -1,6 +1,12 @@
 import { renderPanel } from "../components/ui/panel.js";
 import { getPageContent, getPageHighlights } from "../data/site.js";
 
+/**
+ * Page Dev.
+ *
+ * Les outils maison et futurs modules techniques sont regroupes ici. Le contenu
+ * reste dans `data/site.js` pour que la page ne gere que la structure.
+ */
 export const renderDevPage = () => {
   const devContent = getPageContent("dev");
   const pageHighlights = getPageHighlights();

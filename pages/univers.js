@@ -1,7 +1,14 @@
 import { renderPanel } from "../components/ui/panel.js";
 import { getCreativeUniverses, getPageContent } from "../data/site.js";
 
+/**
+ * Page Univers.
+ *
+ * C'est la carte generale des portails du site. Elle reutilise les memes donnees
+ * que les cartes d'accueil pour garder une coherence entre les deux entrees.
+ */
 const resolveDetail = (universe, detail) => {
+  // Meme convention que sur l'accueil : detail texte simple ou lien dedie.
   if (typeof detail === "string") {
     return {
       label: detail,

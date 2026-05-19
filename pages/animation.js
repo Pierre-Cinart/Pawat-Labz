@@ -1,6 +1,12 @@
 import { renderPanel } from "../components/ui/panel.js";
 import { getAnimationHub, getPageContent } from "../data/site.js";
 
+/**
+ * Page Animation.
+ *
+ * Hub de categories visuelles avec focus URL, lecteur/showcase et cartes de
+ * contenus. Elle reprend volontairement la logique de hub de la page Musique.
+ */
 // Comme pour Musique, on garde quelques alias legacy pour ne pas casser
 // d'anciens liens externes ou focus deja partages.
 const ANIMATION_CATEGORY_ALIASES = {

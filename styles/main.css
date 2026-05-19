@@ -1,3 +1,9 @@
+/*
+ * Point d'entree CSS unique.
+ *
+ * L'ordre compte : variables d'abord, reset/base ensuite, puis layout,
+ * composants, styles de pages et animations en dernier.
+ */
 @import url("./variables.css");
 @import url("./reset.css");
 @import url("./base.css");

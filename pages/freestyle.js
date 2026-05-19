@@ -2,6 +2,12 @@ import { renderImproLab, mountImproLab, unmountImproLab } from "../components/im
 import { renderPanel } from "../components/ui/panel.js";
 import { getPageContent } from "../data/site.js";
 
+/**
+ * Page Freestyle.
+ *
+ * Elle contient le portail vers Impro Labz. La page affiche le cadre editorial,
+ * puis delegue toute l'interaction d'entrainement au composant `impro-lab.js`.
+ */
 const getRequestedFreestyleFocus = () => {
   const [, queryString = ""] = window.location.hash.replace(/^#/, "").split("?");
   const searchParams = new URLSearchParams(queryString);
@@ -35,6 +41,7 @@ export const renderFreestylePage = () => {
       </section>
     `,
     onMount: () => {
+      // Impro Labz charge ses banques de mots et branche ses propres controles au montage.
       mountImproLab();
 
       if (requestedFocus === "impro-labz") {

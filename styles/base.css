@@ -1,3 +1,9 @@
+/*
+ * Base globale.
+ *
+ * Regles partagees par tout le site : box model, fond general, typographie,
+ * focus clavier, liens, medias et comportement de scroll.
+ */
 *,
 *::before,
 *::after {

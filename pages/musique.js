@@ -1,6 +1,12 @@
 import { renderPanel } from "../components/ui/panel.js";
 import { getMusicHub, getPageContent } from "../data/site.js";
 
+/**
+ * Page Musique.
+ *
+ * Hub riche avec categories, liens YouTube, fiches et focus URL. Cette page sert
+ * de reference visuelle pour plusieurs autres rubriques du Lab.
+ */
 // Les alias permettent de garder d'anciens liens ou noms de focus sans casser
 // l'URL canonique attendue par la page Musique.
 const MUSIC_CATEGORY_ALIASES = {

@@ -1,6 +1,12 @@
 import { renderButtonLink } from "../components/ui/button.js";
 import { getPageContent } from "../data/site.js";
 
+/**
+ * Page 404 de la SPA.
+ *
+ * Elle s'affiche quand le hash ne correspond a aucune route connue et propose
+ * un retour simple vers les zones utiles.
+ */
 export const renderNotFoundPage = () => {
   const notFoundContent = getPageContent("notFound");
 

@@ -8,6 +8,12 @@ import {
   getSiteMeta
 } from "../data/site.js";
 
+/**
+ * Layout global persistant : navbar, langue, boutons auth visuels, burger et footer.
+ *
+ * Les pages ne gerent pas ces elements. Elles changent uniquement le contenu de
+ * `#app`, pendant que ce shell reste stable autour de la navigation SPA.
+ */
 export const renderHeader = () => {
   const siteMeta = getSiteMeta();
   const navigationItems = getNavigationItems();
@@ -15,6 +21,7 @@ export const renderHeader = () => {
   const authPreview = getAuthPreview();
   const currentLanguage = getLanguage();
 
+  // Un seul markup de navigation est reutilise en desktop et dans le panneau burger.
   const navigationMarkup = navigationItems
     .map(
       (item) => `
@@ -33,6 +40,7 @@ export const renderHeader = () => {
     )
     .join("");
 
+  // Preparation visuelle du futur back : boutons presents, mais volontairement desactives.
   const authPreviewMarkup = `
     <div class="nav-auth-preview" aria-label="${authPreview.label}">
       <button class="nav-auth-preview__button nav-auth-preview__button--ghost" type="button" disabled>
@@ -163,6 +171,7 @@ export const renderFooter = () => {
 };
 
 export const setActiveNavigation = (activePath) => {
+  // Les routes avec query (`?focus=...`) doivent activer la bonne rubrique parente.
   const normalizeTarget = (target) => {
     if (!target) {
       return "/";

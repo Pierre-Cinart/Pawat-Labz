@@ -11,6 +11,13 @@ import { renderNotFoundPage } from "../pages/not-found.js";
 import { renderTutosPage } from "../pages/tutos.js";
 import { renderUniversPage } from "../pages/univers.js";
 
+/**
+ * Table centrale des routes de la SPA.
+ *
+ * Pour ajouter une page : importer son renderer, ajouter une ligne ici, puis
+ * ajouter le lien dans `data/site.js` si la page doit apparaitre dans la nav.
+ * Les query params comme `?focus=` restent geres dans les pages concernees.
+ */
 export const routes = [
   new Route("/", "Accueil", renderHomePage),
   new Route("/univers", "Univers", renderUniversPage),

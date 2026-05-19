@@ -1,3 +1,9 @@
+/*
+ * Composants UI transverses.
+ *
+ * Ici vivent les petits elements reutilises partout : badges, boutons, labels,
+ * liens d'action et styles communs qui ne dependent pas d'une page precise.
+ */
 .header-badge,
 .header-version,
 .eyebrow,

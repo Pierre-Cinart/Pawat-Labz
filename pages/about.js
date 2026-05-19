@@ -1,52 +1,63 @@
 import { renderPanel } from "../components/ui/panel.js";
 import { getAboutLab, getPageContent } from "../data/site.js";
 
-const renderSignalCards = (signals) =>
-  signals
+/**
+ * Page About.
+ *
+ * Cette page porte le lore du Lab : entree du multivers, createur derriere le
+ * labo, ecosysteme des rubriques et futur support. Les textes viennent de
+ * `data/site.js` pour garder la version FR/EN au meme endroit.
+ */
+
+// Les lignes de manifeste restent separees pour eviter un gros mur de texte.
+const renderHeroLines = (lines) =>
+  lines
     .map(
-      (signal) => `
-        <article class="about-signal-card">
-          <p class="about-signal-card__label">${signal.label}</p>
-          <h3 class="about-signal-card__value">${signal.value}</h3>
-          <p class="about-signal-card__note">${signal.note}</p>
-        </article>
+      (line) => `
+        <p class="about-lab-hero__line">${line}</p>
       `
     )
     .join("");
 
-const renderSectionCards = (sections) =>
-  sections
+// La grille ecosysteme sert de carte du Lab : chaque carte renvoie a sa rubrique.
+const renderEcosystemCards = (cards) =>
+  cards
     .map(
-      (section) => `
-        <article class="about-sector-card">
-          <div class="about-sector-card__head">
-            <span class="about-sector-card__signal">${section.signal}</span>
-            <span class="about-sector-card__line"></span>
+      (card) => `
+        <a class="about-lab-card" href="#${card.path}" data-link aria-label="${card.title}">
+          <div class="about-lab-card__head">
+            <span class="about-lab-card__signal">${card.signal}</span>
+            <span class="about-lab-card__line"></span>
           </div>
-          <h3 class="about-sector-card__title">${section.title}</h3>
-          <p class="about-sector-card__text">${section.text}</p>
-        </article>
+          <h3 class="about-lab-card__title">${card.title}</h3>
+          <p class="about-lab-card__text">${card.text}</p>
+        </a>
       `
     )
     .join("");
 
-const renderStatusCards = (items) =>
+const renderFlowItems = (items) =>
   items
     .map(
       (item) => `
-        <article class="about-status-card">
-          <p class="about-status-card__label">${item.label}</p>
-          <p class="about-status-card__value">${item.value}</p>
+        <article class="about-flow-card">
+          <p class="about-flow-card__label">${item.label}</p>
+          <h3 class="about-flow-card__title">${item.title}</h3>
+          <p class="about-flow-card__text">${item.text}</p>
         </article>
       `
     )
     .join("");
 
-const renderSupportChannels = (channels) =>
-  channels
+const renderPortalLinks = (items) =>
+  items
     .map(
-      (channel) => `
-        <li class="about-support-chip">${channel}</li>
+      (item) => `
+        <li class="about-linkmap__item">
+          <span class="about-linkmap__from">${item.from}</span>
+          <span class="about-linkmap__arrow">→</span>
+          <span class="about-linkmap__to">${item.to}</span>
+        </li>
       `
     )
     .join("");
@@ -66,56 +77,88 @@ export const renderAboutPage = () => {
           badge: aboutContent.badge
         })}
 
-        <section class="about-atlas">
-          <div class="about-atlas__intro">
-            <article class="about-atlas__copy">
-              <p class="section-kicker">${aboutLab.overview.kicker}</p>
-              <h3 class="about-atlas__title">${aboutLab.overview.title}</h3>
-              <p class="section-text">${aboutLab.overview.text}</p>
+        <section class="about-lab-hero">
+          <div class="about-lab-hero__grid">
+            <article class="about-lab-hero__copy">
+              <p class="section-kicker">${aboutLab.hero.kicker}</p>
+              <h2 class="about-lab-hero__title">${aboutLab.hero.title}</h2>
+              <div class="about-lab-hero__manifesto">
+                ${renderHeroLines(aboutLab.hero.lines)}
+              </div>
             </article>
 
-            <div class="about-atlas__signals">
-              ${renderSignalCards(aboutLab.signals)}
+            <aside class="about-lab-hero__panel" aria-label="${aboutLab.hero.panelLabel}">
+              <p class="about-lab-hero__panel-label">${aboutLab.hero.panelLabel}</p>
+              <p class="about-lab-hero__panel-title">${aboutLab.hero.panelTitle}</p>
+              <p class="about-lab-hero__panel-text">${aboutLab.hero.panelText}</p>
+            </aside>
+          </div>
+        </section>
+
+        <section class="about-lab-identity">
+          <div class="about-lab-identity__copy">
+            <p class="section-kicker">${aboutLab.creator.kicker}</p>
+            <h2 class="about-lab-section__title">${aboutLab.creator.title}</h2>
+            <p class="section-text">${aboutLab.creator.text}</p>
+          </div>
+
+          <div class="about-lab-identity__panel">
+            <p class="about-lab-identity__label">${aboutLab.creator.panelLabel}</p>
+            <h3 class="about-lab-identity__lead">${aboutLab.creator.lead}</h3>
+            <p class="about-lab-identity__text">${aboutLab.creator.panelText}</p>
+          </div>
+        </section>
+
+        <section class="about-lab-ecosystem">
+          <div class="about-lab-section__head">
+            <p class="section-kicker">${aboutLab.ecosystem.kicker}</p>
+            <h2 class="about-lab-section__title">${aboutLab.ecosystem.title}</h2>
+            <p class="section-text">${aboutLab.ecosystem.text}</p>
+          </div>
+
+          <div class="about-lab-grid">
+            ${renderEcosystemCards(aboutLab.ecosystem.cards)}
+          </div>
+        </section>
+
+        <section class="about-lab-flow">
+          <div class="about-lab-flow__intro">
+            <p class="section-kicker">${aboutLab.siteFlow.kicker}</p>
+            <h2 class="about-lab-section__title">${aboutLab.siteFlow.title}</h2>
+            <p class="section-text">${aboutLab.siteFlow.text}</p>
+          </div>
+
+          <div class="about-lab-flow__grid">
+            <div class="about-lab-flow__cards">
+              ${renderFlowItems(aboutLab.siteFlow.items)}
             </div>
-          </div>
 
-          <div class="about-sector-grid">
-            ${renderSectionCards(aboutLab.sections)}
-          </div>
-        </section>
-
-        <section class="about-status-panel">
-          <div class="about-status-panel__intro">
-            <p class="section-kicker">${aboutLab.systemStatus.kicker}</p>
-            <h3 class="about-atlas__title">${aboutLab.systemStatus.title}</h3>
-            <p class="section-text">${aboutLab.systemStatus.text}</p>
-          </div>
-
-          <div class="about-status-grid">
-            ${renderStatusCards(aboutLab.systemStatus.items)}
+            <aside class="about-linkmap">
+              <p class="about-linkmap__label">${aboutLab.siteFlow.linkMapLabel}</p>
+              <ul class="about-linkmap__list">
+                ${renderPortalLinks(aboutLab.siteFlow.links)}
+              </ul>
+            </aside>
           </div>
         </section>
 
-        <section class="about-support-panel">
-          <div class="about-support-panel__copy">
+        <section class="about-lab-support">
+          <div class="about-lab-support__copy">
             <p class="section-kicker">${aboutLab.support.kicker}</p>
-            <h3 class="about-atlas__title">${aboutLab.support.title}</h3>
+            <h2 class="about-lab-section__title">${aboutLab.support.title}</h2>
             <p class="section-text">${aboutLab.support.text}</p>
           </div>
 
-          <div class="about-support-panel__actions">
-            <ul class="about-support-chips">
-              ${renderSupportChannels(aboutLab.support.channels)}
-            </ul>
-
+          <div class="about-lab-support__actions">
             <button
-              class="button button--primary about-support-panel__button"
+              class="button button--primary about-lab-support__button"
               type="button"
               disabled
               aria-disabled="true"
             >
               ${aboutLab.support.buttonLabel}
             </button>
+            <p class="about-lab-support__note">${aboutLab.support.note}</p>
           </div>
         </section>
       </section>

@@ -24,6 +24,19 @@ const getRouteByPath = (path) => {
 };
 
 /**
+ * Le site est une SPA : sans JavaScript, le routeur ne peut pas injecter les
+ * pages, la navigation hash, les lecteurs ou les outils interactifs.
+ *
+ * Le vrai message de secours vit dans index.html via <noscript>, car ce bloc
+ * reste visible meme quand aucun module JS ne s'execute. Ici, on marque juste
+ * le runtime comme actif des que le routeur demarre, ce qui donne un signal
+ * simple et centralise pour le debug, les styles ou de futurs checks.
+ */
+const markJavaScriptRuntimeReady = () => {
+  document.documentElement.dataset.jsRuntime = "enabled";
+};
+
+/**
  * Cette fonction est exportée pour pouvoir rerendre la page courante quand
  * une langue change, sans réinitialiser le routeur.
  */
@@ -34,11 +47,13 @@ export const renderCurrentRoute = ({ shouldFocus = true } = {}) => {
   const viewDefinition = currentRoute.render();
   const siteMeta = getSiteMeta();
 
+  // Le View Manager remplace la vue, puis declenche les hooks `onMount/onUnmount`.
   renderView(app, viewDefinition);
   document.title = `${getRouteTitle(currentRoute.path)} - ${siteMeta.titlePrimary} ${siteMeta.titleAccent}`;
   setActiveNavigation(currentRoute.path === "/404" ? "" : window.location.hash.replace(/^#/, "") || currentRoute.path);
 
   if (shouldFocus) {
+    // Focus clavier/accessibilite apres changement de route.
     app.scrollIntoView({
       block: "start",
       behavior: "auto"
@@ -53,7 +68,10 @@ export const navigate = (path) => {
 };
 
 export const initializeRouter = () => {
+  markJavaScriptRuntimeReady();
+
   if (!window.location.hash) {
+    // La home officielle de cette SPA est `#/`, meme quand l'URL arrive sans hash.
     window.location.hash = "/";
   }
 

@@ -1,3 +1,9 @@
+/*
+ * Animations globales.
+ *
+ * Les animations restent courtes et partageables pour donner une ambiance Lab
+ * sans rendre les pages difficiles a maintenir ou trop lourdes.
+ */
 @keyframes scan-line {
   0% {
     top: -2px;

@@ -1,6 +1,13 @@
 import { renderPanel } from "../components/ui/panel.js";
 import { getPageContent, getTutorialHub } from "../data/site.js";
 
+/**
+ * Page Tutos.
+ *
+ * La colonne de gauche liste les rubriques/sous-rubriques disponibles. Le
+ * lecteur detaille reste vide au chargement et n'affiche une fiche qu'apres un
+ * clic utilisateur, pour eviter d'imposer un tutoriel par defaut.
+ */
 // La page Tutos manipule une liste de sous-rubriques cliquables et un lecteur
 // detaille a droite. On centralise donc les topics pour faciliter le rendu
 // initial, l'activation au clic et le nettoyage des listeners.
@@ -147,7 +154,7 @@ export const renderTutosPage = () => {
 
   return {
     html: `
-      <section class="page">
+      <section class="page page-tutos">
         ${renderPanel({
           kicker: tutosContent.kicker,
           title: tutosContent.title,

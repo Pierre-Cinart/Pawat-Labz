@@ -1,6 +1,13 @@
 import { renderPanel } from "../components/ui/panel.js";
 import { getPageContent, getPageHighlights } from "../data/site.js";
 
+/**
+ * Page Gaming actuelle.
+ *
+ * Elle reste volontairement simple pour le moment : panneau d'introduction et
+ * points forts. La future section Web Games pourra s'y brancher sans casser la
+ * structure existante.
+ */
 export const renderGamingPage = () => {
   const gamingContent = getPageContent("gaming");
   const pageHighlights = getPageHighlights();

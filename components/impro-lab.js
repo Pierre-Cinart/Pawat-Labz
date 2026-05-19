@@ -1,5 +1,12 @@
 import { getImproLabContent, getLanguage } from "../data/site.js";
 
+/**
+ * Impro Labz.
+ *
+ * Composant autonome pour l'entrainement freestyle : il charge les banques de
+ * mots, gere les beats, calcule la difficulte et nettoie ses listeners quand la
+ * page Freestyle est demontee par le routeur.
+ */
 const IMPRO_WORD_FILES = {
   fr: "data/impro-fr-words.json",
   en: "data/impro-en-words.json"
@@ -48,6 +55,7 @@ const SPECIAL_SYLLABLES = {
 };
 
 const improState = {
+  // Etat unique du module pour eviter de disperser timer, audio et options UI.
   difficulty: "2",
   speed: IMPRO_DEFAULT_SPEED,
   isRunning: false,

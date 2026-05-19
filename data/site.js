@@ -1,3 +1,13 @@
+/**
+ * Source editoriale principale de Pawat-Labz.
+ *
+ * Presque tous les textes visibles, labels, cartes, routes et contenus FR/EN
+ * partent de ce fichier. Les pages gardent ainsi un role simple : elles
+ * structurent l'affichage, mais ne portent pas le contenu editorial.
+ *
+ * Regle importante : les ids techniques restent stables entre FR et EN
+ * (`focus`, routes, ids de categories). On traduit les labels, pas les ids.
+ */
 const LANGUAGE_STORAGE_KEY = "pawat-labz-language";
 const SUPPORTED_LANGUAGES = ["fr", "en"];
 
@@ -10,8 +20,9 @@ const translations = {
       titleAccent: "LABZ",
       tagline: "Musique - Animation - Dev - Gaming - Freestyle - Tutos",
       description:
-        "Pawat Labz est un laboratoire créatif personnel où musique, image, code, animation, design et expérimentation se mélangent pour donner naissance à des projets hybrides, vivants et évolutifs."
+        "Pawat Labz est un laboratoire créatif où musique, image, code, animation, design et expérimentation se mélangent pour donner naissance à des projets hybrides, vivants et évolutifs."
     },
+    // Boutons de navigation principaux.
     navigationItems: [
       { index: "00", label: "Accueil", path: "/" },
       { index: "00A", label: "Univers", path: "/univers" },
@@ -25,7 +36,7 @@ const translations = {
       { index: "00B", label: "ABOUT", path: "/about" }
     ],
     footerMeta: {
-      signature: "PAWAT LABZ - laboratoire créatif vivant",
+      signature: "PAWAT LABZ",
       note: "© Pawat Labz - Tous droits réservés"
     },
     footerLinks: [
@@ -62,8 +73,8 @@ const translations = {
         path: "/musique",
         index: "01",
         label: "Musique",
-        title: "Productions, instrus et identité sonore",
-        text: "La musique est un des moteurs principaux de Pawat Labz. On y retrouve mes productions, mes instrus, mes projets personnels, mes collaborations, mes cyphers et mes futurs albums.",
+        title: "Projets, cyphers/feats, instrus, réseaux",
+        text: "Bienvenue dans l'univers musical : sons, instrus, projets musicaux, collaborations, cyphers/feats. Bienvenue dans l'univers Pawat_Music.",
         details: [
           { label: "Projets", path: "/musique?focus=projets" },
           { label: "Clips", path: "/musique?focus=clips" },
@@ -76,8 +87,8 @@ const translations = {
         path: "/animation",
         index: "02",
         label: "Animation",
-        title: "Images en mouvement, séries et univers visuels",
-        text: "Découvrez ici mes créations animées, mes dessins animés, mes concepts de séries, mes clips animés, mes publicités courtes et mes expérimentations visuelles.",
+        title: "Design visuel, clips animés, séries, concepts et expérimentations",
+        text: "Prépare le pop-corn : séries, clips, micro-pubs promo et délires visuels t'attendent. Bienvenue dans l'univers Pawat_TV.",
         details: [
           { label: "Séries animées", path: "/animation?focus=series-animees" },
           { label: "Clips animés", path: "/animation?focus=clips-animes" },
@@ -93,14 +104,9 @@ const translations = {
         index: "03",
         label: "Dev",
         title: "Outils, prototypes et construction technique",
-        text: "La section Dev montre mon côté constructeur. J'y partage mes projets web, mes prototypes, mes outils maison, mes systèmes JavaScript, mes expérimentations open source et mes futurs utilitaires.",
+        text: "Projets web, prototypes et outils maison en construction.",
         details: [
-          { label: "Développement web", path: "/dev" },
-          { label: "Outils open source", path: "/dev" },
-          { label: "Phaser tools", path: "/dev" },
-          { label: "Utilitaires PC/.NET", path: "/dev" },
-          { label: "Prototypes techniques", path: "/dev" },
-          { label: "GitHub", path: "/dev" }
+          { label: "En cours", path: "/dev" },
         ]
       },
       {
@@ -108,7 +114,7 @@ const translations = {
         index: "04",
         label: "Gaming",
         title: "Prototypes jouables et expériences interactives",
-        text: "Cette section est pensée comme un terrain de jeu. Elle regroupe mes petits prototypes jouables en ligne, mes concepts de jeux, mes projets Phaser, mes mini-jeux arcade et mes futurs jeux complets.",
+        text: "Jeux, prototypes et systèmes de gameplay. Tu t'ennuies ? Il y a des jeux, t'inquiète. Bienvenue dans l'univers Pawat_Gaming !",
         details: [
           { label: "Mini-jeux jouables", path: "/gaming" },
           { label: "Prototypes Phaser", path: "/gaming" },
@@ -121,15 +127,16 @@ const translations = {
         path: "/freestyle",
         index: "05",
         label: "Freestyle Lab",
-        title: "On balance les mots, le beat et c'est parti pour l'impro",
-        text: "Impro Labz est un outil interactif pensé pour les rappeurs, improvisateurs et curieux. Des mots apparaissent aléatoirement pendant qu'une instru tourne, avec vitesse et difficulté réglables.",
+        title: "Ambiance Freestyle : laisse parler le rythme et les mots. Bienvenue dans l'univers Wampawat !",
+        text: "Impro Labz est un outil interactif pour les rappeurs, rappeuses, improvisateurs, improvisatrices ou toute personne qui veut s'entraîner : génération de mots aléatoires, liste d'instrus, réglage de vitesse et difficulté, français/anglais.",
         details: [
           { label: "Impro Labz", path: "/freestyle?focus=impro-labz" },
           { label: "Difficulté", path: "/freestyle" },
           { label: "Vitesse", path: "/freestyle" },
           { label: "Instrus disponibles", path: "/freestyle" },
           { label: "Freestyle", path: "/freestyle" },
-          { label: "Entraînement impro", path: "/freestyle" }
+          { label: "Entraînement impro", path: "/freestyle" },
+          { label: "Dictionnaires des rimes", path: "/freestyle" }
         ]
       },
       {
@@ -137,7 +144,7 @@ const translations = {
         index: "06",
         label: "Tutos",
         title: "Bases, transmission et formations à développer",
-        text: "Retrouvez ici mes tutos, mes bases, des explications progressives et des contenus de transmission plus complets. L'idée n'est pas seulement de montrer, mais aussi d'aider à comprendre, pratiquer et aller plus loin.",
+        text: "Ici, le Lab partage ses astuces et méthodes.",
         details: [
           { label: "Phaser local", path: "/tutos" },
           { label: "Bases", path: "/tutos" },
@@ -153,7 +160,7 @@ const translations = {
       "Chaque Labz est un univers. Chaque univers suit sa propre formule.",
       "Sons, interfaces, clips, jeux, outils, vidéos, expérimentations et créations numériques…",
       "Des projets en évolution. Des systèmes en construction. Des mondes à découvrir.",
-      "Explorez les sections. Traversez les portails. Bienvenue dans le laboratoire."
+      "Explore les sections. Traverse les portails."
     ],
     pageHighlights: {
       home: [
@@ -163,34 +170,30 @@ const translations = {
       ],
       musique: [
         "Catalogue audio et instrus",
-        "Lecteur custom et mini-player persistant",
-        "Sections clips, projets perso et sorties"
+        "Sections clips, projets, feats/cyphers, instrus et réseaux"
       ],
       animation: [
         "Séries animées",
-        "Clips animés et univers visuels",
-        "Publicités courtes et formats promo",
-        "Expérimentations graphiques et narratives"
+        "Clips musicaux",
+        "Clips animés / univers visuels",
+        "Promos",
+        "Tests de potions visuelles",
+        "funny fails"
       ],
       dev: [
-        "Présentation de mes outils, prototypes et systèmes",
+        "Présentation des outils, prototypes et systèmes",
         "Grilles projets, filtres et expérimentation",
         "Liens GitHub, open source et utilitaires"
       ],
       gaming: [
         "Prototypes jouables et jeux complets",
-        "Embeds interactifs et passerelles de progression",
-        "Présentation arcade rétro-futuriste"
+        "Premiers web games en préparation"
       ],
       freestyle: [
-        "Impro Labz et génération de mots",
-        "Interaction audio et visuelle en temps réel",
-        "Modes de difficulté et ambiance scène / labo"
+        "Outil interactif de freestyle pour s'entraîner, improviser et faire du rythme avec des mots"
       ],
       tutos: [
-        "Bases et explications progressives",
-        "Tutos en cours de scriptage",
-        "Passerelle vers des formations plus complètes"
+        "Partage de méthodes, astuces et ressources"
       ]
     },
     musicHub: {
@@ -214,7 +217,7 @@ const translations = {
           highlights: [
             "Tracks finalises ou en evolution",
             "Assemblage entre voix, instrumental et univers",
-            "Sorties personnelles et projets pilotes"
+            "Sorties du labo et projets pilotes"
           ]
         },
         {
@@ -480,97 +483,122 @@ const translations = {
       ]
     },
     aboutLab: {
-      overview: {
-        kicker: "LAB ENTRY",
-        title: "Une zone transversale pour sentir comment le laboratoire respire.",
-        text:
-          "ABOUT ouvre une porte plus large sur la logique interne de Pawat-Labz : musique, jeux, animation, outils, IA et experimentation s'y croisent comme dans un studio-laboratoire vivant."
+      hero: {
+        kicker: "ENTREE DU LAB",
+        title: "BIENVENUE DANS LE MULTIVERS PAWAT-LABZ",
+        lines: [
+          "Chaque Labz est un univers.",
+          "Chaque univers suit sa propre formule.",
+          "Ici, une idee peut devenir un son, une interface, un jeu, un clip, un outil ou un monde complet.",
+          "Des projets en evolution.",
+          "Des systemes en construction.",
+          "Des creations a explorer.",
+          "Bienvenue dans le laboratoire."
+        ],
+        panelLabel: "SIGNAL CENTRAL",
+        panelTitle: "Bienvenue dans le labo.",
+        panelText:
+          "Pawat-Labz agit comme une maison mere, un laboratoire creatif vivant ou les idees circulent entre musique, image, code, gameplay et outils pour former une mega potion numerique."
       },
-      signals: [
-        {
-          label: "Creative core",
-          value: "Music + visuals + code",
-          note: "Chaque discipline nourrit les autres et fait naitre de nouveaux formats."
-        },
-        {
-          label: "Lab direction",
-          value: "Hybrid creative systems",
-          note: "Le but n'est pas de separer les rubriques, mais de les faire dialoguer."
-        },
-        {
-          label: "Production mode",
-          value: "Independent and evolving",
-          note: "Le labo grandit projet apres projet, prototype apres prototype."
-        },
-        {
-          label: "Open channels",
-          value: "Web / video / sound / play",
-          note: "Chaque idee peut devenir une interface, un clip, un outil ou un terrain de jeu."
-        }
-      ],
-      sections: [
-        {
-          signal: "SND",
-          title: "Music Production",
-          text: "Production musicale, instrus, identite sonore, sorties, energie rap et textures plus experimentales se rencontrent ici."
-        },
-        {
-          signal: "GME",
-          title: "Game Development",
-          text: "Des prototypes jouables, des idees de gameplay et des passerelles entre code, fun et direction artistique prennent forme dans le Lab."
-        },
-        {
-          signal: "VIS",
-          title: "Animation & Visual Experiments",
-          text: "Series animees, clips, pubs courtes et experiences visuelles servent a faire bouger les personnages, les rythmes et les mondes."
-        },
-        {
-          signal: "OSS",
-          title: "Open Source & Tools",
-          text: "Le cote constructeur de Pawat-Labz passe aussi par des outils maison, des prototypes techniques et une envie de partager des briques utiles."
-        },
-        {
-          signal: "AI",
-          title: "AI Assisted Creation",
-          text: "L'IA est pensee comme une extension creative : ideation, acceleration de workflow, tests visuels et nouvelles pistes de production."
-        },
-        {
-          signal: "EXP",
-          title: "Experimental Projects",
-          text: "Interfaces hybrides, concepts web plus libres, croisements inattendus et formats difficiles a classer font partie du coeur vivant du labo."
-        }
-      ],
-      systemStatus: {
-        kicker: "SYSTEM STATUS",
-        title: "Le laboratoire reste en mouvement.",
+      creator: {
+        kicker: "IDENTITE DU LAB",
+        title: "LE LABORATOIRE DE PAWAT LABZ",
         text:
-          "Plusieurs chantiers tournent en meme temps : composition, jeu, video, interfaces et outillage. L'ensemble avance comme un systeme vivant plutot que comme une simple vitrine statique.",
+          "Pawat-Labz est le laboratoire creatif de Pawat : une maison mere pour transformer une intuition en son, en systeme interactif, en visuel, en prototype ou en monde jouable.",
+        panelLabel: "FORMULE DU CREATEUR",
+        lead: "La programmation n'est pas a part.",
+        panelText:
+          "Ici, coder sert la meme intention que composer, dessiner, animer ou designer : exprimer une vision, melanger les disciplines et fabriquer des experiences qui vivent vraiment."
+      },
+      ecosystem: {
+        kicker: "ECOSYSTEME PAWAT-LABZ",
+        title: "Chaque portail ouvre une famille de creations.",
+        text:
+          "Toutes les zones du laboratoire ont la meme valeur. Elles ne sont pas rangees comme un CV, mais comme des univers qui communiquent entre eux.",
+        cards: [
+          {
+            signal: "M01",
+            title: "MUSIC LABZ",
+            path: "/musique",
+            text: "Production musicale, clips, collaborations, instrus, identite sonore et experimentations audio vivent ici."
+          },
+          {
+            signal: "G04",
+            title: "GAME LABZ",
+            path: "/gaming",
+            text: "Jeux, prototypes, systemes de gameplay, tests Phaser et mondes interactifs en construction."
+          },
+          {
+            signal: "V02",
+            title: "VIDEO LABZ",
+            path: "/animation",
+            text: "Clips, animation, series, formats courts et experimentations visuelles pour faire bouger les univers du Lab."
+          },
+          {
+            signal: "D03",
+            title: "DEV LABZ",
+            path: "/dev",
+            text: "Developpement, SPA, architecture, outils maison, prototypes techniques et futurs utilitaires creatifs."
+          },
+          {
+            signal: "F05",
+            title: "IMPRO LABZ",
+            path: "/freestyle?focus=impro-labz",
+            text: "Une zone de freestyle interactif ou les mots, le rythme, l'entrainement et la performance se rencontrent."
+          },
+          {
+            signal: "T06",
+            title: "TUTORIAL LABZ",
+            path: "/tutos",
+            text: "Partage, explications, bases techniques et transmission pour aider d'autres createurs a lancer leurs propres projets."
+          },
+          {
+            signal: "N07",
+            title: "NEWS LABZ",
+            path: "/univers",
+            text: "Une future zone d'articles, d'astuces, de commentaires et de nouvelles pour suivre l'evolution du laboratoire."
+          }
+        ]
+      },
+      siteFlow: {
+        kicker: "COMMENT FONCTIONNE LE SITE",
+        title: "Un laboratoire numerique plutot qu'un portfolio fige.",
+        text:
+          "Le site fonctionne comme un hub creatif. Chaque section agit comme un portail vers une famille de projets. Certaines zones sont finalisees, d'autres encore experimentales, et plusieurs systemes evoluent en meme temps.",
         items: [
           {
-            label: "Projects in progress",
-            value: "Multiple creative threads active"
+            label: "PORTAILS",
+            title: "Chaque rubrique ouvre un monde.",
+            text: "Musique, impro, dev, game, tuto et video ne sont pas separes artificiellement. Ils representent des facons differentes d'exprimer la meme energie creatrice."
           },
           {
-            label: "Experimental systems online",
-            value: "UI, routing and media layers stable"
+            label: "CONNEXIONS",
+            title: "Les idees circulent entre les sections.",
+            text: "Une idee peut naitre dans la musique, devenir interface dans le dev, prototype dans le game, puis se transformer en tuto ou en systeme plus complet."
           },
           {
-            label: "New portals opening",
-            value: "Fresh sections and new formats in preparation"
-          },
-          {
-            label: "Development active",
-            value: "Code, visuals and stories evolving together"
+            label: "EVOLUTION",
+            title: "Le laboratoire est encore en fondation.",
+            text: "Le but est de construire un espace vivant, avec des projets qui grandissent, des articles a venir, des outils qui arrivent et des portails qui s'ouvrent au fil du temps."
           }
+        ],
+        linkMapLabel: "LIENS ENTRE LES PORTAILS",
+        links: [
+          { from: "Music Labz", to: "nourrit clips, impro et identite du labo" },
+          { from: "Impro Labz", to: "transforme le rythme en experience interactive" },
+          { from: "Dev Labz", to: "fabrique les structures, outils et systemes" },
+          { from: "Game Labz", to: "met le code, le fun et la direction artistique en jeu" },
+          { from: "Tutorial Labz", to: "partage les methodes et ouvre le labo aux autres createurs" },
+          { from: "News Labz", to: "racontera l'avancement, les astuces et les nouveaux signaux" }
         ]
       },
       support: {
         kicker: "SUPPORT THE LABZ",
-        title: "Une future zone de soutien prendra place dans le laboratoire.",
+        title: "Une future zone de soutien prendra place a la fin du parcours.",
         text:
-          "Cette interface preparera plus tard plusieurs formats simples pour soutenir les creations, les outils et l'evolution du labo sans casser l'identite du site.",
-        channels: ["Donation", "Support", "Buy me a coffee", "Patreon-like support"],
-        buttonLabel: "Support Coming Soon"
+          "Une future zone de soutien permettra d'aider le developpement des jeux, outils, musiques, clips et projets du laboratoire.",
+        buttonLabel: "SUPPORT THE LABZ",
+        note: "Bientot disponible. Le soutien n'est pas encore actif, mais la place est preparee dans le laboratoire."
       }
     },
     animationHub: {
@@ -792,29 +820,29 @@ const translations = {
     pageContent: {
       home: {
         kicker: "ACCUEIL / UNIVERS",
-        title: "Pawat Labz - laboratoire créatif vivant",
+        title: "Pawat Labz",
         intro:
-          "Pawat Labz, laboratoire créatif. Je mélange musique, image, code, animation, design et expérimentation pour construire des projets hybrides, vivants et évolutifs. Ici, chaque idée peut devenir un son, une interface, un jeu, un clip, un outil ou un univers complet.",
+          "Laboratoire créatif : musique, image, code, animation, design et expérimentation se mélangent dans une chimie de projets hybrides, vivants et évolutifs. Labo d'idées : du son, des jeux, des clips, des outils. Multiverse Pawat Labz.",
         ctaLabel: "Découvrir les univers",
         visionLabel: "VISION",
         panel: {
-          kicker: "UNE INTERFACE ENTRE ART, CODE ET EXPÉRIMENTATION",
-          title: "Un laboratoire vivant pensé pour relier mes idées, mes outils et mes univers.",
+          kicker: "PAWAT-LABZ ",
+          title: "",
           text:
-            "Pawat Labz n'est pas juste une vitrine. C'est un laboratoire créatif personnel où je rassemble ce que je compose, ce que j'anime, ce que je développe et ce que j'expérimente. L'idée est de faire de chaque rubrique un vrai territoire, avec sa propre ambiance, sa propre logique et une manière bien à elle de raconter ce qu'elle contient.",
-          badge: "INTENTION"
+            "Musique, animation, développement, jeu et expérimentation se croisent. Un mélange d'idées chimiques bien organisées.",
+          badge: "WELCOME"
         }
       },
       univers: {
         kicker: "PANORAMA",
         title: "Bienvenue dans l'univers Pawat-Labz",
-        text: "Cette page résume les grandes rubriques du site et donne une vision plus claire de chaque monde créatif du Labz.",
+        text: "",
         badge: "OVERVIEW"
       },
       about: {
         kicker: "SIGNAL 00B",
-        title: "ABOUT THE LAB",
-        text: "Pawat-Labz is an independent creative laboratory mixing games, music, animation, experimental web experiences and AI-assisted workflows.",
+        title: "ABOUT / LE LABORATOIRE",
+        text: "Entrez dans la logique interne de Pawat-Labz : un laboratoire numerique vivant ou musique, image, code, jeu, improvisation et transmission se melangent.",
         badge: "ABOUT"
       },
       musique: {
@@ -826,19 +854,19 @@ const translations = {
       animation: {
         kicker: "SECTION 02",
         title: "Animation",
-        text: "Découvrez ici mes créations animées, mes dessins animés, mes concepts de séries, mes clips animés, mes publicités courtes et mes expérimentations visuelles.",
+        text: "Cette zone rassemble créations animées, dessins animés, concepts de séries, clips animés, publicités courtes et expérimentations visuelles.",
         badge: "VIDEO"
       },
       dev: {
         kicker: "SECTION 03",
         title: "Dev",
-        text: "Espace dédié à mon univers de constructeur : projets web, prototypes, outils open source, systèmes maison et expérimentations techniques.",
+        text: "Espace dédié à la construction technique du labo : projets web, prototypes, outils open source, systèmes maison et expérimentations techniques.",
         badge: "CODE"
       },
       gaming: {
         kicker: "SECTION 04",
         title: "Gaming",
-        text: "Le petit plaisir des geeks. Cette section regroupe mes petits prototypes jouables en ligne, mes concepts de jeux, mes projets Phaser, mes mini-jeux arcade et mes futurs jeux complets.",
+        text: "Le petit plaisir des geeks. Cette section regroupe prototypes jouables en ligne, concepts de jeux, projets Phaser, mini-jeux arcade et futurs jeux complets.",
         badge: "PLAY"
       },
       freestyle: {
@@ -882,7 +910,7 @@ const translations = {
       tutos: {
         kicker: "TUTOS",
         title: "Bases, transmission et formations à développer",
-        text: "Retrouvez ici mes tutos, mes bases, des explications progressives et des contenus de transmission plus complets. L'idée n'est pas seulement de montrer, mais aussi d'aider à comprendre, pratiquer et aller plus loin.",
+        text: "Cette zone rassemble les tutos, bases, explications progressives et contenus de transmission du labo. L'idée n'est pas seulement de montrer, mais aussi d'aider à comprendre, pratiquer et aller plus loin.",
         badge: "LEARNING"
       },
       notFound: {
@@ -905,7 +933,7 @@ const translations = {
       titleAccent: "LABZ",
       tagline: "Music - Animation - Dev - Gaming - Freestyle - Tutorials",
       description:
-        "Pawat Labz is a personal creative lab where music, image, code, animation, design and experimentation blend together to shape hybrid, living and evolving projects."
+        "Pawat Labz is a creative lab where music, image, code, animation, design and experimentation blend together to shape hybrid, living and evolving projects."
     },
     navigationItems: [
       { index: "00", label: "Home", path: "/" },
@@ -920,7 +948,7 @@ const translations = {
       { index: "00B", label: "ABOUT", path: "/about" }
     ],
     footerMeta: {
-      signature: "PAWAT LABZ - living creative lab",
+      signature: "PAWAT LABZ",
       note: "© Pawat Labz - All rights reserved"
     },
     footerLinks: [
@@ -958,7 +986,7 @@ const translations = {
         index: "01",
         label: "Music",
         title: "Productions, beats and sonic identity",
-        text: "Music is one of the main engines behind Pawat Labz. This section gathers my productions, beats, personal projects, collaborations, cyphers and future albums.",
+        text: "Music is one of the main engines behind Pawat Labz. This section gathers productions, beats, music projects, collaborations, cyphers and future albums from the Lab.",
         details: [
           { label: "Projects", path: "/musique?focus=projets" },
           { label: "Clips", path: "/musique?focus=clips" },
@@ -972,7 +1000,7 @@ const translations = {
         index: "02",
         label: "Animation",
         title: "Moving images, series and visual worlds",
-        text: "Discover my animated creations, cartoons, series concepts, animated clips, short ads and visual experiments here.",
+        text: "This zone gathers the Lab's animated creations, cartoons, series concepts, animated clips, short ads and visual experiments.",
         details: [
           { label: "Animated series", path: "/animation?focus=series-animees" },
           { label: "Animated clips", path: "/animation?focus=clips-animes" },
@@ -988,7 +1016,7 @@ const translations = {
         index: "03",
         label: "Dev",
         title: "Tools, prototypes and technical craft",
-        text: "The Dev section shows my builder side. I share web projects, prototypes, custom tools, JavaScript systems, open source experiments and future utilities.",
+        text: "The Dev section shows the builder side of the Lab: web projects, prototypes, custom tools, JavaScript systems, open source experiments and future utilities.",
         details: [
           { label: "Web development", path: "/dev" },
           { label: "Open source tools", path: "/dev" },
@@ -1003,7 +1031,7 @@ const translations = {
         index: "04",
         label: "Gaming",
         title: "Playable prototypes and interactive experiences",
-        text: "This section is designed as a playground. It gathers my small online prototypes, game concepts, Phaser projects, arcade mini-games and future full games.",
+        text: "This section is designed as a playground. It gathers online playable prototypes, game concepts, Phaser projects, arcade mini-games and future full games.",
         details: [
           { label: "Playable mini-games", path: "/gaming" },
           { label: "Phaser prototypes", path: "/gaming" },
@@ -1032,7 +1060,7 @@ const translations = {
         index: "06",
         label: "Tutorials",
         title: "Foundations, knowledge sharing and future training",
-        text: "Here you will find my tutorials, learning foundations, progressive explanations and more complete educational content. The goal is not only to show, but to help people understand, practice and go further.",
+        text: "This zone gathers the Lab's tutorials, learning foundations, progressive explanations and more complete educational content. The goal is not only to show, but to help people understand, practice and go further.",
         details: [
           { label: "Phaser local setup", path: "/tutos" },
           { label: "Basics", path: "/tutos" },
@@ -1059,7 +1087,7 @@ const translations = {
       musique: [
         "Audio catalog and beats",
         "Custom player and persistent mini-player",
-        "Clips, personal projects and releases"
+        "Clips, Lab projects and releases"
       ],
       animation: [
         "Animated series",
@@ -1068,7 +1096,7 @@ const translations = {
         "Graphic and narrative experiments"
       ],
       dev: [
-        "Presentation of my tools, prototypes and systems",
+        "Presentation of the Lab's tools, prototypes and systems",
         "Project grids, filters and experimentation",
         "GitHub links, open source work and utilities"
       ],
@@ -1375,97 +1403,122 @@ const translations = {
       ]
     },
     aboutLab: {
-      overview: {
+      hero: {
         kicker: "LAB ENTRY",
-        title: "A transversal zone designed to reveal how the laboratory actually breathes.",
-        text:
-          "ABOUT opens a wider access point into the living logic of Pawat-Labz, where music, games, animation, tools, AI and experimentation connect inside one creative system."
+        title: "WELCOME TO THE PAWAT-LABZ MULTIVERSE",
+        lines: [
+          "Each Labz is a universe.",
+          "Each universe follows its own formula.",
+          "Here, an idea can become a sound, an interface, a game, a clip, a tool or a complete world.",
+          "Projects evolving.",
+          "Systems under construction.",
+          "Creations to explore.",
+          "Welcome to the laboratory."
+        ],
+        panelLabel: "CORE SIGNAL",
+        panelTitle: "Welcome to the lab.",
+        panelText:
+          "Pawat-Labz works like a parent house and a living creative lab where ideas move between music, image, code, gameplay and tools to form one large digital potion."
       },
-      signals: [
-        {
-          label: "Creative core",
-          value: "Music + visuals + code",
-          note: "Each discipline feeds the others and helps new formats emerge."
-        },
-        {
-          label: "Lab direction",
-          value: "Hybrid creative systems",
-          note: "The goal is not to isolate sections, but to let them talk to each other."
-        },
-        {
-          label: "Production mode",
-          value: "Independent and evolving",
-          note: "The lab grows project by project, prototype after prototype."
-        },
-        {
-          label: "Open channels",
-          value: "Web / video / sound / play",
-          note: "Any idea can become an interface, a clip, a tool or a playground."
-        }
-      ],
-      sections: [
-        {
-          signal: "SND",
-          title: "Music Production",
-          text: "Music production, beats, sonic identity, releases, rap energy and more experimental textures all intersect here."
-        },
-        {
-          signal: "GME",
-          title: "Game Development",
-          text: "Playable prototypes, gameplay ideas and bridges between code, fun and art direction take shape inside the Lab."
-        },
-        {
-          signal: "VIS",
-          title: "Animation & Visual Experiments",
-          text: "Animated series, clips, short ads and visual experiments help move characters, rhythms and worlds."
-        },
-        {
-          signal: "OSS",
-          title: "Open Source & Tools",
-          text: "The builder side of Pawat-Labz also lives through custom tools, technical prototypes and a desire to share useful building blocks."
-        },
-        {
-          signal: "AI",
-          title: "AI Assisted Creation",
-          text: "AI is treated like a creative extension for ideation, workflow acceleration, visual tests and fresh production directions."
-        },
-        {
-          signal: "EXP",
-          title: "Experimental Projects",
-          text: "Hybrid interfaces, freer web concepts, unexpected crossovers and hard-to-classify formats belong to the living core of the lab."
-        }
-      ],
-      systemStatus: {
-        kicker: "SYSTEM STATUS",
-        title: "The laboratory stays in motion.",
+      creator: {
+        kicker: "LAB IDENTITY",
+        title: "THE PAWAT-LABZ LABORATORY",
         text:
-          "Several construction threads run in parallel: composition, games, video, interfaces and tooling. The whole thing moves like a living system rather than a static showcase.",
+          "Pawat-Labz is Pawat's creative laboratory: a parent house where intuition can become sound, interactive systems, visuals, prototypes or playable worlds.",
+        panelLabel: "CREATOR FORMULA",
+        lead: "Programming is not separate here.",
+        panelText:
+          "Coding serves the same purpose as composing, drawing, animating or designing: expressing a vision, blending disciplines and building experiences that actually feel alive."
+      },
+      ecosystem: {
+        kicker: "THE PAWAT-LABZ ECOSYSTEM",
+        title: "Each portal opens a family of creations.",
+        text:
+          "Every area of the lab carries the same value. They are not arranged like a resume, but like universes that speak to each other.",
+        cards: [
+          {
+            signal: "M01",
+            title: "MUSIC LABZ",
+            path: "/musique",
+            text: "Music production, clips, collaborations, beats, sonic identity and audio experiments live here."
+          },
+          {
+            signal: "G04",
+            title: "GAME LABZ",
+            path: "/gaming",
+            text: "Games, prototypes, gameplay systems, Phaser tests and interactive worlds under construction."
+          },
+          {
+            signal: "V02",
+            title: "VIDEO LABZ",
+            path: "/animation",
+            text: "Clips, animation, series, short formats and visual experiments that make the lab's universes move."
+          },
+          {
+            signal: "D03",
+            title: "DEV LABZ",
+            path: "/dev",
+            text: "Development, SPA work, architecture, custom tools, technical prototypes and future creative utilities."
+          },
+          {
+            signal: "F05",
+            title: "IMPRO LABZ",
+            path: "/freestyle?focus=impro-labz",
+            text: "An interactive freestyle zone where words, rhythm, training and performance meet."
+          },
+          {
+            signal: "T06",
+            title: "TUTORIAL LABZ",
+            path: "/tutos",
+            text: "Sharing, explanations, technical foundations and guidance to help other creators launch their own projects."
+          },
+          {
+            signal: "N07",
+            title: "NEWS LABZ",
+            path: "/univers",
+            text: "A future space for articles, tips, comments and updates following the evolution of the laboratory."
+          }
+        ]
+      },
+      siteFlow: {
+        kicker: "HOW THE SITE WORKS",
+        title: "A digital laboratory rather than a static portfolio.",
+        text:
+          "The site works like a creative hub. Each section acts like a portal leading to a family of projects. Some areas are already polished, others remain experimental, and several systems evolve at the same time.",
         items: [
           {
-            label: "Projects in progress",
-            value: "Multiple creative threads active"
+            label: "PORTALS",
+            title: "Each section opens a world.",
+            text: "Music, improv, dev, game, tutorial and video are not isolated categories. They are different ways of expressing the same creative energy."
           },
           {
-            label: "Experimental systems online",
-            value: "UI, routing and media layers stable"
+            label: "CONNECTIONS",
+            title: "Ideas move from one section to another.",
+            text: "An idea can start in music, become an interface in dev, turn into a prototype in game, then expand into a tutorial or a broader system."
           },
           {
-            label: "New portals opening",
-            value: "Fresh sections and new formats in preparation"
-          },
-          {
-            label: "Development active",
-            value: "Code, visuals and stories evolving together"
+            label: "EVOLUTION",
+            title: "The lab is still in its foundations.",
+            text: "The goal is to build a living space, with projects that grow over time, articles that arrive later, tools that keep expanding and new portals opening when they are ready."
           }
+        ],
+        linkMapLabel: "PORTAL CONNECTIONS",
+        links: [
+          { from: "Music Labz", to: "feeds clips, improv and the lab's identity" },
+          { from: "Impro Labz", to: "turns rhythm into an interactive experience" },
+          { from: "Dev Labz", to: "builds structures, tools and systems" },
+          { from: "Game Labz", to: "puts code, fun and art direction into play" },
+          { from: "Tutorial Labz", to: "shares methods and opens the lab to other creators" },
+          { from: "News Labz", to: "will report progress, tips and new signals" }
         ]
       },
       support: {
         kicker: "SUPPORT THE LABZ",
-        title: "A future support zone is being prepared inside the laboratory.",
+        title: "A future support zone will take place at the end of the journey.",
         text:
-          "This interface will later host simple ways to support the creations, tools and evolution of the Lab without breaking the identity of the site.",
-        channels: ["Donation", "Support", "Buy me a coffee", "Patreon-like support"],
-        buttonLabel: "Support Coming Soon"
+          "A future support space will help the development of the laboratory's games, tools, music, clips and creative projects.",
+        buttonLabel: "SUPPORT THE LABZ",
+        note: "Coming soon. Support is not active yet, but its place is already prepared inside the laboratory."
       }
     },
     animationHub: {
@@ -1686,16 +1739,16 @@ const translations = {
     pageContent: {
       home: {
         kicker: "HOME / UNIVERSES",
-        title: "Pawat Labz - living creative laboratory",
+        title: "Pawat Labz",
         intro:
-          "Pawat Labz, creative laboratory. I mix music, image, code, animation, design and experimentation to build hybrid, living and evolving projects. Here, every idea can become a sound, an interface, a game, a clip, a tool or a complete universe.",
+          "Pawat Labz is a creative laboratory where music, image, code, animation, design and experimentation blend together to build hybrid, living and evolving projects. Here, every idea can become a sound, an interface, a game, a clip, a tool or a complete universe.",
         ctaLabel: "Explore the universes",
         visionLabel: "VISION",
         panel: {
           kicker: "AN INTERFACE BETWEEN ART, CODE AND EXPERIMENTATION",
-          title: "A living lab designed to connect my ideas, my tools and my creative worlds.",
+          title: "A living lab designed to connect the Lab's ideas, tools and creative worlds.",
           text:
-            "Pawat Labz is not just a showcase website. It is a personal creative lab where I bring together what I compose, animate, build and experiment with. The goal is for each section to feel like a real territory, with its own atmosphere, its own internal logic and its own way of telling what lives inside it.",
+            "Pawat Labz is not just a showcase website. It is a living creative lab where music, animation, development, games and experimentation intersect. The goal is for each section to feel like a real territory, with its own atmosphere, its own internal logic and its own way of telling what lives inside it.",
           badge: "INTENTION"
         }
       },
@@ -1707,8 +1760,8 @@ const translations = {
       },
       about: {
         kicker: "SIGNAL 00B",
-        title: "ABOUT THE LAB",
-        text: "Pawat-Labz is an independent creative laboratory mixing games, music, animation, experimental web experiences and AI-assisted workflows.",
+        title: "ABOUT / THE LABORATORY",
+        text: "Step into the internal logic of Pawat-Labz: a living digital laboratory where music, image, code, games, improvisation and knowledge sharing blend together.",
         badge: "ABOUT"
       },
       musique: {
@@ -1720,19 +1773,19 @@ const translations = {
       animation: {
         kicker: "SECTION 02",
         title: "Animation",
-        text: "Discover my animated creations, cartoons, series concepts, animated clips, short ads and visual experiments here.",
+        text: "This zone gathers animated creations, cartoons, series concepts, animated clips, short ads and visual experiments.",
         badge: "VIDEO"
       },
       dev: {
         kicker: "SECTION 03",
         title: "Dev",
-        text: "A space dedicated to my builder side: web projects, prototypes, open source tools, custom systems and technical experiments.",
+        text: "A space dedicated to the Lab's technical construction: web projects, prototypes, open source tools, custom systems and technical experiments.",
         badge: "CODE"
       },
       gaming: {
         kicker: "SECTION 04",
         title: "Gaming",
-        text: "A little treat for geeks. This section gathers my small online playable prototypes, game concepts, Phaser projects, arcade mini-games and future full games.",
+        text: "A little treat for geeks. This section gathers online playable prototypes, game concepts, Phaser projects, arcade mini-games and future full games.",
         badge: "PLAY"
       },
       freestyle: {
@@ -1777,7 +1830,7 @@ const translations = {
       tutos: {
         kicker: "TUTORIALS",
         title: "Foundations, knowledge sharing and future training",
-        text: "Here you will find my tutorials, basics, progressive explanations and deeper educational content. The goal is not only to show, but also to help people understand, practice and go further.",
+        text: "This zone gathers the Lab's tutorials, basics, progressive explanations and deeper educational content. The goal is not only to show, but also to help people understand, practice and go further.",
         badge: "LEARNING"
       },
       notFound: {
@@ -2080,6 +2133,8 @@ export const initializeLanguage = () => {
   document.documentElement.lang = currentLanguage;
 };
 
+// Getters publics utilises par les pages et le layout.
+// Ils isolent le reste du code de la structure interne de `translations`.
 export const getSiteMeta = () => getLocaleContent().siteMeta;
 export const getNavigationItems = () => getLocaleContent().navigationItems;
 export const getFooterMeta = () => getLocaleContent().footerMeta;
