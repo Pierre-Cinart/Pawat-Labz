@@ -225,6 +225,51 @@
   text-transform: uppercase;
 }
 
+.impro-lab__intro-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.impro-lab__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0.4rem 0.82rem;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: var(--radius-pill);
+  background:
+    linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 255, 65, 0.04)),
+    rgba(4, 11, 18, 0.82);
+  color: var(--color-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.impro-lab__back::before {
+  content: "←";
+  margin-right: 0.45rem;
+}
+
+.impro-lab__back:hover,
+.impro-lab__back:focus-visible {
+  color: var(--color-text-strong);
+  border-color: rgba(0, 255, 65, 0.34);
+  box-shadow: var(--shadow-green-sm);
+  transform: translateY(-1px);
+}
+
 .impro-lab__stage {
   display: grid;
   grid-template-columns: minmax(180px, 220px) minmax(0, 1fr) minmax(260px, 320px);
@@ -301,9 +346,9 @@
   color: #060a0d;
   text-align: center;
   font-family: "Arial Black", Impact, Haettenschweiler, var(--font-title), sans-serif;
-  font-size: clamp(2rem, 6vw, 4.6rem);
-  line-height: 0.98;
-  letter-spacing: 0.01em;
+  font-size: clamp(1.55rem, 4.35vw, 3.45rem);
+  line-height: 1.02;
+  letter-spacing: 0;
   text-transform: uppercase;
   overflow-wrap: anywhere;
   word-break: break-word;
@@ -2663,8 +2708,8 @@
     width: 100%;
     padding: 1rem 0.9rem 3.8rem;
     border-radius: 22px;
-    font-size: clamp(1.3rem, 8.6vw, 2.2rem);
-    line-height: 0.94;
+    font-size: clamp(1.08rem, 6.7vw, 1.76rem);
+    line-height: 1.02;
     letter-spacing: 0;
     overflow-wrap: break-word;
     word-break: normal;
@@ -2838,8 +2883,8 @@
   .impro-lab__word {
     min-height: 216px;
     padding: 0.95rem 0.8rem 3.6rem;
-    font-size: clamp(1.12rem, 7.6vw, 1.78rem);
-    line-height: 0.98;
+    font-size: clamp(1rem, 6vw, 1.5rem);
+    line-height: 1.04;
   }
 }
 

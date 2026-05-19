@@ -116,11 +116,7 @@ const translations = {
         title: "Prototypes jouables et expériences interactives",
         text: "Jeux, prototypes et systèmes de gameplay. Tu t'ennuies ? Il y a des jeux, t'inquiète. Bienvenue dans l'univers Pawat_Gaming !",
         details: [
-          { label: "Mini-jeux jouables", path: "/gaming" },
-          { label: "Prototypes Phaser", path: "/gaming" },
-          { label: "Futurs jeux Play Store", path: "/gaming" },
-          { label: "Jeux téléchargeables", path: "/gaming" },
-          { label: "Projets complets", path: "/gaming" }
+          { label: "Mini-jeux", path: "/gaming" }
         ]
       },
       {
@@ -131,10 +127,7 @@ const translations = {
         text: "Impro Labz est un outil interactif pour les rappeurs, rappeuses, improvisateurs, improvisatrices ou toute personne qui veut s'entraîner : génération de mots aléatoires, liste d'instrus, réglage de vitesse et difficulté, français/anglais.",
         details: [
           { label: "Impro Labz", path: "/freestyle?focus=impro-labz" },
-          { label: "Difficulté", path: "/freestyle" },
-          { label: "Vitesse", path: "/freestyle" },
           { label: "Instrus disponibles", path: "/freestyle" },
-          { label: "Freestyle", path: "/freestyle" },
           { label: "Entraînement impro", path: "/freestyle" },
           { label: "Dictionnaires des rimes", path: "/freestyle" }
         ]
@@ -146,12 +139,7 @@ const translations = {
         title: "Bases, transmission et formations à développer",
         text: "Ici, le Lab partage ses astuces et méthodes.",
         details: [
-          { label: "Phaser local", path: "/tutos" },
-          { label: "Bases", path: "/tutos" },
-          { label: "Tutos en cours", path: "/tutos" },
-          { label: "Méthodes", path: "/tutos" },
-          { label: "Ressources", path: "/tutos" },
-          { label: "Formations avancées", path: "/tutos" }
+          { label: "Phaser local", path: "/tutos" }
         ]
       }
     ],
@@ -880,6 +868,7 @@ const translations = {
         title: "Impro Labz",
         intro: "Impro Labz, entraîne toi pour devenir le roi de l'impro",
         directLabel: "Accès direct",
+        backLabel: "Retour Freestyle",
         start: "Start",
         stop: "Stop",
         loading: "Chargement des banques de mots...",
@@ -1033,11 +1022,7 @@ const translations = {
         title: "Playable prototypes and interactive experiences",
         text: "This section is designed as a playground. It gathers online playable prototypes, game concepts, Phaser projects, arcade mini-games and future full games.",
         details: [
-          { label: "Playable mini-games", path: "/gaming" },
-          { label: "Phaser prototypes", path: "/gaming" },
-          { label: "Future Play Store games", path: "/gaming" },
-          { label: "Downloadable games", path: "/gaming" },
-          { label: "Full projects", path: "/gaming" }
+          { label: "Mini-games", path: "/gaming" }
         ]
       },
       {
@@ -1048,10 +1033,7 @@ const translations = {
         text: "Impro Labz is an interactive tool made for rappers, improvisers and curious minds. Random words appear while a beat plays, with adjustable speed and difficulty.",
         details: [
           { label: "Impro Labz", path: "/freestyle?focus=impro-labz" },
-          { label: "Difficulty", path: "/freestyle" },
-          { label: "Speed", path: "/freestyle" },
           { label: "Available beats", path: "/freestyle" },
-          { label: "Freestyle", path: "/freestyle" },
           { label: "Impro training", path: "/freestyle" }
         ]
       },
@@ -1062,12 +1044,7 @@ const translations = {
         title: "Foundations, knowledge sharing and future training",
         text: "This zone gathers the Lab's tutorials, learning foundations, progressive explanations and more complete educational content. The goal is not only to show, but to help people understand, practice and go further.",
         details: [
-          { label: "Phaser local setup", path: "/tutos" },
-          { label: "Basics", path: "/tutos" },
-          { label: "Tutorials in progress", path: "/tutos" },
-          { label: "Methods", path: "/tutos" },
-          { label: "Resources", path: "/tutos" },
-          { label: "Advanced training", path: "/tutos" }
+          { label: "Phaser local setup", path: "/tutos" }
         ]
       }
     ],
@@ -1800,6 +1777,7 @@ const translations = {
         intro:
           "Impro Labz throws timed words on screen to train improvisation, freestyle reflexes and stage fluency while staying inside the Lab's identity.",
         directLabel: "Direct access",
+        backLabel: "Back to Freestyle",
         start: "Start",
         stop: "Stop",
         loading: "Loading word banks...",

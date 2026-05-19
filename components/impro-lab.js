@@ -443,7 +443,12 @@ export const renderImproLab = () => {
           <h3 class="impro-lab__title">${content.title}</h3>
           <p class="section-text">${content.intro}</p>
         </div>
-        <div class="impro-lab__status" data-impro-status>${content.loading}</div>
+        <div class="impro-lab__intro-actions">
+          <a class="impro-lab__back" href="#/freestyle" data-link>
+            ${content.backLabel}
+          </a>
+          <div class="impro-lab__status" data-impro-status>${content.loading}</div>
+        </div>
       </div>
 
       <section class="impro-lab__stage" data-impro-stage>
