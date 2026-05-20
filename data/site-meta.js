@@ -94,7 +94,8 @@ export const siteMetaContent = {
         },
     routeTitles: {
           "/animation/sagaz-zzz": "SagaZ zzz",
-          "/gaming/jet-bot": "Jet Bot"
+          "/gaming/jet-bot": "Jet Bot",
+          "/gaming/des-sons-des-mots": "Des Sons & Des Mots"
         },
     notFound: {
             kicker: "ERROR 404",
@@ -148,6 +149,11 @@ export const siteMetaContent = {
         title: "Jet Bot - Pawat Labz",
         description: "Jouer a Jet Bot, prototype arcade Phaser local integre a Pawat Labz.",
         image: "assets/web-games/JetBot/images/jetbot.webp"
+      },
+      "/gaming/des-sons-des-mots": {
+        title: "Des Sons & Des Mots - Pawat Labz",
+        description: "Jouer a Des Sons & Des Mots, prototype beta audio vanilla JS integre a Pawat Labz.",
+        image: "assets/web-games/DesSonsDesMots/images/DesSonsDesMots.webp"
       },
       "/freestyle": {
         title: "Freestyle - Pawat Labz",
@@ -211,7 +217,8 @@ export const siteMetaContent = {
         },
     routeTitles: {
           "/animation/sagaz-zzz": "SagaZ zzz",
-          "/gaming/jet-bot": "Jet Bot"
+          "/gaming/jet-bot": "Jet Bot",
+          "/gaming/des-sons-des-mots": "Des Sons & Des Mots"
         },
     notFound: {
             kicker: "ERROR 404",
@@ -265,6 +272,11 @@ export const siteMetaContent = {
         title: "Jet Bot - Pawat Labz",
         description: "Play Jet Bot, a local Phaser arcade prototype integrated into Pawat Labz.",
         image: "assets/web-games/JetBot/images/jetbot.webp"
+      },
+      "/gaming/des-sons-des-mots": {
+        title: "Des Sons & Des Mots - Pawat Labz",
+        description: "Play Des Sons & Des Mots, a vanilla JS audio beta prototype integrated into Pawat Labz.",
+        image: "assets/web-games/DesSonsDesMots/images/DesSonsDesMots.webp"
       },
       "/freestyle": {
         title: "Freestyle - Pawat Labz",

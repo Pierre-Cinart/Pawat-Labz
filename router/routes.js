@@ -4,6 +4,7 @@ import { renderAnimationPage } from "../pages/animation.js";
 import { renderSagaZPage } from "../pages/animation-sagaz.js";
 import { renderDevPage } from "../pages/dev.js";
 import { renderFreestylePage } from "../pages/freestyle.js";
+import { renderGamingDesSonsDesMotsPage } from "../pages/gaming-des-sons-des-mots.js";
 import { renderGamingJetBotPage } from "../pages/gaming-jetbot.js";
 import { renderGamingPage } from "../pages/gaming.js";
 import { renderHomePage } from "../pages/home.js";
@@ -29,6 +30,7 @@ export const routes = [
   new Route("/dev", "Dev", renderDevPage),
   new Route("/gaming", "Gaming", renderGamingPage),
   new Route("/gaming/jet-bot", "Jet Bot", renderGamingJetBotPage),
+  new Route("/gaming/des-sons-des-mots", "Des Sons & Des Mots", renderGamingDesSonsDesMotsPage),
   new Route("/freestyle", "Freestyle", renderFreestylePage),
   new Route("/tutos", "Tutos", renderTutosPage)
 ];

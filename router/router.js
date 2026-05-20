@@ -34,7 +34,7 @@ const getRouteViewMode = (hash) => {
   const searchParams = new URLSearchParams(queryString);
   const focusTarget = searchParams.get("focus");
 
-  if (pathOnly === "/gaming/jet-bot") {
+  if (pathOnly === "/gaming/jet-bot" || pathOnly === "/gaming/des-sons-des-mots") {
     return "game";
   }
 

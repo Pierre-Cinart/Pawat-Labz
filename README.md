@@ -33,6 +33,9 @@ Le site n'est pas un portfolio classique : il fonctionne comme un hub vivant, av
 - hub animation avec cartes, showcase et lecteur integre
 - hub tutos avec lecture detaillee au clic
 - About immersif pour comprendre le lore du Lab
+- hub gaming avec mini-jeux jouables directement dans le site
+- Jet Bot integre en route dediee
+- Des Sons & Des Mots integre comme prototype beta jouable
 
 ## Choix techniques
 
@@ -41,6 +44,9 @@ Le site n'est pas un portfolio classique : il fonctionne comme un hub vivant, av
 - architecture modulaire simple a faire evoluer
 - contenus editoriaux centralises dans `data/site.js`
 - Phaser prepare en copie locale pour les futurs jeux navigateur
+- les mini-jeux peuvent etre integres de deux facons :
+- en module natif dans la SPA quand le runtime est specifique au site
+- en sous-dossier autonome embarque dans une route Gaming quand le jeu existe deja en HTML/CSS/JS vanilla
 
 ## Lancer le projet en local
 
@@ -75,6 +81,13 @@ Les styles sont separes dans `styles/` :
 - `router/` : navigation SPA
 - `scripts/` : bootstrap global
 - `styles/` : design system et styles des pages
+
+## Jeux integres
+
+- `#/gaming/jet-bot` : prototype arcade Phaser monte directement dans la SPA avec `onMount()` / `onUnmount()`.
+- `#/gaming/des-sons-des-mots` : prototype beta jouable integre depuis `assets/web-games/DesSonsDesMots/game/`.
+
+Cette deuxieme forme permet de brancher un jeu complet deja existant sans le refactorer tout de suite en module SPA. Le hub Gaming garde la carte de presentation, la route dediee, les metas SEO et le mode plein ecran du site, tandis que le jeu reste autonome dans son sous-dossier.
 
 ## Notes
 
