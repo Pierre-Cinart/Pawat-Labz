@@ -20,6 +20,10 @@ export const renderHeader = () => {
   const languageSwitcher = getLanguageSwitcher();
   const authPreview = getAuthPreview();
   const currentLanguage = getLanguage();
+  const menuLabels =
+    currentLanguage === "en"
+      ? { open: "Open menu", close: "Close menu", home: "Pawat Labz home" }
+      : { open: "Ouvrir le menu", close: "Fermer le menu", home: "Accueil Pawat Labz" };
 
   // Un seul markup de navigation est reutilise en desktop et dans le panneau burger.
   const navigationMarkup = navigationItems
@@ -31,6 +35,7 @@ export const renderHeader = () => {
             href="#${item.path}"
             data-link
             data-route="${item.path}"
+            aria-label="${item.label}"
           >
             <span class="primary-nav__index">${item.index}</span>
             <span>${item.label}</span>
@@ -43,10 +48,10 @@ export const renderHeader = () => {
   // Preparation visuelle du futur back : boutons presents, mais volontairement desactives.
   const authPreviewMarkup = `
     <div class="nav-auth-preview" aria-label="${authPreview.label}">
-      <button class="nav-auth-preview__button nav-auth-preview__button--ghost" type="button" disabled>
+      <button class="nav-auth-preview__button nav-auth-preview__button--ghost" type="button" disabled aria-label="${authPreview.signIn} - ${authPreview.status}">
         ${authPreview.signIn}
       </button>
-      <button class="nav-auth-preview__button nav-auth-preview__button--primary" type="button" disabled>
+      <button class="nav-auth-preview__button nav-auth-preview__button--primary" type="button" disabled aria-label="${authPreview.signUp} - ${authPreview.status}">
         ${authPreview.signUp}
       </button>
     </div>
@@ -56,7 +61,7 @@ export const renderHeader = () => {
     <div class="sticky-nav-shell">
       <div class="sticky-nav-bar">
         <div class="sticky-nav-bar__top">
-          <a class="sticky-nav-bar__brand" href="#/" data-link data-home-brand>
+          <a class="sticky-nav-bar__brand" href="#/" data-link data-home-brand aria-label="${menuLabels.home}">
             <span class="sticky-nav-bar__brand-main">${siteMeta.titlePrimary}</span>
             <span class="sticky-nav-bar__brand-accent">${siteMeta.titleAccent}</span>
           </a>
@@ -76,6 +81,7 @@ export const renderHeader = () => {
                         type="button"
                         data-language-switch="${languageCode}"
                         aria-pressed="${currentLanguage === languageCode ? "true" : "false"}"
+                        aria-label="${languageSwitcher.label} ${label}"
                       >
                         ${label}
                       </button>
@@ -89,9 +95,11 @@ export const renderHeader = () => {
               class="nav-burger"
               type="button"
               data-nav-toggle
+              data-label-open="${menuLabels.open}"
+              data-label-close="${menuLabels.close}"
               aria-expanded="false"
               aria-controls="mobile-primary-nav"
-              aria-label="Ouvrir le menu"
+              aria-label="${menuLabels.open}"
             >
               <span class="nav-burger__line"></span>
               <span class="nav-burger__line"></span>
@@ -153,7 +161,7 @@ export const renderFooter = () => {
 
                       return `
                         <li>
-                          <a class="footer-link" href="${link.href}" target="_blank" rel="noreferrer">
+                          <a class="footer-link" href="${link.href}" ${/^https?:/.test(link.href) ? 'target="_blank" rel="noreferrer noopener"' : ""}>
                             ${link.label}
                           </a>
                         </li>

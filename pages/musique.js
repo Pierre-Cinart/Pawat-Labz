@@ -1,4 +1,4 @@
-import { renderPanel } from "../components/ui/panel.js";
+﻿import { renderPanel } from "../components/ui/panel.js";
 import { getMusicHub, getPageContent } from "../data/site.js";
 
 /**
@@ -52,7 +52,7 @@ const renderMusicFeaturedLink = (featuredLink) => {
         <h4 class="music-featured-link__handle">${featuredLink.handle}</h4>
         <p class="music-featured-link__summary">${featuredLink.summary}</p>
       </div>
-      <a class="button button--primary music-featured-link__button" href="${featuredLink.url}" target="_blank" rel="noreferrer">
+      <a class="button button--primary music-featured-link__button" href="${featuredLink.url}" target="_blank" rel="noreferrer noopener">
         ${featuredLink.buttonLabel}
       </a>
     </article>
@@ -63,7 +63,7 @@ const renderMusicShowcasePlayer = (entry) => {
   if (!entry.youtubeId) {
     return `
       <div class="sagaz-player__placeholder animation-showcase__placeholder">
-        <p>Aperçu vidéo bientôt disponible.</p>
+        <p>AperÃ§u vidÃ©o bientÃ´t disponible.</p>
       </div>
     `;
   }
@@ -97,7 +97,7 @@ const renderMusicTrackCard = (entry, library, extraClass = "") => {
     ? `
         <div class="music-track-card__player">
           <p class="music-track-card__meta-label">${library.audioLabel}</p>
-          <audio controls controlsList="nodownload" preload="none" src="${encodeURI(entry.audioSrc)}"></audio>
+          <audio controls controlsList="nodownload" preload="none" src="${encodeURI(entry.audioSrc)}" aria-label="${library.audioLabel} - ${entry.title}"></audio>
         </div>
       `
     : "";
@@ -122,7 +122,7 @@ const renderMusicTrackCard = (entry, library, extraClass = "") => {
           data-expanded="false"
         >${initialDescription ?? ""}</p>
         ${hasLongDescription
-          ? `<button class="music-track-card__toggle" type="button" data-music-description-toggle>${library.trackButtonMore}</button>`
+          ? `<button class="music-track-card__toggle" type="button" data-music-description-toggle aria-expanded="false">${library.trackButtonMore}</button>`
           : ""}
       </div>
 
@@ -170,6 +170,7 @@ export const renderMusiquePage = () => {
                     type="button"
                     data-music-category="${category.id}"
                     aria-expanded="${category.id === initialCategoryId ? "true" : "false"}"
+                    aria-pressed="${category.id === initialCategoryId ? "true" : "false"}"
                   >
                     <span class="music-focus__trigger-index">0${index + 1}</span>
                     <span>${category.label}</span>
@@ -252,7 +253,7 @@ export const renderMusiquePage = () => {
                   ${entry.context ? `<p class="animation-entry-card__context">${entry.context}</p>` : ""}
                   <div class="animation-entry-card__actions">
                     ${entry.externalUrl
-                      ? `<a class="button button--primary" href="${entry.externalUrl}" target="_blank" rel="noreferrer">${entry.externalLabel ?? musicHub.entryButtons.external}</a>`
+                      ? `<a class="button button--primary" href="${entry.externalUrl}" target="_blank" rel="noreferrer noopener">${entry.externalLabel ?? musicHub.entryButtons.external}</a>`
                       : ""}
                   </div>
                 </div>
@@ -322,6 +323,8 @@ export const renderMusiquePage = () => {
                         class="episode-card animation-showcase-card ${index === 0 ? "episode-card--active animation-showcase-card--active" : ""}"
                         type="button"
                         data-showcase-entry="${entry.title}"
+                        aria-label="${entry.title}"
+                        aria-pressed="${index === 0 ? "true" : "false"}"
                       >
                         <span class="episode-card__thumb animation-showcase-card__thumb">
                           <img class="episode-card__thumb-image animation-showcase-card__thumb-image" src="${entry.image}" alt="${entry.imageAlt}" loading="lazy">
@@ -342,7 +345,7 @@ export const renderMusiquePage = () => {
               <div class="animation-showcase__head">
                 <p class="section-kicker">${initialEntry.typeLabel ?? musicHub.entryKicker}</p>
                 ${initialEntry.externalUrl
-                  ? `<a class="sagaz-browser__playlist-link animation-showcase__quick-link" href="${initialEntry.externalUrl}" target="_blank" rel="noreferrer">${initialEntry.externalLabel ?? musicHub.entryButtons.external}</a>`
+                  ? `<a class="sagaz-browser__playlist-link animation-showcase__quick-link" href="${initialEntry.externalUrl}" target="_blank" rel="noreferrer noopener">${initialEntry.externalLabel ?? musicHub.entryButtons.external}</a>`
                   : ""}
               </div>
               <div class="sagaz-player animation-showcase__player" data-music-showcase-player>
@@ -355,7 +358,7 @@ export const renderMusiquePage = () => {
                 <p class="sagaz-player__episode-summary animation-showcase__meta-context" data-music-showcase-context>${initialEntry.context ?? ""}</p>
                 <div class="animation-showcase__actions" data-music-showcase-actions>
                   ${initialEntry.externalUrl
-                    ? `<a class="button button--primary" href="${initialEntry.externalUrl}" target="_blank" rel="noreferrer">${initialEntry.externalLabel ?? musicHub.entryButtons.external}</a>`
+                    ? `<a class="button button--primary" href="${initialEntry.externalUrl}" target="_blank" rel="noreferrer noopener">${initialEntry.externalLabel ?? musicHub.entryButtons.external}</a>`
                     : ""}
                 </div>
               </article>
@@ -413,6 +416,7 @@ export const renderMusiquePage = () => {
             const isActive = cardNode.dataset.showcaseEntry === activeEntry.title;
             cardNode.classList.toggle("animation-showcase-card--active", isActive);
             cardNode.classList.toggle("episode-card--active", isActive);
+            cardNode.setAttribute("aria-pressed", isActive ? "true" : "false");
           });
 
           playerNode.innerHTML = renderMusicShowcasePlayer(activeEntry);
@@ -432,7 +436,7 @@ export const renderMusiquePage = () => {
           subtitleNode.textContent = activeEntry.subtitle;
           contextNode.textContent = activeEntry.context ?? "";
           actionsNode.innerHTML = activeEntry.externalUrl
-            ? `<a class="button button--primary" href="${activeEntry.externalUrl}" target="_blank" rel="noreferrer">${activeEntry.externalLabel ?? musicHub.entryButtons.external}</a>`
+            ? `<a class="button button--primary" href="${activeEntry.externalUrl}" target="_blank" rel="noreferrer noopener">${activeEntry.externalLabel ?? musicHub.entryButtons.external}</a>`
             : "";
 
           if (scrollToPlayer) {
@@ -506,6 +510,7 @@ export const renderMusiquePage = () => {
                       type="button"
                       data-music-subsection="${subsection.id}"
                       aria-expanded="${index === 0 ? "true" : "false"}"
+                      aria-pressed="${index === 0 ? "true" : "false"}"
                     >
                       ${subsection.label}
                     </button>
@@ -539,6 +544,7 @@ export const renderMusiquePage = () => {
 
         const updateDescriptionToggle = (toggleNode, bodyNode, isExpanded) => {
           toggleNode.textContent = isExpanded ? library.trackButtonLess : library.trackButtonMore;
+          toggleNode.setAttribute("aria-expanded", String(isExpanded));
           bodyNode.dataset.expanded = isExpanded ? "true" : "false";
         };
 
@@ -550,6 +556,7 @@ export const renderMusiquePage = () => {
             const isActive = subsectionNode.dataset.musicSubsection === activeSubsection.id;
             subsectionNode.classList.toggle("music-library__subtrigger--active", isActive);
             subsectionNode.setAttribute("aria-expanded", isActive ? "true" : "false");
+            subsectionNode.setAttribute("aria-pressed", isActive ? "true" : "false");
           });
 
           const folderMarkup =
@@ -665,9 +672,10 @@ export const renderMusiquePage = () => {
         if (!category) return;
 
         triggerNodes.forEach((triggerNode) => {
-          const isActive = triggerNode.dataset.musicCategory === categoryId;
-          triggerNode.classList.toggle("music-focus__trigger--active", isActive);
-          triggerNode.setAttribute("aria-expanded", isActive ? "true" : "false");
+            const isActive = triggerNode.dataset.musicCategory === categoryId;
+            triggerNode.classList.toggle("music-focus__trigger--active", isActive);
+            triggerNode.setAttribute("aria-expanded", isActive ? "true" : "false");
+            triggerNode.setAttribute("aria-pressed", isActive ? "true" : "false");
         });
 
         titleNode.textContent = category.title;
@@ -798,3 +806,4 @@ export const renderMusiquePage = () => {
     }
   };
 };
+

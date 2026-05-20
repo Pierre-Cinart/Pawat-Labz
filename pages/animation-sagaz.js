@@ -1,4 +1,4 @@
-import { renderButtonLink } from "../components/ui/button.js";
+﻿import { renderButtonLink } from "../components/ui/button.js";
 import { getAnimationSeries } from "../data/site.js";
 
 /**
@@ -18,6 +18,8 @@ const renderEpisodeList = (sagaz, season, episodes, activeEpisodeId) =>
           class="episode-card ${episode.id === activeEpisodeId ? "episode-card--active" : ""}"
           type="button"
           data-episode-id="${episode.id}"
+          aria-label="${episode.title}"
+          aria-pressed="${episode.id === activeEpisodeId ? "true" : "false"}"
         >
           <span class="episode-card__thumb">
             <img class="episode-card__thumb-image" src="${episode.thumbnail}" alt="${episode.thumbnailAlt}" loading="lazy">
@@ -39,7 +41,7 @@ const renderPlayer = (sagaz, episode) => {
       <div class="sagaz-player__placeholder">
         <p class="sagaz-player__placeholder-title">${sagaz.placeholderTitle}</p>
         <p>${sagaz.placeholderText}</p>
-        <a class="button button--ghost" href="${sagaz.playlistUrl}" target="_blank" rel="noreferrer">
+        <a class="button button--ghost" href="${sagaz.playlistUrl}" target="_blank" rel="noreferrer noopener">
           ${sagaz.playlistButtonLabel}
         </a>
       </div>
@@ -104,6 +106,7 @@ export const renderSagaZPage = () => {
                         class="season-switcher__button ${index === 0 ? "season-switcher__button--active" : ""}"
                         type="button"
                         data-season-id="${season.id}"
+                        aria-pressed="${index === 0 ? "true" : "false"}"
                       >
                         ${season.label}
                       </button>
@@ -115,7 +118,7 @@ export const renderSagaZPage = () => {
 
             <div class="sagaz-browser__player-label">
               <p class="section-kicker">${sagaz.playerLabel}</p>
-              <a class="sagaz-browser__playlist-link" href="${sagaz.playlistUrl}" target="_blank" rel="noreferrer">
+              <a class="sagaz-browser__playlist-link" href="${sagaz.playlistUrl}" target="_blank" rel="noreferrer noopener">
                 ${sagaz.playlistButtonLabel}
               </a>
             </div>
@@ -139,7 +142,7 @@ export const renderSagaZPage = () => {
                 <h3 class="sagaz-player__episode-title" data-current-episode-name>${initialEpisode.title}</h3>
                 <p class="sagaz-player__episode-summary" data-current-episode-summary>${initialEpisode.summary}</p>
                 <div class="sagaz-player__actions" data-current-episode-actions>
-                  <a class="button button--ghost" href="${getYoutubeWatchUrl(initialEpisode)}" target="_blank" rel="noreferrer">
+                  <a class="button button--ghost" href="${getYoutubeWatchUrl(initialEpisode)}" target="_blank" rel="noreferrer noopener">
                     ${sagaz.watchOnYoutubeLabel}
                   </a>
                 </div>
@@ -176,7 +179,7 @@ export const renderSagaZPage = () => {
         currentEpisodeSummaryNode.textContent = episode.summary;
         playerNode.innerHTML = renderPlayer(sagaz, episode);
         currentEpisodeActionsNode.innerHTML = `
-          <a class="button button--ghost" href="${getYoutubeWatchUrl(episode)}" target="_blank" rel="noreferrer">
+          <a class="button button--ghost" href="${getYoutubeWatchUrl(episode)}" target="_blank" rel="noreferrer noopener">
             ${sagaz.watchOnYoutubeLabel}
           </a>
         `;
@@ -208,7 +211,9 @@ export const renderSagaZPage = () => {
           const nextEpisode = getEpisodeById(episodes, clickedEpisodeId);
 
           episodeButtons.forEach((button) => {
-            button.classList.toggle("episode-card--active", button.dataset.episodeId === nextEpisode.id);
+            const isActive = button.dataset.episodeId === nextEpisode.id;
+            button.classList.toggle("episode-card--active", isActive);
+            button.setAttribute("aria-pressed", isActive ? "true" : "false");
           });
 
           updateEpisodeMeta(nextEpisode, { focusPlayer: true });
@@ -263,7 +268,9 @@ export const renderSagaZPage = () => {
         activeSeason = season;
 
         seasonButtons.forEach((button) => {
-          button.classList.toggle("season-switcher__button--active", button.dataset.seasonId === season.id);
+          const isActive = button.dataset.seasonId === season.id;
+          button.classList.toggle("season-switcher__button--active", isActive);
+          button.setAttribute("aria-pressed", isActive ? "true" : "false");
         });
 
         episodeListNode.innerHTML = renderEpisodeList(sagaz, season, season.episodes, episode.id);
@@ -331,3 +338,4 @@ export const renderSagaZPage = () => {
     }
   };
 };
+

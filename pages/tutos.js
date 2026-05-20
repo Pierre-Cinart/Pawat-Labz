@@ -1,4 +1,4 @@
-import { renderPanel } from "../components/ui/panel.js";
+﻿import { renderPanel } from "../components/ui/panel.js";
 import { getPageContent, getTutorialHub } from "../data/site.js";
 
 /**
@@ -20,6 +20,7 @@ const renderTopicButton = (topic, tutorialHub, activeTopicId) => `
     data-tutorial-topic="${topic.id}"
     ${topic.available ? "" : "disabled"}
     aria-pressed="${activeTopicId === topic.id ? "true" : "false"}"
+    aria-label="${topic.available ? tutorialHub.openLabel : tutorialHub.inactiveLabel} - ${topic.label}"
   >
     <div class="tutorial-topic__media">
       ${topic.image ? `<img class="tutorial-topic__image" src="${topic.image}" alt="${topic.imageAlt ?? topic.label}" loading="lazy">` : ""}
@@ -123,7 +124,7 @@ const renderReaderTopic = (topic, tutorialHub) => `
           ${topic.detail.resources
             .map(
               (resource) => `
-                <a class="button button--ghost" href="${resource.url}" target="_blank" rel="noreferrer">
+                <a class="button button--ghost" href="${resource.url}" target="_blank" rel="noreferrer noopener">
                   ${resource.label}
                 </a>
               `
@@ -177,7 +178,7 @@ export const renderTutosPage = () => {
                 .join("")}
             </div>
 
-            <div class="tutorial-reader-wrap" data-tutorial-reader>
+            <div class="tutorial-reader-wrap" data-tutorial-reader aria-live="polite">
               ${renderReaderEmptyState(tutorialHub)}
             </div>
           </div>
@@ -185,7 +186,7 @@ export const renderTutosPage = () => {
       </section>
     `,
     onMount: () => {
-      // Seuls les tutos actives sont enregistrés dans la map car le panneau
+      // Seuls les tutos actives sont enregistrÃ©s dans la map car le panneau
       // detaille ne doit jamais s'ouvrir pour une fiche encore inactive.
       const topicRegistry = new Map(
         getAllTopics(tutorialHub.sections)
@@ -210,7 +211,7 @@ export const renderTutosPage = () => {
           const placeholderNode = mediaNode?.querySelector(".tutorial-topic__placeholder");
 
           // On garde toujours le src dans le DOM pour que le chemin de l'image
-          // reste visible et remplaçable facilement meme si le fichier n'existe
+          // reste visible et remplaÃ§able facilement meme si le fichier n'existe
           // pas encore pendant la phase de maquettage.
           const handleLoad = () => {
             imageNode.classList.add("tutorial-topic__image--ready");
@@ -291,3 +292,4 @@ export const renderTutosPage = () => {
     }
   };
 };
+

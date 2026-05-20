@@ -108,11 +108,16 @@ const setMobileNavState = (isOpen) => {
   }
 
   toggleButton.setAttribute("aria-expanded", String(isOpen));
+  toggleButton.setAttribute(
+    "aria-label",
+    isOpen ? toggleButton.dataset.labelClose ?? "Fermer le menu" : toggleButton.dataset.labelOpen ?? "Ouvrir le menu"
+  );
 
   if (isOpen) {
     mobileNav.hidden = false;
     requestAnimationFrame(() => {
       mobileNav.dataset.open = "true";
+      mobileNav.querySelector("a, button:not([disabled])")?.focus({ preventScroll: true });
     });
     return;
   }
@@ -210,6 +215,12 @@ const bindLanguageSwitcher = () => {
     renderShell();
     closeMobileNav();
     renderCurrentRoute({ shouldFocus: false });
+  });
+
+  header.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMobileNav();
+    }
   });
 
   document.addEventListener("click", (event) => {

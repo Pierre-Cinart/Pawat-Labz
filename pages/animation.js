@@ -1,4 +1,4 @@
-import { renderPanel } from "../components/ui/panel.js";
+﻿import { renderPanel } from "../components/ui/panel.js";
 import { getAnimationHub, getPageContent } from "../data/site.js";
 
 /**
@@ -54,7 +54,7 @@ const renderAnimationFeaturedLink = (featuredLink) => {
         <h4 class="music-featured-link__handle">${featuredLink.handle}</h4>
         <p class="music-featured-link__summary">${featuredLink.summary}</p>
       </div>
-      <a class="button button--primary music-featured-link__button" href="${featuredLink.url}" target="_blank" rel="noreferrer">
+      <a class="button button--primary music-featured-link__button" href="${featuredLink.url}" target="_blank" rel="noreferrer noopener">
         ${featuredLink.buttonLabel}
       </a>
     </article>
@@ -91,6 +91,7 @@ export const renderAnimationPage = () => {
                     type="button"
                     data-animation-category="${category.id}"
                     aria-expanded="${category.id === initialCategoryId ? "true" : "false"}"
+                    aria-pressed="${category.id === initialCategoryId ? "true" : "false"}"
                   >
                     <span class="animation-focus__trigger-index">0${index + 1}</span>
                     <span>${category.label}</span>
@@ -131,7 +132,7 @@ export const renderAnimationPage = () => {
                                 ${entry.relatedLinks
                                   .map(
                                     (relatedLink) => `
-                                      <a class="button button--ghost" href="${relatedLink.href}" ${relatedLink.href.startsWith("#") ? "" : 'target="_blank" rel="noreferrer"'}>
+                                      <a class="button button--ghost" href="${relatedLink.href}" ${relatedLink.href.startsWith("#") ? "" : 'target="_blank" rel="noreferrer noopener"'}>
                                         ${relatedLink.label}
                                       </a>
                                     `
@@ -144,7 +145,7 @@ export const renderAnimationPage = () => {
                                 ? `<a class="button button--primary" href="#${entry.path}" data-link>${animationHub.entryButtons.internal}</a>`
                                 : ""}
                               ${entry.externalUrl
-                                ? `<a class="button button--ghost" href="${entry.externalUrl}" target="_blank" rel="noreferrer">${entry.externalLabel ?? animationHub.entryButtons.external}</a>`
+                                ? `<a class="button button--ghost" href="${entry.externalUrl}" target="_blank" rel="noreferrer noopener">${entry.externalLabel ?? animationHub.entryButtons.external}</a>`
                                 : ""}
                             </div>
                           </div>
@@ -180,7 +181,7 @@ export const renderAnimationPage = () => {
         if (!entry.youtubeId) {
           return `
             <div class="sagaz-player__placeholder animation-showcase__placeholder">
-              <p>Aperçu vidéo bientôt disponible.</p>
+              <p>AperÃ§u vidÃ©o bientÃ´t disponible.</p>
             </div>
           `;
         }
@@ -235,7 +236,7 @@ export const renderAnimationPage = () => {
                       ${entry.relatedLinks
                         .map(
                           (relatedLink) => `
-                            <a class="button button--ghost" href="${relatedLink.href}" ${relatedLink.href.startsWith("#") ? "" : 'target="_blank" rel="noreferrer"'}>
+                            <a class="button button--ghost" href="${relatedLink.href}" ${relatedLink.href.startsWith("#") ? "" : 'target="_blank" rel="noreferrer noopener"'}>
                               ${relatedLink.label}
                             </a>
                           `
@@ -248,7 +249,7 @@ export const renderAnimationPage = () => {
                       ? `<a class="button button--primary" href="#${entry.path}" data-link>${animationHub.entryButtons.internal}</a>`
                       : ""}
                     ${entry.externalUrl
-                      ? `<a class="button button--ghost" href="${entry.externalUrl}" target="_blank" rel="noreferrer">${entry.externalLabel ?? animationHub.entryButtons.external}</a>`
+                      ? `<a class="button button--ghost" href="${entry.externalUrl}" target="_blank" rel="noreferrer noopener">${entry.externalLabel ?? animationHub.entryButtons.external}</a>`
                       : ""}
                   </div>
                 </div>
@@ -315,6 +316,8 @@ export const renderAnimationPage = () => {
                         class="episode-card animation-showcase-card ${index === 0 ? "episode-card--active animation-showcase-card--active" : ""}"
                         type="button"
                         data-showcase-entry="${entry.title}"
+                        aria-label="${entry.title}"
+                        aria-pressed="${index === 0 ? "true" : "false"}"
                       >
                         <span class="episode-card__thumb animation-showcase-card__thumb">
                           <img class="episode-card__thumb-image animation-showcase-card__thumb-image" src="${entry.image}" alt="${entry.imageAlt}" loading="lazy">
@@ -335,7 +338,7 @@ export const renderAnimationPage = () => {
               <div class="animation-showcase__head">
                 <p class="section-kicker">${initialEntry.typeLabel ?? animationHub.entryKicker}</p>
                 ${initialEntry.externalUrl
-                  ? `<a class="sagaz-browser__playlist-link animation-showcase__quick-link" href="${initialEntry.externalUrl}" target="_blank" rel="noreferrer">${initialEntry.externalLabel ?? animationHub.entryButtons.external}</a>`
+                  ? `<a class="sagaz-browser__playlist-link animation-showcase__quick-link" href="${initialEntry.externalUrl}" target="_blank" rel="noreferrer noopener">${initialEntry.externalLabel ?? animationHub.entryButtons.external}</a>`
                   : ""}
               </div>
 
@@ -352,7 +355,7 @@ export const renderAnimationPage = () => {
                     ? initialEntry.relatedLinks
                         .map(
                           (relatedLink) => `
-                            <a class="button button--ghost" href="${relatedLink.href}" ${relatedLink.href.startsWith("#") ? "" : 'target="_blank" rel="noreferrer"'}>
+                            <a class="button button--ghost" href="${relatedLink.href}" ${relatedLink.href.startsWith("#") ? "" : 'target="_blank" rel="noreferrer noopener"'}>
                               ${relatedLink.label}
                             </a>
                           `
@@ -360,7 +363,7 @@ export const renderAnimationPage = () => {
                         .join("")
                     : ""}
                   ${initialEntry.externalUrl
-                    ? `<a class="button button--primary" href="${initialEntry.externalUrl}" target="_blank" rel="noreferrer">${initialEntry.externalLabel ?? animationHub.entryButtons.external}</a>`
+                    ? `<a class="button button--primary" href="${initialEntry.externalUrl}" target="_blank" rel="noreferrer noopener">${initialEntry.externalLabel ?? animationHub.entryButtons.external}</a>`
                     : ""}
                 </div>
               </article>
@@ -428,6 +431,7 @@ export const renderAnimationPage = () => {
             const isActive = cardNode.dataset.showcaseEntry === activeEntry.title;
             cardNode.classList.toggle("animation-showcase-card--active", isActive);
             cardNode.classList.toggle("episode-card--active", isActive);
+            cardNode.setAttribute("aria-pressed", isActive ? "true" : "false");
           });
 
           playerNode.innerHTML = renderShowcasePlayer(activeEntry);
@@ -449,7 +453,7 @@ export const renderAnimationPage = () => {
               ? activeEntry.relatedLinks
                   .map(
                     (relatedLink) => `
-                      <a class="button button--ghost" href="${relatedLink.href}" ${relatedLink.href.startsWith("#") ? "" : 'target="_blank" rel="noreferrer"'}>
+                      <a class="button button--ghost" href="${relatedLink.href}" ${relatedLink.href.startsWith("#") ? "" : 'target="_blank" rel="noreferrer noopener"'}>
                         ${relatedLink.label}
                       </a>
                     `
@@ -457,7 +461,7 @@ export const renderAnimationPage = () => {
                   .join("")
               : ""}
             ${activeEntry.externalUrl
-              ? `<a class="button button--primary" href="${activeEntry.externalUrl}" target="_blank" rel="noreferrer">${activeEntry.externalLabel ?? animationHub.entryButtons.external}</a>`
+              ? `<a class="button button--primary" href="${activeEntry.externalUrl}" target="_blank" rel="noreferrer noopener">${activeEntry.externalLabel ?? animationHub.entryButtons.external}</a>`
               : ""}
           `;
 
@@ -492,7 +496,7 @@ export const renderAnimationPage = () => {
         }
 
         // On laisse d'abord le routeur terminer son focus global sur #app,
-        // puis on reprend la main pour centrer la vraie sous-section demandée.
+        // puis on reprend la main pour centrer la vraie sous-section demandÃ©e.
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             targetNode.scrollIntoView({
@@ -514,6 +518,7 @@ export const renderAnimationPage = () => {
           const isActive = triggerNode.dataset.animationCategory === categoryId;
           triggerNode.classList.toggle("animation-focus__trigger--active", isActive);
           triggerNode.setAttribute("aria-expanded", isActive ? "true" : "false");
+          triggerNode.setAttribute("aria-pressed", isActive ? "true" : "false");
         });
 
         titleNode.textContent = category.title;
@@ -588,3 +593,4 @@ export const renderAnimationPage = () => {
     }
   };
 };
+

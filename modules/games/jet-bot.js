@@ -142,7 +142,9 @@ export const mountJetBotGame = ({ mountNode, language = "fr", onQuit = () => {} 
     obstacles = this.physics.add.group();
 
     player = this.physics.add.sprite(120, CFG.HEIGHT / 2, "bot", 0).setDepth(10);
-    player.body.setSize(38, 48).setOffset(13, 8);
+    // Hitbox volontairement plus petite que le sprite : la flamme reste visuelle
+    // et ne provoque pas de collision injuste avec les obstacles.
+    player.body.setSize(34, 34).setOffset(15, 12);
     player.setGravityY(0);
 
     this.anims.create({ key: "idle", frames: [{ key: "bot", frame: 0 }], frameRate: 1 });

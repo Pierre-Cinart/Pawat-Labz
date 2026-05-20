@@ -1,5 +1,5 @@
 import { setActiveNavigation } from "../components/layout.js";
-import { getRouteTitle, getSiteMeta } from "../data/site.js";
+import { getRouteMeta, updateHead } from "../data/site.js";
 import { renderView } from "../scripts/view-manager.js";
 import { notFoundRoute, routes } from "./routes.js";
 
@@ -73,13 +73,12 @@ export const renderCurrentRoute = ({ shouldFocus = true } = {}) => {
   const currentPath = getCurrentPath();
   const currentRoute = getRouteByPath(currentPath);
   const viewDefinition = currentRoute.render();
-  const siteMeta = getSiteMeta();
 
   updateViewMode();
 
   // Le View Manager remplace la vue, puis declenche les hooks `onMount/onUnmount`.
   renderView(app, viewDefinition);
-  document.title = `${getRouteTitle(currentRoute.path)} - ${siteMeta.titlePrimary} ${siteMeta.titleAccent}`;
+  updateHead(getRouteMeta(currentRoute.path));
   setActiveNavigation(currentRoute.path === "/404" ? "" : window.location.hash.replace(/^#/, "") || currentRoute.path);
 
   if (shouldFocus) {

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pierre-cinart.github.io/Pawat-Labz/sitemap.xml
